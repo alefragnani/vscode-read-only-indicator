@@ -1,0 +1,23 @@
+{
+	"name": "read-only-indicator",
+	"description": "Read Only indicator on statusbar",
+	"version": "0.0.1",
+	"publisher": "alefragnani",
+	"categories": [
+		"Other"
+	],
+	"engines": {
+		"vscode": "0.10.x"
+	},
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension",
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./"
+	},
+	"devDependencies": {
+		"vscode": "next"
+	}
+}
