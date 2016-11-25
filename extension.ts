@@ -2,6 +2,9 @@
 // Import the module and reference it with the alias vscode in your code below
 import {window, workspace, commands, Disposable, ExtensionContext, StatusBarAlignment, StatusBarItem, TextDocument} from 'vscode';
 import fs = require('fs');
+import cp = require('child_process');
+
+type FileAccess = "+R" | "-R";
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -19,6 +22,55 @@ export function activate(ctx: ExtensionContext) {
     // is deactivated again.
     ctx.subscriptions.push(controller);
     ctx.subscriptions.push(readOnlyIndicator);
+    
+    function updateFileAccess(newFileAccess: FileAccess) {
+        
+        // Windows only
+        if (process.platform != "win32") {
+            window.showInformationMessage('This command is only supported in Windows');
+            return;
+        }
+        
+        if (!window.activeTextEditor) {
+            window.showInformationMessage('Open a file first to update it attributes');
+            return;
+        }
+
+        let isReadOnly: Boolean = readOnlyIndicator.isReadOnly(window.activeTextEditor.document);
+        let activeFileAcess: FileAccess = isReadOnly ? "+R" : "-R";
+
+        if (newFileAccess == activeFileAcess) {
+            let activeFileAcessDescription: String;
+            activeFileAcessDescription = isReadOnly ? "Read-only" : "Writeable";
+            window.showInformationMessage('The file is already ' + activeFileAcessDescription);
+            return;
+        }  
+        
+        const spawn = require('child_process').spawn;
+        const ls = spawn('attrib', [newFileAccess, window.activeTextEditor.document.fileName]);
+
+        ls.stdout.on('data', (data) => {
+            console.log(`stdout: ${data}`);
+        });
+
+        ls.stderr.on('data', (data) => {
+            console.log(`stderr: ${data}`);
+            window.showErrorMessage(`Some error occured: ${data}`);
+        });
+
+        ls.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+            readOnlyIndicator.updateReadOnly();
+        });  
+    }
+    
+    commands.registerCommand('readOnly.makeWriteable', () => {        
+        updateFileAccess("-R");
+    });
+    
+    commands.registerCommand('readOnly.makeReadOnly', () => {        
+        updateFileAccess("+R");
+    });    
 }
 
 export class ReadOnlyIndicator {
