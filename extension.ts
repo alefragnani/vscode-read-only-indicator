@@ -35,7 +35,12 @@ export function activate(ctx: ExtensionContext) {
             window.showInformationMessage('Open a file first to update it attributes');
             return;
         }
-
+        
+        if (window.activeTextEditor.document.uri.scheme == "untitled") {
+            window.showInformationMessage('Save the file first to update it attributes');
+            return;
+        }
+        
         let isReadOnly: Boolean = readOnlyIndicator.isReadOnly(window.activeTextEditor.document);
         let activeFileAcess: FileAccess = isReadOnly ? "+R" : "-R";
 
