@@ -2,7 +2,7 @@
 	"name": "read-only-indicator",
 	"displayName": "Status Bar Read-Only Indicator",
 	"description": "Read-Only/Writeable indication on Status Bar",
-	"version": "0.3.0",
+	"version": "0.4.0",
 	"publisher": "alefragnani",
 	"galleryBanner": {
 		"color": "#0000FF",
@@ -35,7 +35,19 @@
 		},{
 			"command": "readOnly.makeReadOnly",
 			"title": "File Access: Make Read Only"
-		}] 
+		}],
+        "configuration": {			
+			"type": "object",
+			"title": "Status Bar Read-Only Indicator Configuration",
+			"properties": {
+				"fileAccess.position": {
+					"type": "string",
+					"default": "left",
+					"description": "Defines the position where the Status Bar indicator is located",
+					"enum": ["left", "right"]
+				}
+			}
+		} 
 	},
 	"scripts": {
 		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",

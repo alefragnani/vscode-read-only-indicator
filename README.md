@@ -25,6 +25,17 @@ You don't need to do anthing. It automatically adds itself in the status bar.
 
 ![Commands](images/read-only-commands.png)
 
+## Available settings
+
+* Defines the position where the Status Bar indicator is located
+```json
+    "fileAccess.position": "left" // or "right"
+```
+
+## Version 0.4.0
+
+* **New Setting:** Choose if the indicator will be located at `left` or `right` in the status bar (issue [#3](https://github.com/alefragnani/vscode-read-only-indicator/issues/3))
+
 ## Version 0.3.0
 
 * **New Command:** File Access: Make Read-Only

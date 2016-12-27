@@ -87,10 +87,15 @@ export class ReadOnlyIndicator {
     }
 
     public updateReadOnly() {
+        
+        // location
+        
+        let locationString: string = (workspace.getConfiguration('fileAccess').get('position', "left"));
+        let location: StatusBarAlignment = locationString === "left" ? StatusBarAlignment.Left : StatusBarAlignment.Right;
 
         // Create as needed
         if (!this.statusBarItem) {
-            this.statusBarItem = window.createStatusBarItem(StatusBarAlignment.Left);
+            this.statusBarItem = window.createStatusBarItem(location);
         } 
 
         // Get the current text editor
