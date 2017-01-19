@@ -1,8 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import {window, workspace, commands, Disposable, ExtensionContext, StatusBarAlignment, StatusBarItem, TextDocument} from 'vscode';
-import fs = require('fs');
-import cp = require('child_process');
+import {commands, Disposable, ExtensionContext, StatusBarAlignment, 
+        StatusBarItem, TextDocument, window, workspace} from "vscode";
+import fs = require("fs");
 
 type FileAccess = "+R" | "-R";
 
@@ -27,54 +27,54 @@ export function activate(ctx: ExtensionContext) {
     function updateFileAccess(newFileAccess: FileAccess) {
         
         // Windows only
-        if (process.platform != "win32") {
-            window.showInformationMessage('This command is only supported in Windows');
+        if (process.platform !== "win32") {
+            window.showInformationMessage("This command is only supported in Windows");
             return;
         }
         
         if (!window.activeTextEditor) {
-            window.showInformationMessage('Open a file first to update it attributes');
+            window.showInformationMessage("Open a file first to update it attributes");
             return;
         }
         
-        if (window.activeTextEditor.document.uri.scheme == "untitled") {
-            window.showInformationMessage('Save the file first to update it attributes');
+        if (window.activeTextEditor.document.uri.scheme === "untitled") {
+            window.showInformationMessage("Save the file first to update it attributes");
             return;
         }
         
         let isReadOnly: Boolean = readOnlyIndicator.isReadOnly(window.activeTextEditor.document);
         let activeFileAcess: FileAccess = isReadOnly ? "+R" : "-R";
 
-        if (newFileAccess == activeFileAcess) {
+        if (newFileAccess === activeFileAcess) {
             let activeFileAcessDescription: String;
             activeFileAcessDescription = isReadOnly ? "Read-only" : "Writeable";
-            window.showInformationMessage('The file is already ' + activeFileAcessDescription);
+            window.showInformationMessage("The file is already " + activeFileAcessDescription);
             return;
         }  
         
-        const spawn = require('child_process').spawn;
-        const ls = spawn('attrib', [newFileAccess, window.activeTextEditor.document.fileName]);
+        const spawn = require("child_process").spawn;
+        const ls = spawn("attrib", [newFileAccess, window.activeTextEditor.document.fileName]);
 
-        ls.stdout.on('data', (data) => {
+        ls.stdout.on("data", (data) => {
             console.log(`stdout: ${data}`);
         });
 
-        ls.stderr.on('data', (data) => {
+        ls.stderr.on("data", (data) => {
             console.log(`stderr: ${data}`);
             window.showErrorMessage(`Some error occured: ${data}`);
         });
 
-        ls.on('close', (code) => {
+        ls.on("close", (code) => {
             console.log(`child process exited with code ${code}`);
             readOnlyIndicator.updateReadOnly();
         });  
     }
     
-    commands.registerCommand('readOnly.makeWriteable', () => {        
+    commands.registerCommand("readOnly.makeWriteable", () => {        
         updateFileAccess("-R");
     });
     
-    commands.registerCommand('readOnly.makeReadOnly', () => {        
+    commands.registerCommand("readOnly.makeReadOnly", () => {        
         updateFileAccess("+R");
     });    
 }
@@ -83,19 +83,20 @@ export class ReadOnlyIndicator {
 
     private statusBarItem: StatusBarItem;
 
-    dispose() {
+    public dispose() {
         this.hideReadOnly();
     }
 
     public updateReadOnly() {
         
         // ui
-        let uimodeString: string = (workspace.getConfiguration('fileAccess').get('uiMode', "complete"));
+        let uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
         let uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
         
         // location
-        let locationString: string = (workspace.getConfiguration('fileAccess').get('position', "left"));
-        let location: StatusBarAlignment = locationString === "left" ? StatusBarAlignment.Left : StatusBarAlignment.Right;
+        let locationString: string = (workspace.getConfiguration("fileAccess").get("position", "left"));
+        let location: StatusBarAlignment = locationString === "left" ? 
+            StatusBarAlignment.Left : StatusBarAlignment.Right;
 
         // Create as needed
         if (!this.statusBarItem) {
@@ -117,26 +118,26 @@ export class ReadOnlyIndicator {
 
             // Update the status bar
             if (uimode === UIMode.Complete) {
-                this.statusBarItem.text = !readOnly ? '$(pencil) [RW]' : '$(circle-slash) [RO]';
+                this.statusBarItem.text = !readOnly ? "$(pencil) [RW]" : "$(circle-slash) [RO]";
             } else {
-                this.statusBarItem.text = !readOnly ? 'RW' : 'RO';
+                this.statusBarItem.text = !readOnly ? "RW" : "RO";
             }
-			this.statusBarItem.tooltip = !readOnly ? 'The file is writeable' : 'The file is read only';
+            this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
             this.statusBarItem.show();
         } else {
             this.statusBarItem.hide();
         }
     }
 	
-	public isReadOnly(doc: TextDocument): Boolean {
-		let filePath = doc.fileName;
-		try {
-				fs.accessSync(filePath, fs.W_OK);
-				return false;
-			} catch (error) {
-				return true;
-			}
-	}
+    public isReadOnly(doc: TextDocument): Boolean {
+        let filePath = doc.fileName;
+        try {
+            fs.accessSync(filePath, fs.W_OK);
+            return false;
+        } catch (error) {
+            return true;
+        }
+    }
     
     public hideReadOnly() {
         if (this.statusBarItem) {
@@ -163,7 +164,7 @@ class ReadOnlyIndicatorController {
         this.disposable = Disposable.from(...subscriptions);
     }
 
-    dispose() {
+    public dispose() {
         this.disposable.dispose();
     }
 
