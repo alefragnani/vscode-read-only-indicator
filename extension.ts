@@ -1,6 +1,6 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
-import {commands, Disposable, ExtensionContext, StatusBarAlignment, 
+import {commands, Disposable, ExtensionContext, QuickPickItem, QuickPickOptions, StatusBarAlignment, 
         StatusBarItem, TextDocument, window, workspace} from "vscode";
 import fs = require("fs");
 
@@ -70,6 +70,27 @@ export function activate(ctx: ExtensionContext) {
         });  
     }
     
+    function changeFileAccess() {
+        let items: QuickPickItem[] = [];
+        items.push({ label: "File Access: Make Read Only", description: "" });
+        items.push({ label: "File Access: Make Writeable", description: "" });
+        let options = <QuickPickOptions> {
+            placeHolder: "Select Action"
+        };
+
+        window.showQuickPick(items, options).then(selection => {
+            if (typeof selection === "undefined") {
+                return;
+            }
+            
+            if (selection.label === "File Access: Make Read Only") {
+                updateFileAccess("+R");
+            } else {
+                updateFileAccess("-R");
+            }
+        });
+    }
+    
     commands.registerCommand("readOnly.makeWriteable", () => {        
         updateFileAccess("-R");
     });
@@ -77,6 +98,10 @@ export function activate(ctx: ExtensionContext) {
     commands.registerCommand("readOnly.makeReadOnly", () => {        
         updateFileAccess("+R");
     });    
+    
+    commands.registerCommand("readOnly.changeFileAccess", () => {
+        changeFileAccess();
+    });
 }
 
 export class ReadOnlyIndicator {
@@ -101,6 +126,7 @@ export class ReadOnlyIndicator {
         // Create as needed
         if (!this.statusBarItem) {
             this.statusBarItem = window.createStatusBarItem(location);
+            this.statusBarItem.command = "readOnly.changeFileAccess";
         } 
 
         // Get the current text editor

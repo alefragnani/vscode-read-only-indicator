@@ -20,6 +20,7 @@ You don't need to do anthing. It automatically adds itself in the status bar.
 
 ## Available commands
 
+* **File Access: Change File Access** Choose the new File Access
 * **File Access: Make Read-only** Make the file Read-Only
 * **File Access: Make Writeable** Make the file Writeable
 
@@ -36,6 +37,10 @@ You don't need to do anthing. It automatically adds itself in the status bar.
 ```json
     "fileAccess.uiMode": "complete" // or "simple"
 ```
+
+## Version 0.6.0
+
+* **New Command:** The Status Bar indicator is now clickable (issue [#4](https://github.com/alefragnani/vscode-read-only-indicator/issues/4))
 
 ## Version 0.5.0
 

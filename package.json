@@ -2,7 +2,7 @@
 	"name": "read-only-indicator",
 	"displayName": "Status Bar Read-Only Indicator",
 	"description": "Read-Only/Writeable indication on Status Bar",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"publisher": "alefragnani",
 	"galleryBanner": {
 		"color": "#0000FF",
@@ -35,6 +35,9 @@
 		},{
 			"command": "readOnly.makeReadOnly",
 			"title": "File Access: Make Read Only"
+		},{
+			"command": "readOnly.changeFileAccess",
+			"title": "File Access: Change File Access"
 		}],
         "configuration": {			
 			"type": "object",
