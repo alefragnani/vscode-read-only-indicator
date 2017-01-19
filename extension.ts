@@ -6,13 +6,14 @@ import cp = require('child_process');
 
 type FileAccess = "+R" | "-R";
 
+const enum UIMode {
+    Complete,
+    Simple
+}
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 export function activate(ctx: ExtensionContext) { 
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "read-only-indicator" is now active!'); 
 
 	// create a new read only indicator
     let readOnlyIndicator = new ReadOnlyIndicator();
@@ -88,8 +89,11 @@ export class ReadOnlyIndicator {
 
     public updateReadOnly() {
         
-        // location
+        // ui
+        let uimodeString: string = (workspace.getConfiguration('fileAccess').get('uiMode', "complete"));
+        let uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
         
+        // location
         let locationString: string = (workspace.getConfiguration('fileAccess').get('position', "left"));
         let location: StatusBarAlignment = locationString === "left" ? StatusBarAlignment.Left : StatusBarAlignment.Right;
 
@@ -112,7 +116,11 @@ export class ReadOnlyIndicator {
             let readOnly = this.isReadOnly(doc);
 
             // Update the status bar
-            this.statusBarItem.text = !readOnly ? '$(pencil) [RW]' : '$(circle-slash) [RO]';
+            if (uimode === UIMode.Complete) {
+                this.statusBarItem.text = !readOnly ? '$(pencil) [RW]' : '$(circle-slash) [RO]';
+            } else {
+                this.statusBarItem.text = !readOnly ? 'RW' : 'RO';
+            }
 			this.statusBarItem.tooltip = !readOnly ? 'The file is writeable' : 'The file is read only';
             this.statusBarItem.show();
         } else {

@@ -32,6 +32,15 @@ You don't need to do anthing. It automatically adds itself in the status bar.
     "fileAccess.position": "left" // or "right"
 ```
 
+* Define how much information is displayed in the Status Bar indicator
+```json
+    "fileAccess.uiMode": "complete" // or "simple"
+```
+
+## Version 0.5.0
+
+* **New Setting:** Choose if the indicator will display _icon_, _text_ and _brackets_, or _only text_ in the status bar (issue [#5](https://github.com/alefragnani/vscode-read-only-indicator/issues/5))
+
 ## Version 0.4.0
 
 * **New Setting:** Choose if the indicator will be located at `left` or `right` in the status bar (issue [#3](https://github.com/alefragnani/vscode-read-only-indicator/issues/3))
