@@ -158,7 +158,7 @@ export class ReadOnlyIndicator {
     public isReadOnly(doc: TextDocument): Boolean {
         let filePath = doc.fileName;
         try {
-            fs.accessSync(filePath, fs.W_OK);
+            fs.accessSync(filePath, fs.constants.W_OK);
             return false;
         } catch (error) {
             return true;
