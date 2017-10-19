@@ -1,3 +1,9 @@
+language: node_js
+
+# branches:
+#   only:
+#   - unit-test
+
 sudo: false
 
 os:
