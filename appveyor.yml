@@ -10,6 +10,7 @@ install:
   - npm install -g npm@4 --silent
 
 build_script:
+  - npm install
   - npm run vscode:prepublish
 
 test_script:
