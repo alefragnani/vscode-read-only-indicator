@@ -14,4 +14,4 @@ build_script:
   - npm run vscode:prepublish
 
 test_script:
-  - npm test:appveyor
+  - npm test
