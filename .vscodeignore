@@ -5,3 +5,8 @@ typings/**
 .gitignore
 tsconfig.json
 vsc-extension-quickstart.md
+.vscode-test/**
+.travis.yml
+appveyor.yml
+out/test/**
+tslint.json
