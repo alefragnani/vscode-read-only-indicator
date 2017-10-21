@@ -1,3 +1,7 @@
+## Version 0.7.0
+
+* **Internal:** First steps for Unit-Test (AppVeyor / Travis)
+
 ## Version 0.6.0
 
 * **New Command:** The Status Bar indicator is now clickable (issue [#4](https://github.com/alefragnani/vscode-read-only-indicator/issues/4))
