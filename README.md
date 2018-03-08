@@ -29,14 +29,14 @@ You don't need to do anthing. It automatically adds itself in the status bar.
 ## Available settings
 
 * Defines the position where the Status Bar indicator is located
-```json
+    ```json
     "fileAccess.position": "left" // or "right"
-```
+    ```
 
 * Define how much information is displayed in the Status Bar indicator
-```json
+    ```json
     "fileAccess.uiMode": "complete" // or "simple"
-```
+    ```
 
 ## Participate
 
