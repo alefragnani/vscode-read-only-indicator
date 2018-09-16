@@ -1,14 +1,12 @@
-# Functionality
+# Status Bar Read-only Indicator
 
-Adds a status bar indicating if a file is read-only or writeable.
+**Status Bar Read-only Indicator** is an open source extension created for **Visual Studio Code**. While being free and open source, if you find it useful, please consider [supporting it](#support-pascal)
 
-# Installation
+It adds an area in the status bar, indicating if the file is **read-only** or **writeable**. It will be automatically updated, every time you open any file.
 
-Press `F1` in VSCode, type `ext install` and then look for `Status Bar Read-Only Indicator`.
+# Features
 
-# Usage
-
-You don't need to do anthing. It automatically adds itself in the status bar.
+The indicator is automatically updated. You don't need to do anything.
 
 ### Read-only
 
@@ -20,11 +18,9 @@ You don't need to do anthing. It automatically adds itself in the status bar.
 
 ## Available commands
 
-* **File Access: Change File Access** Choose the new File Access
-* **File Access: Make Read-only** Make the file Read-Only
-* **File Access: Make Writeable** Make the file Writeable
-
-![Commands](images/read-only-commands.png)
+* `File Access: Change File Access`
+* `File Access: Make Read-only`
+* `File Access: Make Writeable`
 
 ## Available settings
 
