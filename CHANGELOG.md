@@ -1,3 +1,7 @@
+## [2.1.0] - 2018-09-15
+### Added
+- Patreon button
+
 ## [0.7.0 - 2.0.0] - 2017-10-20
 ### Internal
 - First steps for Unit-Test (AppVeyor and Travis support)
