@@ -64,6 +64,15 @@
 						"complete",
 						"simple"
 					]
+				},
+				"fileAccess.indicatorAction": {
+					"type": "string",
+					"default": "choose",
+					"description": "Sets what action to take when the indicator is clicked",
+					"enum": [
+						"toggle",
+						"choose"
+					]
 				}
 			}
 		}

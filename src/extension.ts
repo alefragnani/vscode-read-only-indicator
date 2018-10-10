@@ -90,6 +90,27 @@ export function activate(ctx: ExtensionContext) {
             }
         });
     }
+
+    function indicatorAction() {
+        let action = workspace.getConfiguration("fileAccess").get("indicatorAction");
+        switch (action) {
+            case "toggle":
+                if (readOnlyIndicator.isReadOnly(window.activeTextEditor.document)) {
+                    updateFileAccess("-R");
+                } else {
+                    updateFileAccess("+R");
+                }
+                break;
+
+            case "choose":
+                changeFileAccess();
+                break;
+
+            default:
+                console.log(`Received bad action '${action}'`);
+                window.showErrorMessage(`No indicator action '${action}' is available`);
+        }
+    }
     
     commands.registerCommand("readOnly.makeWriteable", () => {        
         updateFileAccess("-R");
@@ -101,6 +122,10 @@ export function activate(ctx: ExtensionContext) {
     
     commands.registerCommand("readOnly.changeFileAccess", () => {
         changeFileAccess();
+    });
+
+    commands.registerCommand("readOnly.indicatorAction", () => {
+        indicatorAction();
     });
 }
 
@@ -126,7 +151,7 @@ export class ReadOnlyIndicator {
         // Create as needed
         if (!this.statusBarItem) {
             this.statusBarItem = window.createStatusBarItem(location);
-            this.statusBarItem.command = "readOnly.changeFileAccess";
+            this.statusBarItem.command = "readOnly.indicatorAction";
         } 
 
         // Get the current text editor
