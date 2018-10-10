@@ -36,7 +36,7 @@ The indicator is automatically updated. You don't need to do anything.
 
 * Set what to do when the Status Bar indicator is clicked
     ```json
-    "fileAccess.indicatorAction": "choose" // or simple
+    "fileAccess.indicatorAction": "choose" // or "toggle"
     ```
 
 ## Support
