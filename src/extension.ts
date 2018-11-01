@@ -1,8 +1,8 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
+import fs = require("fs");
 import {commands, Disposable, ExtensionContext, QuickPickItem, QuickPickOptions, StatusBarAlignment, 
         StatusBarItem, TextDocument, window, workspace} from "vscode";
-import fs = require("fs");
 
 type FileAccess = "+R" | "-R";
 
@@ -15,9 +15,9 @@ const enum UIMode {
 // your extension is activated the very first time the command is executed
 export function activate(ctx: ExtensionContext) { 
 
-	// create a new read only indicator
-    let readOnlyIndicator = new ReadOnlyIndicator();
-    let controller = new ReadOnlyIndicatorController(readOnlyIndicator);
+    // create a new read only indicator
+    const readOnlyIndicator = new ReadOnlyIndicator();
+    const controller = new ReadOnlyIndicatorController(readOnlyIndicator);
 
     // add to a list of disposables which are disposed when this extension
     // is deactivated again.
@@ -42,11 +42,11 @@ export function activate(ctx: ExtensionContext) {
             return;
         }
         
-        let isReadOnly: Boolean = readOnlyIndicator.isReadOnly(window.activeTextEditor.document);
-        let activeFileAcess: FileAccess = isReadOnly ? "+R" : "-R";
+        const isReadOnly: boolean = readOnlyIndicator.isReadOnly(window.activeTextEditor.document);
+        const activeFileAcess: FileAccess = isReadOnly ? "+R" : "-R";
 
         if (newFileAccess === activeFileAcess) {
-            let activeFileAcessDescription: String;
+            let activeFileAcessDescription: string;
             activeFileAcessDescription = isReadOnly ? "Read-only" : "Writeable";
             window.showInformationMessage("The file is already " + activeFileAcessDescription);
             return;
@@ -71,10 +71,10 @@ export function activate(ctx: ExtensionContext) {
     }
     
     function changeFileAccess() {
-        let items: QuickPickItem[] = [];
+        const items: QuickPickItem[] = [];
         items.push({ label: "File Access: Make Read Only", description: "" });
         items.push({ label: "File Access: Make Writeable", description: "" });
-        let options = <QuickPickOptions> {
+        const options = <QuickPickOptions> {
             placeHolder: "Select Action"
         };
 
@@ -115,12 +115,12 @@ export class ReadOnlyIndicator {
     public updateReadOnly() {
         
         // ui
-        let uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
-        let uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
+        const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
+        const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
         
         // location
-        let locationString: string = (workspace.getConfiguration("fileAccess").get("position", "left"));
-        let location: StatusBarAlignment = locationString === "left" ? 
+        const locationString: string = (workspace.getConfiguration("fileAccess").get("position", "left"));
+        const location: StatusBarAlignment = locationString === "left" ? 
             StatusBarAlignment.Left : StatusBarAlignment.Right;
 
         // Create as needed
@@ -130,17 +130,17 @@ export class ReadOnlyIndicator {
         } 
 
         // Get the current text editor
-        let editor = window.activeTextEditor;
+        const editor = window.activeTextEditor;
         if (!editor) {
             this.statusBarItem.hide();
             return;
         }
 
-        let doc = editor.document;
+        const doc = editor.document;
 
         // Only update status if an MD file
         if (!doc.isUntitled) {
-            let readOnly = this.isReadOnly(doc);
+            const readOnly = this.isReadOnly(doc);
 
             // Update the status bar
             if (uimode === UIMode.Complete) {
@@ -154,9 +154,9 @@ export class ReadOnlyIndicator {
             this.statusBarItem.hide();
         }
     }
-	
-    public isReadOnly(doc: TextDocument): Boolean {
-        let filePath = doc.fileName;
+
+    public isReadOnly(doc: TextDocument): boolean {
+        const filePath = doc.fileName;
         try {
             fs.accessSync(filePath, fs.constants.W_OK);
             return false;
@@ -182,7 +182,7 @@ class ReadOnlyIndicatorController {
         this.readOnlyIndicator.updateReadOnly();
 
         // subscribe to selection change and editor activation events
-        let subscriptions: Disposable[] = [];
+        const subscriptions: Disposable[] = [];
         window.onDidChangeTextEditorSelection(this.onEvent, this, subscriptions);
         window.onDidChangeActiveTextEditor(this.onEvent, this, subscriptions);
 
