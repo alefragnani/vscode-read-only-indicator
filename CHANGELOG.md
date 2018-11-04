@@ -1,3 +1,7 @@
+## [2.2.0] - 2018-11-04
+### Added
+- Setting to choose if the indicator will let you _choose_ or _automatically toggle_ the file access (Thanks to @TomChapple [PR #11](https://github.com/alefragnani/vscode-read-only-indicator/pull/11))
+
 ## [2.1.0] - 2018-09-15
 ### Added
 - Patreon button
