@@ -1,6 +1,31 @@
-# Status Bar Read-only Indicator
+<p align="center">
+  <br />
+  <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/read-only-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
+</p>
 
-**Status Bar Read-only Indicator** is an open source extension created for **Visual Studio Code**. While being free and open source, if you find it useful, please consider [supporting it](#support-pascal)
+# What's new in Read-only Indicator 2
+
+* Clickable Status Bar indicator
+
+## Support
+
+**Read-only Indicator** is an open source extension created for **Visual Studio Code**. While being free and open source, if you find it useful, please consider supporting it.
+
+<table align="center" width="60%" border="0">
+  <tr>
+    <td>
+      <a title="Paypal" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=EP57F3B6FXKTU&lc=US&item_name=Alessandro%20Fragnani&item_number=vscode%20extensions&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif"/></a>
+    </td>
+    <td>
+      <a title="Paypal" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=EP57F3B6FXKTU&lc=BR&item_name=Alessandro%20Fragnani&item_number=vscode%20extensions&currency_code=BRL&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"><img src="https://www.paypalobjects.com/pt_BR/i/btn/btn_donate_SM.gif"/></a>
+    </td>
+    <td>
+      <a title="Patreon" href="https://www.patreon.com/alefragnani"><img src="https://raw.githubusercontent.com/alefragnani/oss-resources/master/images/button-become-a-patron-rounded-small.png"/></a>
+    </td>
+  </tr>
+</table>
+
+# Read-only Indicator
 
 It adds an area in the status bar, indicating if the file is **read-only** or **writeable**. It will be automatically updated, every time you open any file.
 
@@ -38,28 +63,6 @@ The indicator is automatically updated. You don't need to do anything.
     ```json
     "fileAccess.indicatorAction": "choose" // or "toggle"
     ```
-
-## Support
-
-While **Status Bar Read-only Indicator** is free and open source, if you find it useful, please consider supporting it.
-
-I've been working on this on my spare time, and although I enjoy developing it, I would like to be able to give more attention to its growth.
-
-<table align="center" width="60%" border="0">
-  <tr>
-    <td>
-      <a title="Paypal" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=EP57F3B6FXKTU&lc=US&item_name=Alessandro%20Fragnani&item_number=vscode%20extensions&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif"/></a>
-    </td>
-    <td>
-      <a title="Paypal" href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=EP57F3B6FXKTU&lc=BR&item_name=Alessandro%20Fragnani&item_number=vscode%20extensions&currency_code=BRL&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted"><img src="https://www.paypalobjects.com/pt_BR/i/btn/btn_donate_SM.gif"/></a>
-    </td>
-    <td>
-      <a title="Patreon" href="https://www.patreon.com/alefragnani"><img src="https://raw.githubusercontent.com/alefragnani/oss-resources/master/images/button-become-a-patron-rounded-small.png"/></a>
-    </td>
-  </tr>
-</table>
-
----
 
 # License
 
