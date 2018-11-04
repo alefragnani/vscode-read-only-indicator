@@ -33,13 +33,10 @@ It adds an area in the status bar, indicating if the file is **read-only** or **
 
 The indicator is automatically updated. You don't need to do anything.
 
-### Read-only
-
-![Read-only](images/screenshot-readonly.png)
-
-### Writeable
-
-![Writeable](images/screenshot-writeable.png)
+File Access | Status Bar Preview |
+----------- | ------------------ |
+Read-only |![Read-only](images/screenshot-readonly.png) 
+Writeable |![Writeable](images/screenshot-writeable.png) 
 
 ## Available commands
 
