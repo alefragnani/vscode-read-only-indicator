@@ -34,6 +34,11 @@ The indicator is automatically updated. You don't need to do anything.
     "fileAccess.uiMode": "complete" // or "simple"
     ```
 
+* Set what to do when the Status Bar indicator is clicked
+    ```json
+    "fileAccess.indicatorAction": "choose" // or "toggle"
+    ```
+
 ## Support
 
 While **Status Bar Read-only Indicator** is free and open source, if you find it useful, please consider supporting it.
