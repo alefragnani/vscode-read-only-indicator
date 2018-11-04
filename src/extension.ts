@@ -92,7 +92,7 @@ export function activate(ctx: ExtensionContext) {
     }
 
     function indicatorAction() {
-        let action = workspace.getConfiguration("fileAccess").get("indicatorAction");
+        const action: string = workspace.getConfiguration("fileAccess").get("indicatorAction");
         switch (action) {
             case "toggle":
                 if (readOnlyIndicator.isReadOnly(window.activeTextEditor.document)) {
