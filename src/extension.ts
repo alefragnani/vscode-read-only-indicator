@@ -26,12 +26,6 @@ export function activate(ctx: ExtensionContext) {
     
     function updateFileAccess(newFileAccess: FileAccess) {
         
-        // Windows only
-        if (process.platform !== "win32") {
-            window.showInformationMessage("This command is only supported in Windows");
-            return;
-        }
-        
         if (!window.activeTextEditor) {
             window.showInformationMessage("Open a file first to update it attributes");
             return;
@@ -42,6 +36,24 @@ export function activate(ctx: ExtensionContext) {
             return;
         }
         
+
+        // determine what operating system we are running on and change the
+        // command and arguments used to change the file permissions
+        switch (process.platform) {
+            case "win32":
+                var command = "attrib";
+                var attribute = newFileAccess.toString();
+                break;
+            case "linux":
+            case "darwin": /* darwin is the response for macos */
+                var command = "chmod";
+                var attribute = (newFileAccess === "+R") ? "u-w" : "u+w"; /* 'u' for user, '-w' for remove write permission */
+                break;
+            default:
+                window.showInformationMessage("This command is not supported on this system (" + process.platform + ")");
+                return;
+        }
+
         const isReadOnly: boolean = readOnlyIndicator.isReadOnly(window.activeTextEditor.document);
         const activeFileAcess: FileAccess = isReadOnly ? "+R" : "-R";
 
@@ -53,7 +65,7 @@ export function activate(ctx: ExtensionContext) {
         }  
         
         const spawn = require("child_process").spawn;
-        const ls = spawn("attrib", [newFileAccess, window.activeTextEditor.document.fileName]);
+        const ls = spawn(command, [attribute, window.activeTextEditor.document.fileName]);
 
         ls.stdout.on("data", (data) => {
             console.log(`stdout: ${data}`);
