@@ -36,21 +36,24 @@ export function activate(ctx: ExtensionContext) {
             return;
         }
         
-
         // determine what operating system we are running on and change the
         // command and arguments used to change the file permissions
+        let command;
+        let attribute;
         switch (process.platform) {
             case "win32":
-                var command = "attrib";
-                var attribute = newFileAccess.toString();
+                command = "attrib";
+                attribute = newFileAccess.toString();
                 break;
             case "linux":
             case "darwin": /* darwin is the response for macos */
-                var command = "chmod";
-                var attribute = (newFileAccess === "+R") ? "u-w" : "u+w"; /* 'u' for user, '-w' for remove write permission */
+                command = "chmod";
+                // 'u' for user, '-w' for remove write permission
+                attribute = (newFileAccess === "+R") ? "u-w" : "u+w";
                 break;
             default:
-                window.showInformationMessage("This command is not supported on this system (" + process.platform + ")");
+                window.showInformationMessage(
+                    "This command is not supported on this system (" + process.platform + ")");
                 return;
         }
 
