@@ -5,7 +5,8 @@
 
 # What's new in Read-only Indicator 2
 
-* Clickable Status Bar indicator
+* Support to **MacOS** and **Linux**
+* **Clickable** Status Bar indicator
 
 ## Support
 
