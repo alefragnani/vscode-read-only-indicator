@@ -1,3 +1,7 @@
+## [3.0.0] - 2018-11-25
+### Added
+- What's New
+
 ## [2.3.0] - 2018-11-20
 ### Added
 - Support to MacOS and Linux (Thanks to @joshwiker14 [PR #13](https://github.com/alefragnani/vscode-read-only-indicator/pull/13))
