@@ -4,6 +4,9 @@ import fs = require("fs");
 import {commands, Disposable, ExtensionContext, QuickPickItem, QuickPickOptions, StatusBarAlignment, 
         StatusBarItem, TextDocument, window, workspace} from "vscode";
 
+import { WhatsNewManager } from "../vscode-whats-new/src/Manager";
+import { WhatsNewReadOnlyIndicatorContentProvider } from "./whats-new/ReadOnlyIndicatorContentProvider";
+
 type FileAccess = "+R" | "-R";
 
 const enum UIMode {
@@ -18,6 +21,11 @@ export function activate(ctx: ExtensionContext) {
     // create a new read only indicator
     const readOnlyIndicator = new ReadOnlyIndicator();
     const controller = new ReadOnlyIndicatorController(readOnlyIndicator);
+
+    const provider = new WhatsNewReadOnlyIndicatorContentProvider();
+    const viewer = new WhatsNewManager(ctx).registerContentProvider("read-only-indicator", provider);
+    viewer.showPageInActivation();
+    ctx.subscriptions.push(commands.registerCommand("readOnly.whatsNew", () => viewer.showPage()));
 
     // add to a list of disposables which are disposed when this extension
     // is deactivated again.

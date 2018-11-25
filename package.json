@@ -41,6 +41,10 @@
 			{
 				"command": "readOnly.changeFileAccess",
 				"title": "File Access: Change File Access"
+            },
+            {
+                "command": "readOnly.whatsNew",
+                "title": "File Access: What's New"
 			}
 		],
 		"configuration": {
