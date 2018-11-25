@@ -5,7 +5,9 @@ export class WhatsNewReadOnlyIndicatorContentProvider implements ContentProvider
 
     public provideHeader(logoUrl: string): Header {
         return <Header> {logo: <Image> {src: logoUrl, height: 50, width: 50}, 
-            message: `Easily <b>check</b> and <b>update</b> the file access, right in status bar.`};
+            message: `Easily <b>see</b> if you are working with <b>read-only</b> or <b>writeable</b> files,
+            right in the <b>status bar</b>, automatically. Do you need to <b>change the file access</b>? 
+            No problem. You can do that as well.`};
     }
 
     public provideChangeLog(): ChangeLogItem[] {
