@@ -2,7 +2,7 @@
 	"name": "read-only-indicator",
 	"displayName": "Read-Only Indicator",
 	"description": "Read-Only/Writeable indication on Status Bar",
-	"version": "2.3.0",
+	"version": "3.0.0",
 	"publisher": "alefragnani",
 	"galleryBanner": {
 		"color": "#0000FF",
@@ -13,7 +13,7 @@
 	],
 	"icon": "images/icon.png",
 	"engines": {
-		"vscode": "^1.12.0"
+		"vscode": "^1.23.0"
 	},
 	"license": "SEE LICENSE IN LICENSE.md",
 	"homepage": "https://github.com/alefragnani/vscode-read-only-indicator/blob/master/README.md",
@@ -41,6 +41,10 @@
 			{
 				"command": "readOnly.changeFileAccess",
 				"title": "File Access: Change File Access"
+            },
+            {
+                "command": "readOnly.whatsNew",
+                "title": "File Access: What's New"
 			}
 		],
 		"configuration": {
@@ -86,8 +90,8 @@
 	},
 	"devDependencies": {
 		"@types/node": "^6.0.40",
-		"typescript": "^2.3.2",
-		"vscode": "^1.1.0",
+		"typescript": "^3.1.6",
+		"vscode": "^1.1.21",
 		"mocha": "^4.0.1",
 		"tslint": "5.11.0",
 		"@types/mocha": "^2.2.43"

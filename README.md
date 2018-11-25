@@ -1,9 +1,9 @@
 <p align="center">
   <br />
-  <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/read-only-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
+  <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/vscode-read-only-indicator-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
 </p>
 
-# What's new in Read-only Indicator 2
+# What's new in Read-only Indicator 3
 
 * Support to **MacOS** and **Linux**
 * **Clickable** Status Bar indicator
