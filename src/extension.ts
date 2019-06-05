@@ -7,8 +7,6 @@ import fs = require("fs");
 import {commands, Disposable, ExtensionContext, QuickPickItem, QuickPickOptions, StatusBarAlignment, 
         StatusBarItem, TextDocument, window, workspace} from "vscode";
 
-import { WhatsNewManager } from "../vscode-whats-new/src/Manager";
-import { WhatsNewReadOnlyIndicatorContentProvider } from "./whats-new/ReadOnlyIndicatorContentProvider";
 
 type FileAccess = "+R" | "-R";
 
@@ -25,10 +23,15 @@ export function activate(ctx: ExtensionContext) {
     const readOnlyIndicator = new ReadOnlyIndicator();
     const controller = new ReadOnlyIndicatorController(readOnlyIndicator);
 
-    const provider = new WhatsNewReadOnlyIndicatorContentProvider();
-    const viewer = new WhatsNewManager(ctx).registerContentProvider("read-only-indicator", provider);
-    viewer.showPageInActivation();
-    ctx.subscriptions.push(commands.registerCommand("readOnly.whatsNew", () => viewer.showPage()));
+    const whatsNewSubmodule: string = "../vscode-whats-new/src/Manager";
+    if (fs.existsSync(whatsNewSubmodule)) {
+        const wnm = require(whatsNewSubmodule);
+        const wncp = require("./whats-new/ReadOnlyIndicatorContentProvider");
+        const provider = new wncp.WhatsNewReadOnlyIndicatorContentProvider();
+        const viewer = new wnm.WhatsNewManager(ctx).registerContentProvider("read-only-indicator", provider);
+        viewer.showPageInActivation();
+        ctx.subscriptions.push(commands.registerCommand("readOnly.whatsNew", () => viewer.showPage()));
+    }
 
     // add to a list of disposables which are disposed when this extension
     // is deactivated again.
