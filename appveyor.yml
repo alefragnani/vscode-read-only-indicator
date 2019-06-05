@@ -8,7 +8,7 @@ environment:
 install:
   - ps: Install-Product node 7.9.0 x64
   - npm install -g npm@4 --silent
-  - git submodule update --init --recursive
+  # - git submodule update --init --recursive
 
 build_script:
   - npm install
