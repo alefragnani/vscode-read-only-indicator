@@ -1,3 +1,7 @@
+## [3.0.4] - 2019-07-12 
+### Fixed
+- Security Alert: diff v3.5.0
+
 ## [3.0.3] - 2019-05-27
 ### Fixed
 - Security Alert: tar
