@@ -2,7 +2,7 @@
 	"name": "read-only-indicator",
 	"displayName": "Read-Only Indicator",
 	"description": "Read-Only/Writeable indication on Status Bar",
-	"version": "3.0.3",
+	"version": "3.0.4",
 	"publisher": "alefragnani",
 	"galleryBanner": {
 		"color": "#0000FF",
@@ -100,7 +100,7 @@
 		"webpack-cli": "^3.1.0",
 		"ts-loader": "^4.4.2",
 		"terser-webpack-plugin": "^1.2.1",
-		"mocha": "^4.0.1",
+		"mocha": "^6.1.4",
 		"tslint": "5.11.0",
 		"@types/mocha": "^2.2.43"
 	}
