@@ -1,15 +1,8 @@
-/*---------------------------------------------------------------------------------------------
-*  Copyright (c) Alessandro Fragnani. All rights reserved.
-*  Licensed under the MIT License. See License.md in the project root for license information.
-*--------------------------------------------------------------------------------------------*/
-
-import fs = require("fs");
-import {commands, Disposable, ExtensionContext, QuickPickItem, QuickPickOptions, StatusBarAlignment, 
-        StatusBarItem, TextDocument, window, workspace} from "vscode";
+import {commands, Disposable, ExtensionContext, QuickPickItem, QuickPickOptions, window, workspace} from "vscode";
 
 import { WhatsNewManager } from "../vscode-whats-new/src/Manager";
 import { WhatsNewReadOnlyIndicatorContentProvider } from "./whats-new/ReadOnlyIndicatorContentProvider";
-import { UIMode } from "./constants";
+import { ReadOnlyIndicator } from "./statusBar";
 
 type FileAccess = "+R" | "-R";
 
@@ -149,74 +142,6 @@ export function activate(ctx: ExtensionContext) {
     commands.registerCommand("readOnly.indicatorAction", () => {
         indicatorAction();
     });
-}
-
-export class ReadOnlyIndicator {
-
-    private statusBarItem: StatusBarItem;
-
-    public dispose() {
-        this.hideReadOnly();
-    }
-
-    public updateReadOnly() {
-        
-        // ui
-        const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
-        const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
-        
-        // location
-        const locationString: string = (workspace.getConfiguration("fileAccess").get("position", "left"));
-        const location: StatusBarAlignment = locationString === "left" ? 
-            StatusBarAlignment.Left : StatusBarAlignment.Right;
-
-        // Create as needed
-        if (!this.statusBarItem) {
-            this.statusBarItem = window.createStatusBarItem(location);
-            this.statusBarItem.command = "readOnly.indicatorAction";
-        } 
-
-        // Get the current text editor
-        const editor = window.activeTextEditor;
-        if (!editor) {
-            this.statusBarItem.hide();
-            return;
-        }
-
-        const doc = editor.document;
-
-        // Only update status if an MD file
-        if (!doc.isUntitled) {
-            const readOnly = this.isReadOnly(doc);
-
-            // Update the status bar
-            if (uimode === UIMode.Complete) {
-                this.statusBarItem.text = !readOnly ? "$(pencil) [RW]" : "$(circle-slash) [RO]";
-            } else {
-                this.statusBarItem.text = !readOnly ? "RW" : "RO";
-            }
-            this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
-            this.statusBarItem.show();
-        } else {
-            this.statusBarItem.hide();
-        }
-    }
-
-    public isReadOnly(doc: TextDocument): boolean {
-        const filePath = doc.fileName;
-        try {
-            fs.accessSync(filePath, fs.constants.W_OK);
-            return false;
-        } catch (error) {
-            return true;
-        }
-    }
-    
-    public hideReadOnly() {
-        if (this.statusBarItem) {
-            this.statusBarItem.dispose();
-        }
-    }
 }
 
 class ReadOnlyIndicatorController {
