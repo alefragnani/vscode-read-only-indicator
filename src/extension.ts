@@ -1,8 +1,9 @@
-import {commands, Disposable, ExtensionContext, QuickPickItem, QuickPickOptions, window, workspace} from "vscode";
+import {commands, ExtensionContext, QuickPickItem, QuickPickOptions, window, workspace} from "vscode";
 
 import { WhatsNewManager } from "../vscode-whats-new/src/Manager";
 import { WhatsNewReadOnlyIndicatorContentProvider } from "./whats-new/ReadOnlyIndicatorContentProvider";
 import { ReadOnlyIndicator } from "./statusBar";
+import { ReadOnlyIndicatorController } from "./controller";
 
 type FileAccess = "+R" | "-R";
 
@@ -142,30 +143,4 @@ export function activate(ctx: ExtensionContext) {
     commands.registerCommand("readOnly.indicatorAction", () => {
         indicatorAction();
     });
-}
-
-class ReadOnlyIndicatorController {
-
-    private readOnlyIndicator: ReadOnlyIndicator;
-    private disposable: Disposable;
-
-    constructor(wordCounter: ReadOnlyIndicator) {
-        this.readOnlyIndicator = wordCounter;
-        this.readOnlyIndicator.updateReadOnly();
-
-        // subscribe to selection change and editor activation events
-        const subscriptions: Disposable[] = [];
-        window.onDidChangeActiveTextEditor(this.onEvent, this, subscriptions);
-
-        // create a combined disposable from both event subscriptions
-        this.disposable = Disposable.from(...subscriptions);
-    }
-
-    public dispose() {
-        this.disposable.dispose();
-    }
-
-    private onEvent() {
-        this.readOnlyIndicator.updateReadOnly();
-    }
 }
