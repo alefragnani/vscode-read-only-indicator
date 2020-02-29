@@ -6,7 +6,7 @@ import fs = require("fs");
 import { StatusBarAlignment, StatusBarItem, TextDocument, window, workspace } from "vscode";
 import { UIMode } from "./constants";
 import { Operations } from "./operations";
-export class ReadOnlyIndicator {
+export class StatusBar {
     private statusBarItem: StatusBarItem;
     public dispose() {
         this.hideReadOnly();

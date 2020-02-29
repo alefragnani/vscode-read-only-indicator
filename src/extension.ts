@@ -2,9 +2,9 @@ import {commands, ExtensionContext, QuickPickItem, QuickPickOptions, window, wor
 
 import { WhatsNewManager } from "../vscode-whats-new/src/Manager";
 import { FileAccess } from "./constants";
-import { ReadOnlyIndicatorController } from "./controller";
+import { Controller } from "./controller";
 import { Operations } from "./operations";
-import { ReadOnlyIndicator } from "./statusBar";
+import { StatusBar } from "./statusBar";
 import { WhatsNewReadOnlyIndicatorContentProvider } from "./whats-new/ReadOnlyIndicatorContentProvider";
 
 // this method is called when your extension is activated
@@ -12,8 +12,8 @@ import { WhatsNewReadOnlyIndicatorContentProvider } from "./whats-new/ReadOnlyIn
 export function activate(ctx: ExtensionContext) { 
 
     // create a new read only indicator
-    const readOnlyIndicator = new ReadOnlyIndicator();
-    const controller = new ReadOnlyIndicatorController(readOnlyIndicator);
+    const readOnlyIndicator = new StatusBar();
+    const controller = new Controller(readOnlyIndicator);
 
     const provider = new WhatsNewReadOnlyIndicatorContentProvider();
     const viewer = new WhatsNewManager(ctx).registerContentProvider("read-only-indicator", provider);
