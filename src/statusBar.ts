@@ -5,6 +5,7 @@
 import fs = require("fs");
 import { StatusBarAlignment, StatusBarItem, TextDocument, window, workspace } from "vscode";
 import { UIMode } from "./constants";
+import { Operations } from "./operations";
 export class ReadOnlyIndicator {
     private statusBarItem: StatusBarItem;
     public dispose() {
@@ -32,31 +33,20 @@ export class ReadOnlyIndicator {
         const doc = editor.document;
         // Only update status if an MD file
         if (!doc.isUntitled) {
-            const readOnly = this.isReadOnly(doc);
+            const readOnly = Operations.isReadOnly(doc);
             // Update the status bar
             if (uimode === UIMode.Complete) {
                 this.statusBarItem.text = !readOnly ? "$(pencil) [RW]" : "$(circle-slash) [RO]";
-            }
-            else {
+            } else {
                 this.statusBarItem.text = !readOnly ? "RW" : "RO";
             }
             this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
             this.statusBarItem.show();
-        }
-        else {
+        } else {
             this.statusBarItem.hide();
         }
     }
-    public isReadOnly(doc: TextDocument): boolean {
-        const filePath = doc.fileName;
-        try {
-            fs.accessSync(filePath, fs.constants.W_OK);
-            return false;
-        }
-        catch (error) {
-            return true;
-        }
-    }
+
     public hideReadOnly() {
         if (this.statusBarItem) {
             this.statusBarItem.dispose();
