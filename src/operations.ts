@@ -1,7 +1,6 @@
 import * as fs from "fs";
 import { ParameterInformation, TextDocument, window } from "vscode";
-
-export type FileAccess = "+R" | "-R";
+import { FileAccess } from "./constants";
 
 export class Operations {
 
@@ -41,7 +40,7 @@ export class Operations {
             }
 
             const isReadOnly: boolean = this.isReadOnly(window.activeTextEditor.document);
-            const activeFileAcess: FileAccess = isReadOnly ? "+R" : "-R";
+            const activeFileAcess: FileAccess = isReadOnly ? FileAccess.ReadOnly : FileAccess.Writeable; // "+R" : "-R";
 
             if (newFileAccess === activeFileAcess) {
                 let activeFileAcessDescription: string;

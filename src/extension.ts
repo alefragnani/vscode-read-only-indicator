@@ -1,8 +1,9 @@
 import {commands, ExtensionContext, QuickPickItem, QuickPickOptions, window, workspace} from "vscode";
 
 import { WhatsNewManager } from "../vscode-whats-new/src/Manager";
+import { FileAccess } from "./constants";
 import { ReadOnlyIndicatorController } from "./controller";
-import { FileAccess, Operations } from "./operations";
+import { Operations } from "./operations";
 import { ReadOnlyIndicator } from "./statusBar";
 import { WhatsNewReadOnlyIndicatorContentProvider } from "./whats-new/ReadOnlyIndicatorContentProvider";
 
@@ -38,9 +39,9 @@ export function activate(ctx: ExtensionContext) {
             }
             
             if (selection.label === "File Access: Make Read Only") {
-                updateFileAccess("+R");
+                updateFileAccess(FileAccess.ReadOnly);
             } else {
-                updateFileAccess("-R");
+                updateFileAccess(FileAccess.Writeable);
             }
         });
     }
@@ -50,9 +51,9 @@ export function activate(ctx: ExtensionContext) {
         switch (action) {
             case "toggle":
                 if (Operations.isReadOnly(window.activeTextEditor.document)) {
-                    updateFileAccess("-R");
+                    updateFileAccess(FileAccess.Writeable);
                 } else {
-                    updateFileAccess("+R");
+                    updateFileAccess(FileAccess.ReadOnly);
                 }
                 break;
 
@@ -67,11 +68,11 @@ export function activate(ctx: ExtensionContext) {
     }
     
     commands.registerCommand("readOnly.makeWriteable", () => {        
-        updateFileAccess("-R");
+        updateFileAccess(FileAccess.Writeable);
     });
     
     commands.registerCommand("readOnly.makeReadOnly", () => {        
-        updateFileAccess("+R");
+        updateFileAccess(FileAccess.ReadOnly);
     });    
     
     commands.registerCommand("readOnly.changeFileAccess", () => {
