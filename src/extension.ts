@@ -9,13 +9,9 @@ import {commands, Disposable, ExtensionContext, QuickPickItem, QuickPickOptions,
 
 import { WhatsNewManager } from "../vscode-whats-new/src/Manager";
 import { WhatsNewReadOnlyIndicatorContentProvider } from "./whats-new/ReadOnlyIndicatorContentProvider";
+import { UIMode } from "./constants";
 
 type FileAccess = "+R" | "-R";
-
-const enum UIMode {
-    Complete,
-    Simple
-}
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
