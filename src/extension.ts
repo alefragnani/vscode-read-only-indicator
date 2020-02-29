@@ -234,7 +234,6 @@ class ReadOnlyIndicatorController {
 
         // subscribe to selection change and editor activation events
         const subscriptions: Disposable[] = [];
-        window.onDidChangeTextEditorSelection(this.onEvent, this, subscriptions);
         window.onDidChangeActiveTextEditor(this.onEvent, this, subscriptions);
 
         // create a combined disposable from both event subscriptions
