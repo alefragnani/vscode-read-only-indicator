@@ -3,8 +3,6 @@
 *  Licensed under the MIT License. See License.md in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
-// tslint:disable-next-line:max-line-length
-import { commands } from "vscode";
 import { 
     ChangeLogItem, 
     ChangeLogKind, 
@@ -12,10 +10,8 @@ import {
     Header, 
     Image, 
     Sponsor } from "../../vscode-whats-new/src/ContentProvider";
-import { WhatsNewManager } from "../../vscode-whats-new/src/Manager";
-import { Container } from "../container";
 
-export class WhatsNewReadOnlyIndicatorContentProvider implements ContentProvider {
+export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
     public provideHeader(logoUrl: string): Header {
         return <Header> {logo: <Image> {src: logoUrl, height: 50, width: 50}, 
@@ -35,11 +31,4 @@ export class WhatsNewReadOnlyIndicatorContentProvider implements ContentProvider
         const sponsors: Sponsor[] = [];
         return sponsors
     }   
-}
-
-export function registerWhatsNew() {
-    const provider = new WhatsNewReadOnlyIndicatorContentProvider();
-    const viewer = new WhatsNewManager(Container.context).registerContentProvider("read-only-indicator", provider);
-    viewer.showPageInActivation();
-    Container.context.subscriptions.push(commands.registerCommand("readOnly.whatsNew", () => viewer.showPage()));
 }
