@@ -4,7 +4,16 @@
 *--------------------------------------------------------------------------------------------*/
 
 // tslint:disable-next-line:max-line-length
-import { ChangeLogItem, ChangeLogKind, ContentProvider, Header, Image, Sponsor } from "../../vscode-whats-new/src/ContentProvider";
+import { commands } from "vscode";
+import { 
+    ChangeLogItem, 
+    ChangeLogKind, 
+    ContentProvider, 
+    Header, 
+    Image, 
+    Sponsor } from "../../vscode-whats-new/src/ContentProvider";
+import { WhatsNewManager } from "../../vscode-whats-new/src/Manager";
+import { Container } from "../container";
 
 export class WhatsNewReadOnlyIndicatorContentProvider implements ContentProvider {
 
@@ -25,6 +34,12 @@ export class WhatsNewReadOnlyIndicatorContentProvider implements ContentProvider
     public provideSponsors(): Sponsor[] {
         const sponsors: Sponsor[] = [];
         return sponsors
-    }
-   
+    }   
+}
+
+export function registerWhatsNew() {
+    const provider = new WhatsNewReadOnlyIndicatorContentProvider();
+    const viewer = new WhatsNewManager(Container.context).registerContentProvider("read-only-indicator", provider);
+    viewer.showPageInActivation();
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.whatsNew", () => viewer.showPage()));
 }
