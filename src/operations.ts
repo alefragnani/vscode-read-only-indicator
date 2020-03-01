@@ -1,5 +1,5 @@
 import * as fs from "fs";
-import { ParameterInformation, TextDocument, window } from "vscode";
+import { TextDocument, window } from "vscode";
 import { FileAccess } from "./constants";
 
 export class Operations {
@@ -31,7 +31,7 @@ export class Operations {
                 case "darwin": /* darwin is the response for macos */
                     command = "chmod";
                     // 'u' for user, '-w' for remove write permission
-                    attribute = (newFileAccess === "+R") ? "u-w" : "u+w";
+                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
                     break;
                 default:
                     window.showInformationMessage(
@@ -40,7 +40,7 @@ export class Operations {
             }
 
             const isReadOnly: boolean = this.isReadOnly(window.activeTextEditor.document);
-            const activeFileAcess: FileAccess = isReadOnly ? FileAccess.ReadOnly : FileAccess.Writeable; // "+R" : "-R";
+            const activeFileAcess: FileAccess = isReadOnly ? FileAccess.ReadOnly : FileAccess.Writeable;
 
             if (newFileAccess === activeFileAcess) {
                 let activeFileAcessDescription: string;
