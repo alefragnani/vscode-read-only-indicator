@@ -1,3 +1,10 @@
+## [3.1.0] - 2019-03-01 
+### Added
+- Settings changes detection (issue [#21](https://github.com/alefragnani/vscode-read-only-indicator/issues/21))
+
+### Internal
+- Support VS Code package split
+
 ## [3.0.4] - 2019-07-12 
 ### Fixed
 - Security Alert: diff v3.5.0
