@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 import fs = require("fs");
 import { StatusBarAlignment, StatusBarItem, TextDocument, window, workspace } from "vscode";
-import { UIMode } from "./constants";
+import { FileAccess, UIMode } from "./constants";
 import { Operations } from "./operations";
 export class StatusBar {
     private statusBarItem: StatusBarItem;
@@ -19,41 +19,35 @@ export class StatusBar {
     }
 
     public dispose() {
-        this.hideReadOnly();
+        this.statusBarItem.dispose();
     }
 
-    public updateReadOnly() {
-        // ui
-        const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
-        const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
+    public update(fileAccess?: FileAccess) {
         
-        // Get the current text editor
-        const editor = window.activeTextEditor;
-        if (!editor) {
+        if (!window.activeTextEditor) {
             this.statusBarItem.hide();
             return;
         }
-        const doc = editor.document;
-
-        // Only update status if an MD file
-        if (!doc.isUntitled) {
-            const readOnly = Operations.isReadOnly(doc);
-            // Update the status bar
-            if (uimode === UIMode.Complete) {
-                this.statusBarItem.text = !readOnly ? "$(pencil) [RW]" : "$(circle-slash) [RO]";
-            } else {
-                this.statusBarItem.text = !readOnly ? "RW" : "RO";
-            }
-            this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
-            this.statusBarItem.show();
-        } else {
+        
+        const activeDocument = window.activeTextEditor.document;
+        if (activeDocument.isUntitled) {
             this.statusBarItem.hide();
+            return;
         }
-    }
 
-    public hideReadOnly() {
-        if (this.statusBarItem) {
-            this.statusBarItem.dispose();
+        // ui
+        const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
+        const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
+        const readOnly = fileAccess ? fileAccess === FileAccess.ReadOnly : Operations.isReadOnly(activeDocument);
+
+        // Update the status bar
+        if (uimode === UIMode.Complete) {
+            this.statusBarItem.text = !readOnly ? "$(pencil) [RW]" : "$(circle-slash) [RO]";
+        } else {
+            this.statusBarItem.text = !readOnly ? "RW" : "RO";
         }
+
+        this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
+        this.statusBarItem.show();
     }
 }

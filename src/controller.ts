@@ -1,4 +1,5 @@
-import { Disposable, window } from "vscode";
+import { Disposable, window, workspace } from "vscode";
+import { FileAccess } from "./constants";
 import { Container } from "./container";
 import { StatusBar } from "./statusBar";
 
@@ -8,27 +9,35 @@ export class Controller {
 
     constructor() {
         this.statusBar = new StatusBar();
-        this.statusBar.updateReadOnly();
+        this.statusBar.update();
 
         Container.context.subscriptions.push(this.statusBar);
 
-        // subscribe to selection change and editor activation events
-        const subscriptions: Disposable[] = [];
-        window.onDidChangeActiveTextEditor(this.onEvent, this, subscriptions);
-        
-        // create a combined disposable from both event subscriptions
-        this.disposable = Disposable.from(...subscriptions);
+        window.onDidChangeActiveTextEditor(editor => {
+            if (editor) {
+                this.statusBar.update();
+            }
+        }, null, Container.context.subscriptions);
+
+        workspace.onDidChangeConfiguration(cfg => {
+            if (cfg.affectsConfiguration("fileAccess.position")) {
+                this.statusBar.dispose();
+                this.statusBar = undefined;
+                
+                this.statusBar = new StatusBar();
+                this.statusBar.update();
+            }
+            if (cfg.affectsConfiguration("fileAccess.uiMode")) {
+                this.updateStatusBar()
+            }
+        }, null, Container.context.subscriptions);
     }
 
     public dispose() {
         this.disposable.dispose();
     }
 
-    public updateStatusBar() {
-        this.statusBar.updateReadOnly();
-    }
-
-    private onEvent() {
-        this.statusBar.updateReadOnly();
+    public updateStatusBar(fileAccess?: FileAccess) {
+        this.statusBar.update(fileAccess);
     }
 }
