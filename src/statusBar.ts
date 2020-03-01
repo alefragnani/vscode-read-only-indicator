@@ -8,22 +8,25 @@ import { UIMode } from "./constants";
 import { Operations } from "./operations";
 export class StatusBar {
     private statusBarItem: StatusBarItem;
+
+    constructor() {
+        const locationString: string = (workspace.getConfiguration("fileAccess").get("position", "left"));
+        const location: StatusBarAlignment = locationString === "left" ?
+            StatusBarAlignment.Left : StatusBarAlignment.Right;
+        
+        this.statusBarItem = window.createStatusBarItem(location);
+        this.statusBarItem.command = "readOnly.indicatorAction";
+    }
+
     public dispose() {
         this.hideReadOnly();
     }
+
     public updateReadOnly() {
         // ui
         const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
         const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
-        // location
-        const locationString: string = (workspace.getConfiguration("fileAccess").get("position", "left"));
-        const location: StatusBarAlignment = locationString === "left" ?
-            StatusBarAlignment.Left : StatusBarAlignment.Right;
-        // Create as needed
-        if (!this.statusBarItem) {
-            this.statusBarItem = window.createStatusBarItem(location);
-            this.statusBarItem.command = "readOnly.indicatorAction";
-        }
+        
         // Get the current text editor
         const editor = window.activeTextEditor;
         if (!editor) {
@@ -31,6 +34,7 @@ export class StatusBar {
             return;
         }
         const doc = editor.document;
+
         // Only update status if an MD file
         if (!doc.isUntitled) {
             const readOnly = Operations.isReadOnly(doc);
