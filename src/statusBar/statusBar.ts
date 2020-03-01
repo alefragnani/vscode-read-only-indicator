@@ -2,10 +2,9 @@
 *  Copyright (c) Alessandro Fragnani. All rights reserved.
 *  Licensed under the MIT License. See License.md in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
-import fs = require("fs");
-import { StatusBarAlignment, StatusBarItem, TextDocument, window, workspace } from "vscode";
-import { FileAccess, UIMode } from "./constants";
-import { Operations } from "./operations";
+import { StatusBarAlignment, StatusBarItem, window, workspace } from "vscode";
+import { FileAccess, UIMode } from "./../constants";
+import { Operations } from "./../operations";
 export class StatusBar {
     private statusBarItem: StatusBarItem;
 

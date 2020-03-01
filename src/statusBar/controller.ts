@@ -1,6 +1,6 @@
 import { Disposable, window, workspace } from "vscode";
-import { FileAccess } from "./constants";
-import { Container } from "./container";
+import { FileAccess } from "./../constants";
+import { Container } from "./../container";
 import { StatusBar } from "./statusBar";
 
 export class Controller {

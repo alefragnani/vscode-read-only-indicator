@@ -1,8 +1,8 @@
 import { commands, QuickPickItem, QuickPickOptions, window, workspace } from "vscode";
 import { FileAccess } from "./constants";
 import { Container } from "./container";
-import { Controller } from "./controller";
 import { Operations } from "./operations";
+import { Controller } from "./statusBar/controller";
 
 export function registerCommands() {
 
