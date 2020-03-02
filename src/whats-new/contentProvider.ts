@@ -22,8 +22,11 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
-        changeLog.push({kind: ChangeLogKind.NEW, message: "Support to <b>MacOS</b> and <b>Linux</b>"});
-        changeLog.push({kind: ChangeLogKind.NEW, message: "<b>Clickable</b> status bar indicator"});
+        changeLog.push({kind: ChangeLogKind.NEW, message: "Adds <b>MacOS</b> and <b>Linux</b> support"});
+        changeLog.push({kind: ChangeLogKind.NEW, message: `Adds <b>Settings changes</b> detection (<a title=\"Open Issue #21\" 
+            href=\"https://github.com/alefragnani/vscode-read-only-indicator/issues/21\">
+            Issue #21</a>)`});
+        changeLog.push({kind: ChangeLogKind.NEW, message: "Adds <b>Clickable</b> status bar indicator"});
         return changeLog;
     }
 

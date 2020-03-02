@@ -5,8 +5,9 @@
 
 # What's new in Read-only Indicator 3
 
-* Support to **MacOS** and **Linux**
-* **Clickable** Status Bar indicator
+* Adds **MacOS** and **Linux** support
+* Adds **Settings changes** detection
+* Adds **Clickable** Status Bar indicator
 
 ## Support
 
