@@ -1,3 +1,8 @@
+/*---------------------------------------------------------------------------------------------
+*  Copyright (c) Alessandro Fragnani. All rights reserved.
+*  Licensed under the MIT License. See License.md in the project root for license information.
+*--------------------------------------------------------------------------------------------*/
+
 import { commands, QuickPickItem, QuickPickOptions, window, workspace } from "vscode";
 import { FileAccess } from "./constants";
 import { Container } from "./container";
