@@ -69,6 +69,11 @@
 						"simple"
 					]
 				},
+				"fileAccess.hideWhenWritable": {
+					"type": "boolean",
+					"default": false,
+					"description": "Hide the Status Bar indicator when the file is Writable"
+				},
 				"fileAccess.readonlyColor": {
 					"type": "string",
 					"default": "none",

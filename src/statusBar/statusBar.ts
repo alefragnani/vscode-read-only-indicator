@@ -53,6 +53,13 @@ export class StatusBar {
         }
 
         this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
-        this.statusBarItem.show();
+
+        // Show or hide the status bar indicator as appropriate
+        const show = readOnly || !workspace.getConfiguration("fileAccess").get("hideWhenWritable", false);
+        if (show) {
+            this.statusBarItem.show();
+        } else {
+            this.statusBarItem.hide();
+        }
     }
 }
