@@ -39,12 +39,17 @@ export class StatusBar {
         const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
         const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
         const readOnly = fileAccess ? fileAccess === FileAccess.ReadOnly : Operations.isReadOnly(activeDocument);
+        const colorConfigString: string = (workspace.getConfiguration("fileAccess").get(readOnly ? "readonlyColor" : "writableColor", "none"));
+        const colorString: string = colorConfigString === "none" || colorConfigString === "" ? "" : colorConfigString;
 
         // Update the status bar
         if (uimode === UIMode.Complete) {
             this.statusBarItem.text = !readOnly ? "$(pencil) [RW]" : "$(circle-slash) [RO]";
         } else {
             this.statusBarItem.text = !readOnly ? "RW" : "RO";
+        }
+        if (colorString != "") {
+            this.statusBarItem.color = colorString;
         }
 
         this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
