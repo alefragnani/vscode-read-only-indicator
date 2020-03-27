@@ -18,10 +18,8 @@ export class Controller {
 
         Container.context.subscriptions.push(this.statusBar);
 
-        window.onDidChangeActiveTextEditor(editor => {
-            if (editor) {
-                this.statusBar.update();
-            }
+        window.onDidChangeActiveTextEditor(_editor => {
+            this.statusBar.update();
         }, null, Container.context.subscriptions);
 
         workspace.onDidChangeConfiguration(cfg => {
