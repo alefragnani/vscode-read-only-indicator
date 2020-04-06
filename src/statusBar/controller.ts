@@ -12,6 +12,8 @@ export class Controller {
     private statusBar: StatusBar;
     private disposable: Disposable;
 
+    private timeout: NodeJS.Timeout | null;
+
     constructor() {
         this.statusBar = new StatusBar();
         this.statusBar.update();
@@ -33,6 +35,16 @@ export class Controller {
                 this.updateStatusBar();
             }
         }, null, Container.context.subscriptions);
+
+        workspace.onWillSaveTextDocument(e => {
+            const local = this.timeout;
+            if (local) {
+                clearTimeout(local);
+            }
+            this.timeout = setTimeout(() => {
+                this.statusBar.update();
+            }, 50);
+        });
     }
 
     public dispose() {
