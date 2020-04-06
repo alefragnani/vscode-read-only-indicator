@@ -14,3 +14,4 @@ tslint.json
 npm-debug.log
 package-lock.json
 webpack.config.js
+**/.history/**
