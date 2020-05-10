@@ -29,6 +29,26 @@
 	],
 	"main": "./dist/extension",
 	"contributes": {
+		"colors": [
+			{
+				"id": "fileAccess.readonlyForeground",
+				"description": "Color for Read Only indicator in the status bar",
+				"defaults": {
+					"dark": "statusBar.foreground",
+					"light": "statusBar.foreground",
+					"highContrast": "statusBar.foreground"
+				}
+			},
+			{
+				"id": "fileAccess.writableForeground",
+				"description": "Color for Writable indicator in the status bar",
+				"defaults": {
+					"dark": "statusBar.foreground",
+					"light": "statusBar.foreground",
+					"highContrast": "statusBar.foreground"
+				}
+			}
+		],
 		"commands": [
 			{
 				"command": "readOnly.makeWriteable",
@@ -68,6 +88,11 @@
 						"complete",
 						"simple"
 					]
+				},
+				"fileAccess.hideWhenWritable": {
+					"type": "boolean",
+					"default": false,
+					"description": "Hide the Status Bar indicator when the file is Writable"
 				},
 				"fileAccess.indicatorAction": {
 					"type": "string",

@@ -18,10 +18,8 @@ export class Controller {
 
         Container.context.subscriptions.push(this.statusBar);
 
-        window.onDidChangeActiveTextEditor(editor => {
-            if (editor) {
-                this.statusBar.update();
-            }
+        window.onDidChangeActiveTextEditor(() => {
+            this.statusBar.update();
         }, null, Container.context.subscriptions);
 
         workspace.onDidChangeConfiguration(cfg => {
@@ -30,10 +28,9 @@ export class Controller {
                 this.statusBar = undefined;
                 
                 this.statusBar = new StatusBar();
-                this.statusBar.update();
             }
-            if (cfg.affectsConfiguration("fileAccess.uiMode")) {
-                this.updateStatusBar()
+            if (cfg.affectsConfiguration("fileAccess")) {
+                this.updateStatusBar();
             }
         }, null, Container.context.subscriptions);
     }

@@ -58,9 +58,29 @@ Writeable |![Writeable](images/screenshot-writeable.png)
     "fileAccess.uiMode": "complete" // or "simple"
     ```
 
+* Hides the Status Bar indicator when the file is Writable
+    ```json
+    "fileAccess.hideWhenWritable": true // or false
+    ```
+
+
 * Set what to do when the Status Bar indicator is clicked
     ```json
     "fileAccess.indicatorAction": "choose" // or "toggle"
+    ```
+
+## Available colors
+
+For more information about customizing colors in VSCode, see [Theme Color](https://code.visualstudio.com/api/references/theme-color).
+
+* Sets the Status Bar indicator text color when the file is Read Only
+    ```json
+    "fileAccess.readonlyForeground": "#ff7fc0",
+    ```
+
+* Sets the Status Bar indicator text color when the file is Writable
+    ```json
+    "fileAccess.writableForeground": "#7fcc7f",
     ```
 
 # License
