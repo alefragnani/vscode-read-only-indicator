@@ -18,7 +18,7 @@ export class Controller {
 
         Container.context.subscriptions.push(this.statusBar);
 
-        window.onDidChangeActiveTextEditor(_editor => {
+        window.onDidChangeActiveTextEditor(() => {
             this.statusBar.update();
         }, null, Container.context.subscriptions);
 

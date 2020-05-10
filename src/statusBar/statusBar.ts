@@ -46,7 +46,9 @@ export class StatusBar {
         } else {
             this.statusBarItem.text = !readOnly ? "RW" : "RO";
         }
-        this.statusBarItem.color = new ThemeColor(readOnly ? "fileAccess.readonlyForeground" : "fileAccess.writableForeground");
+        this.statusBarItem.color = new ThemeColor(readOnly 
+                                    ? "fileAccess.readonlyForeground" 
+                                    : "fileAccess.writableForeground");
 
         this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
 
