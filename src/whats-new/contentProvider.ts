@@ -9,7 +9,8 @@ import {
     ContentProvider, 
     Header, 
     Image, 
-    Sponsor } from "../../vscode-whats-new/src/ContentProvider";
+    IssueKind, 
+    Sponsor} from "../../vscode-whats-new/src/ContentProvider";
 
 export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
@@ -22,11 +23,66 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
-        changeLog.push({kind: ChangeLogKind.NEW, message: "Adds <b>MacOS</b> and <b>Linux</b> support"});
-        changeLog.push({kind: ChangeLogKind.NEW, message: `Adds <b>Settings changes</b> detection (<a title=\"Open Issue #21\" 
-            href=\"https://github.com/alefragnani/vscode-read-only-indicator/issues/21\">
-            Issue #21</a>)`});
-        changeLog.push({kind: ChangeLogKind.NEW, message: "Adds <b>Clickable</b> status bar indicator"});
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.2.0", releaseDate: "May 2020" } });
+
+        changeLog.push({
+            kind: ChangeLogKind.NEW,
+            detail: {
+                message: "Only show indicator when Read-Only",
+                id: 24,
+                kind: IssueKind.PR,
+                kudos: "@chrisant996"
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.NEW,
+            detail: {
+                message: "Settings to choose the colors of the Status Bar text, using <b>workbench.colorCustomizations</b>",
+                id: 24,
+                kind: IssueKind.PR,
+                kudos: "@chrisant996"
+            }
+        });
+
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.1.0", releaseDate: "March 2020" } });
+        changeLog.push({
+            kind: ChangeLogKind.NEW,
+            detail: {
+                message: "Settings changes detection",
+                id: 21,
+                kind: IssueKind.Issue
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Support VS Code package split",
+                id: 19,
+                kind: IssueKind.Issue
+            }
+        });
+
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.0.4", releaseDate: "July 2019" } });
+        changeLog.push({
+            kind: ChangeLogKind.FIXED,
+            detail: {
+                message: "Security Alert: diff",
+                id: 22,
+                kind: IssueKind.PR,
+                kudos: "dependabot"
+            }
+        });
+
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.0.3", releaseDate: "May 2019" } });
+        changeLog.push({
+            kind: ChangeLogKind.FIXED,
+            detail: {
+                message: "Security Alert: tar",
+                id: 16,
+                kind: IssueKind.Issue
+            }
+        });
+
         return changeLog;
     }
 

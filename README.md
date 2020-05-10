@@ -3,9 +3,10 @@
   <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/vscode-read-only-indicator-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
 </p>
 
-# What's new in Read-only Indicator 3
+# What's new in Read-only Indicator 3.2
 
 * Adds **MacOS** and **Linux** support
+* Adds **workbench.colorCustomizations** support
 * Adds **Settings changes** detection
 * Adds **Clickable** Status Bar indicator
 
@@ -73,15 +74,31 @@ Writeable |![Writeable](images/screenshot-writeable.png)
 
 For more information about customizing colors in VSCode, see [Theme Color](https://code.visualstudio.com/api/references/theme-color).
 
-* Sets the Status Bar indicator text color when the file is Read Only
-    ```json
-    "fileAccess.readonlyForeground": "#ff7fc0",
-    ```
+* Choose the Status Bar indicator text color when the file is Read Only
+```json
+    "workbench.colorCustomizations": {
+      "fileAccess.readonlyForeground": "#ff7fc0",  
+    }
+```
 
-* Sets the Status Bar indicator text color when the file is Writable
-    ```json
-    "fileAccess.writableForeground": "#7fcc7f",
-    ```
+* Choose the Status Bar indicator text color when the file is Writable
+```json
+    "workbench.colorCustomizations": {
+      "fileAccess.writableForeground": "#7fcc7f",
+    }
+```
+
+## Contributors
+
+Special thanks to the people that have contributed to the project:
+
+* Chris Antos (@chrisant996) - Settings to choose the colors of the Status Bar text ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/24))
+* Chris Antos (@chrisant996) - Only show Status Bar indicator when Read-only ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/24))
+* joshwiker14 (@joshwiker14) - Add support for MacOs and Linux ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/13))
+* Tom Chapple (@TomChapple) - Allow for toggling File Access via Status Bar ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/11))
+* Franklin Yu (@FranklinYu) - Reformat Readme ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/9))
+
+Also thanks to everyone who helped opening issues with ideas and bug reports.
 
 # License
 
