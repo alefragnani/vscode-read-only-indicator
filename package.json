@@ -2,7 +2,7 @@
 	"name": "read-only-indicator",
 	"displayName": "Read-Only Indicator",
 	"description": "Read-Only/Writeable indication on Status Bar",
-	"version": "3.1.0",
+	"version": "3.2.0",
 	"publisher": "alefragnani",
 	"galleryBanner": {
 		"color": "#0000FF",
@@ -13,7 +13,7 @@
 	],
 	"icon": "images/icon.png",
 	"engines": {
-		"vscode": "^1.41.0"
+		"vscode": "^1.45.0"
 	},
 	"license": "SEE LICENSE IN LICENSE.md",
 	"homepage": "https://github.com/alefragnani/vscode-read-only-indicator/blob/master/README.md",
@@ -118,14 +118,12 @@
 	},
 	"devDependencies": {
 		"@types/node": "^10.14.17",
-		"@types/vscode": "^1.41.0",
-		"typescript": "^3.5.1",
-		"webpack": "^4.19.1",
-		"webpack-cli": "^3.1.0",
-		"ts-loader": "^4.4.2",
+		"@types/vscode": "^1.45.0",
 		"terser-webpack-plugin": "^1.2.1",
-		"mocha": "^6.1.4",
+		"ts-loader": "^4.4.2",
 		"tslint": "5.11.0",
-		"@types/mocha": "^2.2.43"
+		"typescript": "^3.5.1",
+		"webpack": "^4.43.0",
+		"webpack-cli": "^3.3.11"
 	}
 }
