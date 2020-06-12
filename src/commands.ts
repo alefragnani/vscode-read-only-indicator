@@ -59,7 +59,7 @@ export function registerCommands() {
     async function updateFileAccess(fileAccess: FileAccess) {
         if (await Operations.updateFileAccess(fileAccess)) {
             controller.updateStatusBar(fileAccess);
-        };
+        }
     }
     
     commands.registerCommand("readOnly.makeWriteable", () => {        

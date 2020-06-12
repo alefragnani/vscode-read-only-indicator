@@ -48,12 +48,12 @@ export class Operations {
             const activeFileAcess: FileAccess = isReadOnly ? FileAccess.ReadOnly : FileAccess.Writeable;
 
             if (newFileAccess === activeFileAcess) {
-                let activeFileAcessDescription: string;
-                activeFileAcessDescription = isReadOnly ? "Read-only" : "Writeable";
+                const activeFileAcessDescription: string = isReadOnly ? "Read-only" : "Writeable";
                 window.showInformationMessage("The file is already " + activeFileAcessDescription);
                 return resolve (false);
             }  
             
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             const spawn = require("child_process").spawn;
             const ls = spawn(command, [attribute, window.activeTextEditor.document.fileName]);
 
