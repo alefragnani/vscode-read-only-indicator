@@ -1,3 +1,7 @@
+## [3.3.0] - 2020-06-11
+### Internal
+- Migrate from TSLint to ESLint (issue [#27](https://github.com/alefragnani/vscode-read-only-indicator/issues/27))
+
 ## [3.2.0] - 2020-05-10 
 ### Added
 - Only show indicator when Read-Only (issue [#15](https://github.com/alefragnani/vscode-read-only-indicator/issues/15)) - (Thanks to @chrisant996 [PR #24](https://github.com/alefragnani/vscode-read-only-indicator/pull/24))
