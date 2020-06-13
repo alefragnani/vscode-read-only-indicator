@@ -23,6 +23,17 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.3.0", releaseDate: "June 2020" } });
+
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Migrate from TSLint to ESLint",
+                id: 27,
+                kind: IssueKind.Issue
+            }
+        });
+
         changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.2.0", releaseDate: "May 2020" } });
 
         changeLog.push({
