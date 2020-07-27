@@ -23,6 +23,17 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.4.0", releaseDate: "July 2020" } });
+
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Use <b>vscode-ext-codicons</b> package",
+                id: 28,
+                kind: IssueKind.Issue
+            }
+        });
+
         changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.3.0", releaseDate: "June 2020" } });
 
         changeLog.push({
@@ -81,16 +92,6 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
                 id: 22,
                 kind: IssueKind.PR,
                 kudos: "dependabot"
-            }
-        });
-
-        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.0.3", releaseDate: "May 2019" } });
-        changeLog.push({
-            kind: ChangeLogKind.FIXED,
-            detail: {
-                message: "Security Alert: tar",
-                id: 16,
-                kind: IssueKind.Issue
             }
         });
 

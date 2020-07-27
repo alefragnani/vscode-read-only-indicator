@@ -2,7 +2,7 @@
 	"name": "read-only-indicator",
 	"displayName": "Read-Only Indicator",
 	"description": "Read-Only/Writeable indication on Status Bar",
-	"version": "3.3.0",
+	"version": "3.4.0",
 	"publisher": "alefragnani",
 	"galleryBanner": {
 		"color": "#0000FF",
@@ -133,5 +133,8 @@
 		"typescript": "^3.5.1",
 		"webpack": "^4.43.0",
 		"webpack-cli": "^3.3.11"
+	},
+	"dependencies": {
+		"vscode-ext-codicons": "^1.0.1"
 	}
 }

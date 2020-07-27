@@ -6,6 +6,8 @@
 import { StatusBarAlignment, StatusBarItem, ThemeColor, window, workspace } from "vscode";
 import { FileAccess, UIMode } from "./../constants";
 import { Operations } from "./../operations";
+import { codicons } from "vscode-ext-codicons";
+
 export class StatusBar {
     private statusBarItem: StatusBarItem;
 
@@ -42,7 +44,7 @@ export class StatusBar {
 
         // Update the status bar
         if (uimode === UIMode.Complete) {
-            this.statusBarItem.text = !readOnly ? "$(pencil) [RW]" : "$(circle-slash) [RO]";
+            this.statusBarItem.text = !readOnly ? codicons.pencil + " [RW]" : codicons.circle_slash + " [RO]";
         } else {
             this.statusBarItem.text = !readOnly ? "RW" : "RO";
         }
