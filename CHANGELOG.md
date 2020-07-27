@@ -1,3 +1,7 @@
+## [3.4.0] - 2020-07-27
+### Internal
+- Use `vscode-ext-codicons` package (issue [#28](https://github.com/alefragnani/vscode-read-only-indicator/issues/28))
+
 ## [3.3.0] - 2020-06-11
 ### Internal
 - Migrate from TSLint to ESLint (issue [#27](https://github.com/alefragnani/vscode-read-only-indicator/issues/27))
