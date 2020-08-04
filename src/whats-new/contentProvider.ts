@@ -33,6 +33,24 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
                 kind: IssueKind.Issue
             }
         });
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Security Alert: elliptic",
+                id: 30,
+                kind: IssueKind.PR,
+                kudos: "dependabot"
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Security Alert: lodash",
+                id: 29,
+                kind: IssueKind.PR,
+                kudos: "dependabot"
+            }
+        });
 
         changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.3.0", releaseDate: "June 2020" } });
 

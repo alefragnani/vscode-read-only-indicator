@@ -1,6 +1,10 @@
-## [3.4.0] - 2020-07-27
+## [3.4.0] - 2020-08-04
 ### Internal
 - Use `vscode-ext-codicons` package (issue [#28](https://github.com/alefragnani/vscode-read-only-indicator/issues/28))
+
+### Fixed
+- Security Alert: elliptic (dependabot [PR #30](https://github.com/alefragnani/vscode-read-only-indicator/pull/30))
+- Security Alert: lodash (dependabot [PR #29](https://github.com/alefragnani/vscode-read-only-indicator/pull/29))
 
 ## [3.3.0] - 2020-06-11
 ### Internal
