@@ -12,8 +12,7 @@ import {
     IssueKind, 
     Sponsor,
     SupportChannel,
-    SocialMediaProvider,
-    SocialMedia} from "../../vscode-whats-new/src/ContentProvider";
+    SocialMediaProvider} from "../../vscode-whats-new/src/ContentProvider";
 
 export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
