@@ -11,7 +11,9 @@ import {
     Image, 
     IssueKind, 
     Sponsor,
-    SupportChannel} from "../../vscode-whats-new/src/ContentProvider";
+    SupportChannel,
+    SocialMediaProvider,
+    SocialMedia} from "../../vscode-whats-new/src/ContentProvider";
 
 export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
@@ -135,5 +137,14 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
             message: "Donate via PayPal"
         });
         return supportChannels;
+    }
+}
+
+export class ReadOnlyIndicatorSocialMediaProvider implements SocialMediaProvider {
+    public provideSocialMedias() {
+        return [{
+            title: "Follow me on Twitter",
+            link: "https://www.twitter.com/alefragnani"
+        }];
     }
 }
