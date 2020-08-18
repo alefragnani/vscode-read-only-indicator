@@ -117,7 +117,7 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
         return changeLog;
     }
 
-    public provideSupportButtons(): SupportChannel[] {
+    public provideSupportChannels(): SupportChannel[] {
         const supportChannels: SupportChannel[] = [];
         supportChannels.push({
             title: "Become a sponsor on Patreon",
