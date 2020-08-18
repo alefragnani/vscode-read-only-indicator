@@ -10,7 +10,6 @@ import {
     Header, 
     Image, 
     IssueKind, 
-    Sponsor,
     SupportChannel,
     SocialMediaProvider} from "../../vscode-whats-new/src/ContentProvider";
 
@@ -117,11 +116,6 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
         return changeLog;
     }
-
-    public provideSponsors(): Sponsor[] {
-        const sponsors: Sponsor[] = [];
-        return sponsors
-    }   
 
     public provideSupportButtons(): SupportChannel[] {
         const supportChannels: SupportChannel[] = [];
