@@ -1,3 +1,8 @@
+[![](https://vsmarketplacebadge.apphb.com/version-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
+[![](https://vsmarketplacebadge.apphb.com/downloads-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
+[![](https://vsmarketplacebadge.apphb.com/rating-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
+[![](https://img.shields.io/github/workflow/status/alefragnani/vscode-read-only-indicator/CI)](https://github.com/alefragnani/vscode-read-only-indicator/actions?query=workflow%3ACI)
+
 <p align="center">
   <br />
   <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/vscode-read-only-indicator-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
