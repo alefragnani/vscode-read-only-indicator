@@ -1,3 +1,9 @@
+## [3.4.1] - 2021-04-02
+### Internal
+- Do not show welcome message if installed by Settings Sync (issue [#38](https://github.com/alefragnani/vscode-read-only-indicator/issues/38))
+- Security Alert: y18n (dependabot [PR #37](https://github.com/alefragnani/vscode-read-only-indicator/pull/37))
+- Security Alert: elliptic (dependabot [PR #35](https://github.com/alefragnani/vscode-read-only-indicator/pull/35))
+
 ## [3.4.0] - 2020-08-04
 ### Internal
 - Use `vscode-ext-codicons` package (issue [#28](https://github.com/alefragnani/vscode-read-only-indicator/issues/28))

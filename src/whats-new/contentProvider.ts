@@ -24,6 +24,35 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.4.1", releaseDate: "April 2021" } });
+
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Do not show welcome message if installed by Settings Sync",
+                id: 28,
+                kind: IssueKind.Issue
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Security Alert: y18n",
+                id: 37,
+                kind: IssueKind.PR,
+                kudos: "dependabot"
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Security Alert: elliptic",
+                id: 35,
+                kind: IssueKind.PR,
+                kudos: "dependabot"
+            }
+        });
+
         changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.4.0", releaseDate: "July 2020" } });
 
         changeLog.push({
@@ -82,35 +111,6 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
                 id: 24,
                 kind: IssueKind.PR,
                 kudos: "@chrisant996"
-            }
-        });
-
-        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.1.0", releaseDate: "March 2020" } });
-        changeLog.push({
-            kind: ChangeLogKind.NEW,
-            detail: {
-                message: "Settings changes detection",
-                id: 21,
-                kind: IssueKind.Issue
-            }
-        });
-        changeLog.push({
-            kind: ChangeLogKind.INTERNAL,
-            detail: {
-                message: "Support VS Code package split",
-                id: 19,
-                kind: IssueKind.Issue
-            }
-        });
-
-        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.0.4", releaseDate: "July 2019" } });
-        changeLog.push({
-            kind: ChangeLogKind.FIXED,
-            detail: {
-                message: "Security Alert: diff",
-                id: 22,
-                kind: IssueKind.PR,
-                kudos: "dependabot"
             }
         });
 
