@@ -13,7 +13,7 @@
 	],
 	"icon": "images/icon.png",
 	"engines": {
-		"vscode": "^1.45.0"
+		"vscode": "^1.51.0"
 	},
 	"license": "SEE LICENSE IN LICENSE.md",
 	"homepage": "https://github.com/alefragnani/vscode-read-only-indicator/blob/master/README.md",
@@ -126,7 +126,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^10.14.17",
-		"@types/vscode": "^1.45.0",
+		"@types/vscode": "^1.51.0",
 		"@typescript-eslint/eslint-plugin": "^3.2.0",
 		"@typescript-eslint/parser": "^3.2.0",
 		"eslint": "^7.2.0",
