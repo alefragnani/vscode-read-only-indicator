@@ -21,12 +21,12 @@ export function registerCommands() {
         const options = <QuickPickOptions> {
             placeHolder: "Select Action"
         };
-    
+
         window.showQuickPick(items, options).then(selection => {
             if (typeof selection === "undefined") {
                 return;
             }
-            
+
             if (selection.label === "File Access: Make Read Only") {
                 updateFileAccess(FileAccess.ReadOnly);
             } else {
@@ -34,44 +34,56 @@ export function registerCommands() {
             }
         });
     }
-    
+
     function indicatorAction() {
         const action: string = workspace.getConfiguration("fileAccess").get("indicatorAction");
         switch (action) {
             case "toggle":
-                if (Operations.isReadOnly(window.activeTextEditor.document)) {
-                    updateFileAccess(FileAccess.Writeable);
-                } else {
-                    updateFileAccess(FileAccess.ReadOnly);
-                }
+                toggleFileAccess();
                 break;
-    
+
             case "choose":
                 changeFileAccess();
                 break;
-    
+
             default:
                 console.log(`Received bad action '${action}'`);
                 window.showErrorMessage(`No indicator action '${action}' is available`);
         }
     }
-    
+
+    function toggleFileAccess() {
+        if (!window.activeTextEditor) {
+            window.showInformationMessage("Open a file first to update it attributes");
+            return;
+        }
+        if (Operations.isReadOnly(window.activeTextEditor.document)) {
+            updateFileAccess(FileAccess.Writeable);
+        } else {
+            updateFileAccess(FileAccess.ReadOnly);
+        }
+    }
+
     async function updateFileAccess(fileAccess: FileAccess) {
         if (await Operations.updateFileAccess(fileAccess)) {
             controller.updateStatusBar(fileAccess);
         }
     }
-    
-    commands.registerCommand("readOnly.makeWriteable", () => {        
+
+    commands.registerCommand("readOnly.makeWriteable", () => {
         updateFileAccess(FileAccess.Writeable);
     });
-    
-    commands.registerCommand("readOnly.makeReadOnly", () => {        
+
+    commands.registerCommand("readOnly.makeReadOnly", () => {
         updateFileAccess(FileAccess.ReadOnly);
-    });    
-    
+    });
+
     commands.registerCommand("readOnly.changeFileAccess", () => {
         changeFileAccess();
+    });
+
+    commands.registerCommand("readOnly.toggleFileAccess", () => {
+        toggleFileAccess();
     });
 
     commands.registerCommand("readOnly.indicatorAction", () => {
