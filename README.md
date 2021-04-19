@@ -43,14 +43,19 @@ The indicator is automatically updated. You don't need to do anything.
 
 File Access | Status Bar Preview |
 ----------- | ------------------ |
-Read-only |![Read-only](images/screenshot-readonly.png) 
-Writeable |![Writeable](images/screenshot-writeable.png) 
+Read-only |![Read-only](images/screenshot-readonly.png)
+Writeable |![Writeable](images/screenshot-writeable.png)
 
 ## Available commands
 
 * `File Access: Change File Access`
+* `File Access: Toggle File Access`
 * `File Access: Make Read-only`
 * `File Access: Make Writeable`
+
+## Available settings
+
+* `ctrl + shift + a` - `File Access: Toggle File Access`
 
 ## Available settings
 
@@ -82,7 +87,7 @@ For more information about customizing colors in VSCode, see [Theme Color](https
 * Choose the Status Bar indicator text color when the file is Read Only
 ```json
     "workbench.colorCustomizations": {
-      "fileAccess.readonlyForeground": "#ff7fc0",  
+      "fileAccess.readonlyForeground": "#ff7fc0",
     }
 ```
 
