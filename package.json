@@ -66,6 +66,10 @@
 				"title": "File Access: Change File Access"
 			},
 			{
+				"command": "readOnly.toggleFileAccess",
+				"title": "File Access: Toggle File Access"
+			},
+			{
 				"command": "readOnly.whatsNew",
 				"title": "File Access: What's New"
 			}

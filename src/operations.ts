@@ -4,7 +4,7 @@
 *--------------------------------------------------------------------------------------------*/
 
 import * as fs from "fs";
-import { TextDocument, window } from "vscode";
+import { TextDocument, TextEditor, window } from "vscode";
 import { FileAccess } from "./constants";
 
 export class Operations {
@@ -13,13 +13,7 @@ export class Operations {
             
         return new Promise<boolean>((resolve, reject) => {
 
-            if (!window.activeTextEditor) {
-                window.showInformationMessage("Open a file first to update it attributes");
-                return resolve (false);
-            }
-            
-            if (window.activeTextEditor.document.uri.scheme === "untitled") {
-                window.showInformationMessage("Save the file first to update it attributes");
+            if(!this.isValidDocument(window.activeTextEditor)){
                 return resolve (false);
             }
             
@@ -81,6 +75,18 @@ export class Operations {
         } catch (error) {
             return true;
         }
+    }
+
+    public static isValidDocument(textEditor: TextEditor | undefined): boolean {
+        if (!textEditor) {
+           window.showInformationMessage("Open a file first to update it attributes");
+           return false;
+        }
+        if (textEditor.document.uri.scheme === "untitled") {
+           window.showInformationMessage("Save the file first to update it attributes");
+           return false;
+        }
+        return true;
     }
 
 }
