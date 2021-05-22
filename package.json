@@ -2,7 +2,7 @@
 	"name": "read-only-indicator",
 	"displayName": "Read-Only Indicator",
 	"description": "Read-Only/Writeable indication on Status Bar",
-	"version": "3.4.1",
+	"version": "4.0.0",
 	"publisher": "alefragnani",
 	"galleryBanner": {
 		"color": "#0000FF",
@@ -13,10 +13,14 @@
 	],
 	"icon": "images/icon.png",
 	"engines": {
-		"vscode": "^1.51.0"
+		"vscode": "^1.56.0"
 	},
 	"capabilities": {
-		"virtualWorkspaces": false
+		"virtualWorkspaces": false,
+		"untrustedWorkspaces": {
+			"supported": "limited",
+			"description": "Trust is required to be able to change file access attribute in this workspace."
+		}
 	},
 	"license": "SEE LICENSE IN LICENSE.md",
 	"homepage": "https://github.com/alefragnani/vscode-read-only-indicator/blob/master/README.md",
@@ -55,19 +59,23 @@
 		"commands": [
 			{
 				"command": "readOnly.makeWriteable",
-				"title": "File Access: Make Writeable"
+				"title": "File Access: Make Writeable",
+				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.makeReadOnly",
-				"title": "File Access: Make Read Only"
+				"title": "File Access: Make Read Only",
+				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.changeFileAccess",
-				"title": "File Access: Change File Access"
+				"title": "File Access: Change File Access",
+				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.toggleFileAccess",
-				"title": "File Access: Toggle File Access"
+				"title": "File Access: Toggle File Access",
+				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.whatsNew",
@@ -133,7 +141,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^10.14.17",
-		"@types/vscode": "^1.51.0",
+		"@types/vscode": "^1.56.0",
 		"@typescript-eslint/eslint-plugin": "^3.2.0",
 		"@typescript-eslint/parser": "^3.2.0",
 		"eslint": "^7.2.0",
