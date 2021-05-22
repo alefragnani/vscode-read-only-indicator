@@ -17,7 +17,9 @@ export class StatusBar {
             StatusBarAlignment.Left : StatusBarAlignment.Right;
         
         this.statusBarItem = window.createStatusBarItem(location);
-        this.statusBarItem.command = "readOnly.indicatorAction";
+        if (workspace.isTrusted) { 
+            this.statusBarItem.command = "readOnly.indicatorAction";
+        }
     }
 
     public dispose() {
