@@ -15,6 +15,9 @@
 	"engines": {
 		"vscode": "^1.51.0"
 	},
+	"capabilities": {
+		"virtualWorkspaces": false
+	},
 	"license": "SEE LICENSE IN LICENSE.md",
 	"homepage": "https://github.com/alefragnani/vscode-read-only-indicator/blob/master/README.md",
 	"repository": {
