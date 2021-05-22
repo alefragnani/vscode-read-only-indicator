@@ -33,6 +33,13 @@ export class Controller {
                 this.updateStatusBar();
             }
         }, null, Container.context.subscriptions);
+
+        workspace.onDidGrantWorkspaceTrust(() => {
+            this.statusBar.dispose();
+            this.statusBar = undefined;
+            
+            this.statusBar = new StatusBar();
+        })
     }
 
     public dispose() {
