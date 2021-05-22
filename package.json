@@ -74,12 +74,6 @@
 				"title": "File Access: What's New"
 			}
 		],
-		"keybindings": [
-			{
-			  "key": "ctrl+shift+a",
-			  "command": "readOnly.toggleFileAccess"
-			}
-		],
 		"configuration": {
 			"type": "object",
 			"title": "Status Bar Read-Only Indicator Configuration",

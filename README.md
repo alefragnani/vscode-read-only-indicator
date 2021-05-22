@@ -55,10 +55,6 @@ Writeable |![Writeable](images/screenshot-writeable.png)
 
 ## Available settings
 
-* `ctrl + shift + a` - `File Access: Toggle File Access`
-
-## Available settings
-
 * Defines the position where the Status Bar indicator is located
     ```json
     "fileAccess.position": "left" // or "right"
