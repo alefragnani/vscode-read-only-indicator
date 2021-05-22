@@ -53,8 +53,7 @@ export function registerCommands() {
     }
 
     function toggleFileAccess() {
-        if (!window.activeTextEditor) {
-            window.showInformationMessage("Open a file first to update it attributes");
+        if(!Operations.isValidDocument(window.activeTextEditor)){
             return;
         }
         if (Operations.isReadOnly(window.activeTextEditor.document)) {
