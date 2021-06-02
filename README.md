@@ -8,12 +8,13 @@
   <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/vscode-read-only-indicator-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
 </p>
 
-# What's new in Read-only Indicator 3.4
+# What's new in Read-only Indicator 3.5
 
-* Adds **MacOS** and **Linux** support
+* Adds **Virtual Workspace** support
+* Adds **Workspace Trust** support
+* New `File Access: Toggle File Access` command
 * Adds **workbench.colorCustomizations** support
 * Adds **Settings changes** detection
-* Adds **Clickable** Status Bar indicator
 
 ## Support
 
@@ -98,6 +99,7 @@ For more information about customizing colors in VSCode, see [Theme Color](https
 
 Special thanks to the people that have contributed to the project:
 
+* Riku Kanayama (@k-kuroguro) - New Command: `File Access: Toggle File Access` ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/40))
 * Chris Antos (@chrisant996) - Settings to choose the colors of the Status Bar text ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/24))
 * Chris Antos (@chrisant996) - Only show Status Bar indicator when Read-only ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/24))
 * joshwiker14 (@joshwiker14) - Add support for MacOs and Linux ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/13))

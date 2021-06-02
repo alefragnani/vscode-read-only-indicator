@@ -1,4 +1,4 @@
-## [3.5.0] - 2021-06-01
+## [3.5.0] - 2021-06-02
 ### Added
 - Support **Virtual Workspaces** (issue [#44](https://github.com/alefragnani/vscode-read-only-indicator/issues/44))
 - Support **Workspace Trust** (issue [#43](https://github.com/alefragnani/vscode-read-only-indicator/issues/43))
