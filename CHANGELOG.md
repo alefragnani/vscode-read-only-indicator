@@ -5,6 +5,7 @@
 - New Command: `File Access: Toggle File Access` (Thanks to @k-kuroguro [PR #40](https://github.com/alefragnani/vscode-read-only-indicator/pull/40))
 
 ### Internal
+- Dispose registered commands (issue [#47](https://github.com/alefragnani/vscode-read-only-indicator/issues/47))
 - Security Alert: lodash (dependabot [PR #42](https://github.com/alefragnani/vscode-read-only-indicator/pull/42))
 
 ## [3.4.1] - 2021-04-02

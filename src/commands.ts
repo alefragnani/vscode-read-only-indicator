@@ -69,23 +69,23 @@ export function registerCommands() {
         }
     }
 
-    commands.registerCommand("readOnly.makeWriteable", () => {
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteable", () => {
         updateFileAccess(FileAccess.Writeable);
-    });
+    }));
 
-    commands.registerCommand("readOnly.makeReadOnly", () => {
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.makeReadOnly", () => {
         updateFileAccess(FileAccess.ReadOnly);
-    });
+    }));
 
-    commands.registerCommand("readOnly.changeFileAccess", () => {
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.changeFileAccess", () => {
         changeFileAccess();
-    });
+    }));
 
-    commands.registerCommand("readOnly.toggleFileAccess", () => {
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.toggleFileAccess", () => {
         toggleFileAccess();
-    });
+    }));
 
-    commands.registerCommand("readOnly.indicatorAction", () => {
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.indicatorAction", () => {
         indicatorAction();
-    });
+    }));
 }

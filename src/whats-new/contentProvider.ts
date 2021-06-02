@@ -54,6 +54,14 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
         changeLog.push({
             kind: ChangeLogKind.INTERNAL,
             detail: {
+                message: "Dispose registered commands",
+                id: 47,
+                kind: IssueKind.Issue
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
                 message: "Security Alert: lodash",
                 id: 42,
                 kind: IssueKind.PR,
