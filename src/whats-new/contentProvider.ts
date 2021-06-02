@@ -24,8 +24,44 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
 
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
-        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.4.1", releaseDate: "April 2021" } });
 
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.5.0", releaseDate: "May 2021" } });
+        changeLog.push({
+            kind: ChangeLogKind.NEW,
+            detail: {
+                message: "Support <b>Virtual Workspaces</b>",
+                id: 44,
+                kind: IssueKind.Issue
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.NEW,
+            detail: {
+                message: "Support <b>Workspace Trust</b>",
+                id: 43,
+                kind: IssueKind.Issue
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.NEW,
+            detail: {
+                message: "New Command: Toggle File Access",
+                id: 40,
+                kind: IssueKind.PR,
+                kudos: "k-kuroguro"
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Security Alert: lodash",
+                id: 42,
+                kind: IssueKind.PR,
+                kudos: "dependabot"
+            }
+        });
+
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.4.1", releaseDate: "April 2021" } });
         changeLog.push({
             kind: ChangeLogKind.INTERNAL,
             detail: {
@@ -90,27 +126,6 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
                 message: "Migrate from TSLint to ESLint",
                 id: 27,
                 kind: IssueKind.Issue
-            }
-        });
-
-        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.2.0", releaseDate: "May 2020" } });
-
-        changeLog.push({
-            kind: ChangeLogKind.NEW,
-            detail: {
-                message: "Only show indicator when Read-Only",
-                id: 24,
-                kind: IssueKind.PR,
-                kudos: "@chrisant996"
-            }
-        });
-        changeLog.push({
-            kind: ChangeLogKind.NEW,
-            detail: {
-                message: "Settings to choose the colors of the Status Bar text, using <b>workbench.colorCustomizations</b>",
-                id: 24,
-                kind: IssueKind.PR,
-                kudos: "@chrisant996"
             }
         });
 

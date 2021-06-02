@@ -2,7 +2,7 @@
 	"name": "read-only-indicator",
 	"displayName": "Read-Only Indicator",
 	"description": "Read-Only/Writeable indication on Status Bar",
-	"version": "4.0.0",
+	"version": "3.5.0",
 	"publisher": "alefragnani",
 	"galleryBanner": {
 		"color": "#0000FF",

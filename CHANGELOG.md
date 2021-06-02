@@ -1,3 +1,12 @@
+## [3.5.0] - 2021-06-01
+### Added
+- Support **Virtual Workspaces** (issue [#44](https://github.com/alefragnani/vscode-read-only-indicator/issues/44))
+- Support **Workspace Trust** (issue [#43](https://github.com/alefragnani/vscode-read-only-indicator/issues/43))
+- New Command: `File Access: Toggle File Access` (Thanks to @k-kuroguro [PR #40](https://github.com/alefragnani/vscode-read-only-indicator/pull/40))
+
+### Internal
+- Security Alert: lodash (dependabot [PR #42](https://github.com/alefragnani/vscode-read-only-indicator/pull/42))
+
 ## [3.4.1] - 2021-04-02
 ### Internal
 - Do not show welcome message if installed by Settings Sync (issue [#38](https://github.com/alefragnani/vscode-read-only-indicator/issues/38))
