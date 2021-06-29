@@ -4,7 +4,9 @@
 *--------------------------------------------------------------------------------------------*/
 
 import * as fs from "fs";
-import { TextDocument, TextEditor, window } from "vscode";
+import * as path from "path";
+import { ChildProcess } from "child_process";
+import { TextDocument, TextEditor, Uri, window } from "vscode";
 import { FileAccess } from "./constants";
 
 export class Operations {
@@ -51,20 +53,47 @@ export class Operations {
             const spawn = require("child_process").spawn;
             const ls = spawn(command, [attribute, window.activeTextEditor.document.fileName]);
 
-            ls.stdout.on("data", (data) => {
-                console.log(`stdout: ${data}`);
-            });
-
-            ls.stderr.on("data", (data) => {
-                console.log(`stderr: ${data}`);
-                window.showErrorMessage(`Some error occured: ${data}`);
-            });
-
-            ls.on("close", (code) => {
-                console.log(`child process exited with code ${code}`);
-                return resolve(true);
-            });  
+            resolve(this.handleSpawnResult(ls));
         });        
+    }
+
+    public static updateFolderAccess(newFileAccess: FileAccess, uri: Uri): Promise<boolean> {
+
+        return new Promise<boolean>((resolve, reject) => {
+
+            try {
+                if(!fs.statSync(uri.fsPath).isDirectory()){
+                    return resolve (false);
+                }
+            } catch (error) {
+                resolve (false);
+            }
+
+            // determine what operating system we are running on and change the
+            // command and arguments used to change the file permissions
+            let command;
+            let attribute;
+            let args;
+            switch (process.platform) {
+                case "win32":
+                    command = "attrib";
+                    attribute = newFileAccess.toString();
+                    args = ["/s" /* recursive option */, path.join(uri.fsPath, "*.*")];
+                    break;
+                case "linux":
+                case "darwin": /* darwin is the response for macos */
+                default:
+                    window.showInformationMessage(
+                        "This command is not supported on this system (" + process.platform + ")");
+                    return resolve (false);
+            }
+            
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
+            const spawn = require("child_process").spawn;
+            const ls = spawn(command, [attribute, ...args]);
+
+            resolve(this.handleSpawnResult(ls));
+        });    
     }
 
     public static isReadOnly(doc: TextDocument): boolean {
@@ -87,6 +116,27 @@ export class Operations {
            return false;
         }
         return true;
+    }
+
+    private static handleSpawnResult(ls: ChildProcess): Promise<boolean> {
+
+        return new Promise<boolean>((resolve, reject) => {
+
+            ls.stdout.on("data", (data) => {
+                console.log(`stdout: ${data}`);
+            });
+
+            ls.stderr.on("data", (data) => {
+                console.log(`stderr: ${data}`);
+                window.showErrorMessage(`Some error occured: ${data}`);
+                return resolve(false);
+            });
+
+            ls.on("close", (code) => {
+                console.log(`child process exited with code ${code}`);
+                return resolve(true);
+            });  
+        });  
     }
 
 }

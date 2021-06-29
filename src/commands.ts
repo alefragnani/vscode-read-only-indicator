@@ -3,7 +3,7 @@
 *  Licensed under the MIT License. See License.md in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
-import { commands, QuickPickItem, QuickPickOptions, window, workspace } from "vscode";
+import { commands, QuickPickItem, QuickPickOptions, Uri, window, workspace } from "vscode";
 import { FileAccess } from "./constants";
 import { Container } from "./container";
 import { Operations } from "./operations";
@@ -75,6 +75,16 @@ export function registerCommands() {
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeReadOnly", () => {
         updateFileAccess(FileAccess.ReadOnly);
+    }));
+
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteableRecursive", (uri?: Uri) => {
+        if(!uri) return;
+        Operations.updateFolderAccess(FileAccess.Writeable, uri);
+    }));
+
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.makeReadOnlyRecursive", (uri?: Uri) => {
+        if(!uri) return;
+        Operations.updateFolderAccess(FileAccess.ReadOnly, uri);
     }));
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.changeFileAccess", () => {

@@ -68,6 +68,16 @@
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
+				"command": "readOnly.makeWriteableRecursive",
+				"title": "File Access: Make Writeable Recursive",
+				"enablement": "isWorkspaceTrusted"
+			},
+			{
+				"command": "readOnly.makeReadOnlyRecursive",
+				"title": "File Access: Make Read Only Recursive",
+				"enablement": "isWorkspaceTrusted"
+			},
+			{
 				"command": "readOnly.changeFileAccess",
 				"title": "File Access: Change File Access",
 				"enablement": "isWorkspaceTrusted"
@@ -82,6 +92,28 @@
 				"title": "File Access: What's New"
 			}
 		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "readOnly.makeReadOnlyRecursive",
+					"when": "isWindows && explorerResourceIsFolder"
+				},
+				{
+					"command": "readOnly.makeWriteableRecursive",
+					"when": "isWindows && explorerResourceIsFolder"
+			  	}
+			],
+			"commandPalette": [
+				{
+					"command": "readOnly.makeReadOnlyRecursive",
+					"when": "false"
+				},
+				{
+					"command": "readOnly.makeWriteableRecursive",
+					"when": "false"
+				}
+			]
+		},
 		"configuration": {
 			"type": "object",
 			"title": "Status Bar Read-Only Indicator Configuration",
