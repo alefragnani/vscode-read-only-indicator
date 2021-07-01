@@ -69,6 +69,12 @@ export function registerCommands() {
         }
     }
 
+    async function updateFolderAccess(fileAccess: FileAccess, uri: Uri) {
+        if (await Operations.updateFolderAccess(fileAccess, uri)) {
+            controller.updateStatusBar(fileAccess); 
+        }
+    }
+
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteable", () => {
         updateFileAccess(FileAccess.Writeable);
     }));
@@ -79,12 +85,12 @@ export function registerCommands() {
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteableRecursive", (uri?: Uri) => {
         if(!uri) return;
-        Operations.updateFolderAccess(FileAccess.Writeable, uri);
+        updateFolderAccess(FileAccess.Writeable, uri);
     }));
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeReadOnlyRecursive", (uri?: Uri) => {
         if(!uri) return;
-        Operations.updateFolderAccess(FileAccess.ReadOnly, uri);
+        updateFolderAccess(FileAccess.ReadOnly, uri);
     }));
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.changeFileAccess", () => {
