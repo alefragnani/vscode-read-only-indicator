@@ -47,8 +47,8 @@
 				}
 			},
 			{
-				"id": "fileAccess.writableForeground",
-				"description": "Color for Writable indicator in the status bar",
+				"id": "fileAccess.writeableForeground",
+				"description": "Color for Writeable indicator in the status bar",
 				"defaults": {
 					"dark": "statusBar.foreground",
 					"light": "statusBar.foreground",
@@ -104,10 +104,10 @@
 						"simple"
 					]
 				},
-				"fileAccess.hideWhenWritable": {
+				"fileAccess.hideWhenWriteable": {
 					"type": "boolean",
 					"default": false,
-					"description": "Hide the Status Bar indicator when the file is Writable"
+					"description": "Hide the Status Bar indicator when the file is Writeable"
 				},
 				"fileAccess.indicatorAction": {
 					"type": "string",

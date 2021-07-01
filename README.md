@@ -66,9 +66,9 @@ Writeable |![Writeable](images/screenshot-writeable.png)
     "fileAccess.uiMode": "complete" // or "simple"
     ```
 
-* Hides the Status Bar indicator when the file is Writable
+* Hides the Status Bar indicator when the file is Writeable
     ```json
-    "fileAccess.hideWhenWritable": true // or false
+    "fileAccess.hideWhenWriteable": true // or false
     ```
 
 
@@ -88,10 +88,10 @@ For more information about customizing colors in VSCode, see [Theme Color](https
     }
 ```
 
-* Choose the Status Bar indicator text color when the file is Writable
+* Choose the Status Bar indicator text color when the file is Writeable
 ```json
     "workbench.colorCustomizations": {
-      "fileAccess.writableForeground": "#7fcc7f",
+      "fileAccess.writeableForeground": "#7fcc7f",
     }
 ```
 
