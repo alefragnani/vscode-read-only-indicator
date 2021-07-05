@@ -3,7 +3,7 @@
 *  Licensed under the MIT License. See License.md in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
-import { commands, QuickPickItem, QuickPickOptions, Uri, window, workspace } from "vscode";
+import { commands, FileType, QuickPickItem, QuickPickOptions, Uri, window, workspace } from "vscode";
 import { FileAccess } from "./constants";
 import { Container } from "./container";
 import { Operations } from "./operations";
@@ -75,6 +75,24 @@ export function registerCommands() {
         }
     }
 
+    async function updateByFileType(uri: Uri, fileAccess: FileAccess) {
+        const fileType = Operations.getFileType(uri);
+        if(fileType === FileType.File) {
+            updateFileAccess(fileAccess);
+            return;
+        }
+        if(fileType === FileType.Directory) {
+            const fileAccessDescription: string = fileAccess === FileAccess.ReadOnly ? "Read-only" : "Writeable";
+            const userSelection = await window.showInformationMessage(
+                `Are you sure you want to make files in ${uri.fsPath} ${fileAccessDescription} recursive?`,
+                `Make ${fileAccessDescription}`,
+                'Cancel'
+            );
+            if(userSelection === 'Cancel') return;
+            updateFolderAccess(fileAccess, uri);
+        }
+    }
+
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteable", () => {
         updateFileAccess(FileAccess.Writeable);
     }));
@@ -83,14 +101,14 @@ export function registerCommands() {
         updateFileAccess(FileAccess.ReadOnly);
     }));
 
-    Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteableRecursive", (uri?: Uri) => {
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteableForContextMenu", (uri?: Uri) => {
         if(!uri) return;
-        updateFolderAccess(FileAccess.Writeable, uri);
+        updateByFileType(uri, FileAccess.Writeable);
     }));
 
-    Container.context.subscriptions.push(commands.registerCommand("readOnly.makeReadOnlyRecursive", (uri?: Uri) => {
+    Container.context.subscriptions.push(commands.registerCommand("readOnly.makeReadOnlyForContextMenu", (uri?: Uri) => {
         if(!uri) return;
-        updateFolderAccess(FileAccess.ReadOnly, uri);
+        updateByFileType(uri, FileAccess.ReadOnly);
     }));
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.changeFileAccess", () => {

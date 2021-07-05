@@ -6,7 +6,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { ChildProcess } from "child_process";
-import { TextDocument, TextEditor, Uri, window } from "vscode";
+import { TextDocument, TextEditor, FileType, Uri, window } from "vscode";
 import { FileAccess } from "./constants";
 
 export class Operations {
@@ -116,6 +116,14 @@ export class Operations {
            return false;
         }
         return true;
+    }
+
+    public static getFileType(uri: Uri): FileType {
+        const stat = fs.statSync(uri.fsPath);
+        if (stat.isFile()) return FileType.File;
+        if (stat.isDirectory()) return FileType.Directory;
+        if (stat.isSymbolicLink()) return FileType.SymbolicLink;
+        return FileType.Unknown;
     }
 
     private static handleSpawnResult(ls: ChildProcess): Promise<boolean> {

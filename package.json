@@ -68,13 +68,13 @@
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
-				"command": "readOnly.makeWriteableRecursive",
-				"title": "File Access: Make Writeable Recursive",
+				"command": "readOnly.makeWriteableForContextMenu",
+				"title": "Make Writeable",
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
-				"command": "readOnly.makeReadOnlyRecursive",
-				"title": "File Access: Make Read Only Recursive",
+				"command": "readOnly.makeReadOnlyForContextMenu",
+				"title": "Make Read Only",
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
@@ -95,21 +95,21 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "readOnly.makeReadOnlyRecursive",
-					"when": "isWindows && explorerResourceIsFolder"
+					"command": "readOnly.makeReadOnlyForContextMenu",
+					"when": "isWindows"
 				},
 				{
-					"command": "readOnly.makeWriteableRecursive",
-					"when": "isWindows && explorerResourceIsFolder"
+					"command": "readOnly.makeWriteableForContextMenu",
+					"when": "isWindows"
 			  	}
 			],
 			"commandPalette": [
 				{
-					"command": "readOnly.makeReadOnlyRecursive",
+					"command": "readOnly.makeReadOnlyForContextMenu",
 					"when": "false"
 				},
 				{
-					"command": "readOnly.makeWriteableRecursive",
+					"command": "readOnly.makeWriteableForContextMenu",
 					"when": "false"
 				}
 			]
