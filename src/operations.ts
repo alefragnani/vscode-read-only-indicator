@@ -11,12 +11,37 @@ import { FileAccess } from "./constants";
 
 export class Operations {
 
-    public static updateFileAccess(newFileAccess: FileAccess): Promise<boolean> {
-            
+    public static updateEditorFileAccess(newFileAccess: FileAccess): Promise<boolean> {
+
         return new Promise<boolean>((resolve, reject) => {
 
             if(!this.isValidDocument(window.activeTextEditor)){
                 return resolve (false);
+            }
+
+            const isReadOnly: boolean = this.isReadOnly(window.activeTextEditor.document);
+            const activeFileAcess: FileAccess = isReadOnly ? FileAccess.ReadOnly : FileAccess.Writeable;
+
+            if (newFileAccess === activeFileAcess) {
+                const activeFileAcessDescription: string = isReadOnly ? "Read-only" : "Writeable";
+                window.showInformationMessage("The file is already " + activeFileAcessDescription);
+                return resolve (false);
+            }  
+
+            return resolve(this.updateFileAccess(newFileAccess, window.activeTextEditor.document.uri));
+        });        
+    }
+
+    public static updateFileAccess(newFileAccess: FileAccess, uri: Uri): Promise<boolean> {
+            
+        return new Promise<boolean>((resolve, reject) => {
+
+            try {
+                if(!fs.statSync(uri.fsPath).isFile()){
+                    return resolve (false);
+                }
+            } catch (error) {
+                resolve (false);
             }
             
             // determine what operating system we are running on and change the
@@ -40,18 +65,9 @@ export class Operations {
                     return resolve (false);
             }
 
-            const isReadOnly: boolean = this.isReadOnly(window.activeTextEditor.document);
-            const activeFileAcess: FileAccess = isReadOnly ? FileAccess.ReadOnly : FileAccess.Writeable;
-
-            if (newFileAccess === activeFileAcess) {
-                const activeFileAcessDescription: string = isReadOnly ? "Read-only" : "Writeable";
-                window.showInformationMessage("The file is already " + activeFileAcessDescription);
-                return resolve (false);
-            }  
-            
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             const spawn = require("child_process").spawn;
-            const ls = spawn(command, [attribute, window.activeTextEditor.document.fileName]);
+            const ls = spawn(command, [attribute, uri.fsPath]);
 
             resolve(this.handleSpawnResult(ls));
         });        

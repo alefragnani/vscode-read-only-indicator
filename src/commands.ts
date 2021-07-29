@@ -28,9 +28,9 @@ export function registerCommands() {
             }
 
             if (selection.label === "File Access: Make Read Only") {
-                updateFileAccess(FileAccess.ReadOnly);
+                updateEditorFileAccess(FileAccess.ReadOnly);
             } else {
-                updateFileAccess(FileAccess.Writeable);
+                updateEditorFileAccess(FileAccess.Writeable);
             }
         });
     }
@@ -57,28 +57,34 @@ export function registerCommands() {
             return;
         }
         if (Operations.isReadOnly(window.activeTextEditor.document)) {
-            updateFileAccess(FileAccess.Writeable);
+            updateEditorFileAccess(FileAccess.Writeable);
         } else {
-            updateFileAccess(FileAccess.ReadOnly);
+            updateEditorFileAccess(FileAccess.ReadOnly);
         }
     }
 
-    async function updateFileAccess(fileAccess: FileAccess) {
-        if (await Operations.updateFileAccess(fileAccess)) {
+    async function updateEditorFileAccess(fileAccess: FileAccess) {
+        if (await Operations.updateEditorFileAccess(fileAccess)) {
             controller.updateStatusBar(fileAccess);
+        }
+    }
+
+    async function updateFileAccess(fileAccess: FileAccess, uri: Uri) {
+        if (await Operations.updateFileAccess(fileAccess, uri)) {
+            controller.updateStatusBar();
         }
     }
 
     async function updateFolderAccess(fileAccess: FileAccess, uri: Uri) {
         if (await Operations.updateFolderAccess(fileAccess, uri)) {
-            controller.updateStatusBar(fileAccess); 
+            controller.updateStatusBar(); 
         }
     }
 
-    async function updateByFileType(uri: Uri, fileAccess: FileAccess) {
+    async function updateByFileType(fileAccess: FileAccess, uri: Uri) {
         const fileType = Operations.getFileType(uri);
         if(fileType === FileType.File) {
-            updateFileAccess(fileAccess);
+            updateFileAccess(fileAccess, uri);
             return;
         }
         if(fileType === FileType.Directory) {
@@ -94,21 +100,21 @@ export function registerCommands() {
     }
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteable", () => {
-        updateFileAccess(FileAccess.Writeable);
+        updateEditorFileAccess(FileAccess.Writeable);
     }));
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeReadOnly", () => {
-        updateFileAccess(FileAccess.ReadOnly);
+        updateEditorFileAccess(FileAccess.ReadOnly);
     }));
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeWriteableForContextMenu", (uri?: Uri) => {
         if(!uri) return;
-        updateByFileType(uri, FileAccess.Writeable);
+        updateByFileType(FileAccess.Writeable, uri);
     }));
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.makeReadOnlyForContextMenu", (uri?: Uri) => {
         if(!uri) return;
-        updateByFileType(uri, FileAccess.ReadOnly);
+        updateByFileType(FileAccess.ReadOnly, uri);
     }));
 
     Container.context.subscriptions.push(commands.registerCommand("readOnly.changeFileAccess", () => {
