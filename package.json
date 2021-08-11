@@ -104,6 +104,13 @@
 						"simple"
 					]
 				},
+				"fileAccess.hideWhenWritable": {
+					"type": "boolean",
+					"default": false,
+					"markdownDeprecationMessage": "Use `#fileAccess.hideWhenWriteable#` instead.",
+					"deprecationMessage": "Use fileAccess.hideWhenWriteable instead.",
+					"description": "Hide the Status Bar indicator when the file is Writeable"
+				},
 				"fileAccess.hideWhenWriteable": {
 					"type": "boolean",
 					"default": false,
