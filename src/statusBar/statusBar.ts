@@ -52,12 +52,12 @@ export class StatusBar {
         }
         this.statusBarItem.color = new ThemeColor(readOnly 
                                     ? "fileAccess.readonlyForeground" 
-                                    : "fileAccess.writableForeground");
+                                    : "fileAccess.writeableForeground");
 
         this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
 
         // Show or hide the status bar indicator as appropriate
-        const show = readOnly || !workspace.getConfiguration("fileAccess").get("hideWhenWritable", false);
+        const show = readOnly || !workspace.getConfiguration("fileAccess").get("hideWhenWriteable", false);
         if (show) {
             this.statusBarItem.show();
         } else {
