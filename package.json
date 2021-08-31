@@ -68,6 +68,16 @@
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
+				"command": "readOnly.makeWriteableForContextMenu",
+				"title": "Make Writeable",
+				"enablement": "isWorkspaceTrusted"
+			},
+			{
+				"command": "readOnly.makeReadOnlyForContextMenu",
+				"title": "Make Read Only",
+				"enablement": "isWorkspaceTrusted"
+			},
+			{
 				"command": "readOnly.changeFileAccess",
 				"title": "File Access: Change File Access",
 				"enablement": "isWorkspaceTrusted"
@@ -82,6 +92,28 @@
 				"title": "File Access: What's New"
 			}
 		],
+		"menus": {
+			"explorer/context": [
+				{
+					"command": "readOnly.makeReadOnlyForContextMenu",
+					"when": "isWindows"
+				},
+				{
+					"command": "readOnly.makeWriteableForContextMenu",
+					"when": "isWindows"
+			  	}
+			],
+			"commandPalette": [
+				{
+					"command": "readOnly.makeReadOnlyForContextMenu",
+					"when": "false"
+				},
+				{
+					"command": "readOnly.makeWriteableForContextMenu",
+					"when": "false"
+				}
+			]
+		},
 		"configuration": {
 			"type": "object",
 			"title": "Status Bar Read-Only Indicator Configuration",
