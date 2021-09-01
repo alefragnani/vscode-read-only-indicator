@@ -25,6 +25,26 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
 
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.6.0", releaseDate: "August 2021" } });
+        changeLog.push({
+            kind: ChangeLogKind.NEW,
+            detail: {
+                message: "Support <b>Folder Level</b> commands",
+                id: 49,
+                kind: IssueKind.PR,
+                kudos: "k-kuroguro"
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.FIXED,
+            detail: {
+                message: "Typos in settings names",
+                id: 51,
+                kind: IssueKind.PR,
+                kudos: "k-kuroguro"
+            }
+        });
+
         changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.5.0", releaseDate: "May 2021" } });
         changeLog.push({
             kind: ChangeLogKind.NEW,

@@ -1,3 +1,10 @@
+## [3.6.0] - 2021-09-01
+### Added
+- Support **Folder Level** commands (Thanks to @k-kuroguro [PR #49](https://github.com/alefragnani/vscode-read-only-indicator/pull/49))
+
+### Fixed
+- Typos in settings names (Thanks to @k-kuroguro [PR #51](https://github.com/alefragnani/vscode-read-only-indicator/pull/51))
+
 ## [3.5.0] - 2021-06-02
 ### Added
 - Support **Virtual Workspaces** (issue [#44](https://github.com/alefragnani/vscode-read-only-indicator/issues/44))
