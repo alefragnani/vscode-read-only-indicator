@@ -16,7 +16,8 @@ export class StatusBar {
         const location: StatusBarAlignment = locationString === "left" ?
             StatusBarAlignment.Left : StatusBarAlignment.Right;
         
-        this.statusBarItem = window.createStatusBarItem(location);
+        this.statusBarItem = window.createStatusBarItem("fileAccess.statusBar", location);
+        this.statusBarItem.name = "File Access";
         if (workspace.isTrusted) { 
             this.statusBarItem.command = "readOnly.indicatorAction";
         }
