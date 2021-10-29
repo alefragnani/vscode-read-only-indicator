@@ -54,6 +54,10 @@ export class Operations {
                     attribute = newFileAccess.toString();
                     break;
                 case "linux":
+                    command = "chmod";
+                    // 'u' for user, '-w' for remove write permission
+                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
+                    break;
                 case "darwin": /* darwin is the response for macos */
                     command = "chmod";
                     // 'u' for user, '-w' for remove write permission
@@ -97,6 +101,11 @@ export class Operations {
                     args = [attribute, "/s" /* recursive option */, path.join(uri.fsPath, "*.*")];
                     break;
                 case "linux":
+                    command = "chmod";
+                    // 'u' for user, '-w' for remove write permission
+                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
+                    args = ["-R" /* flag */, attribute, uri.fsPath];
+                    break;
                 case "darwin": /* darwin is the response for macos */
                     command = "chmod";
                     // 'u' for user, '-w' for remove write permission

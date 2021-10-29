@@ -96,11 +96,11 @@
 			"explorer/context": [
 				{
 					"command": "readOnly.makeReadOnlyForContextMenu",
-					"when": "isMac || isWindows"
+					"when": "isMac || isLinux || isWindows"
 				},
 				{
 					"command": "readOnly.makeWriteableForContextMenu",
-					"when": "isMac || isWindows"
+					"when": "isMac || isLinux || isWindows"
 				}
 			],
 			"commandPalette": [
