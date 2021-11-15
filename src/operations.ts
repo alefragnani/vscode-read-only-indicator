@@ -26,14 +26,14 @@ export class Operations {
                 const activeFileAcessDescription: string = isReadOnly ? "Read-only" : "Writeable";
                 window.showInformationMessage("The file is already " + activeFileAcessDescription);
                 return resolve (false);
-            }  
+            }
 
             return resolve(this.updateFileAccess(newFileAccess, window.activeTextEditor.document.uri));
-        });        
+        });
     }
 
     public static updateFileAccess(newFileAccess: FileAccess, uri: Uri): Promise<boolean> {
-            
+
         return new Promise<boolean>((resolve, reject) => {
 
             try {
@@ -43,7 +43,7 @@ export class Operations {
             } catch (error) {
                 resolve (false);
             }
-            
+
             // determine what operating system we are running on and change the
             // command and arguments used to change the file permissions
             let command;
@@ -54,6 +54,10 @@ export class Operations {
                     attribute = newFileAccess.toString();
                     break;
                 case "linux":
+                    command = "chmod";
+                    // 'u' for user, '-w' for remove write permission
+                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
+                    break;
                 case "darwin": /* darwin is the response for macos */
                     command = "chmod";
                     // 'u' for user, '-w' for remove write permission
@@ -70,7 +74,7 @@ export class Operations {
             const ls = spawn(command, [attribute, uri.fsPath]);
 
             resolve(this.handleSpawnResult(ls));
-        });        
+        });
     }
 
     public static updateFolderAccess(newFileAccess: FileAccess, uri: Uri): Promise<boolean> {
@@ -94,22 +98,32 @@ export class Operations {
                 case "win32":
                     command = "attrib";
                     attribute = newFileAccess.toString();
-                    args = ["/s" /* recursive option */, path.join(uri.fsPath, "*.*")];
+                    args = [attribute, "/s" /* recursive option */, path.join(uri.fsPath, "*.*")];
                     break;
                 case "linux":
+                    command = "chmod";
+                    // 'u' for user, '-w' for remove write permission
+                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
+                    args = ["-R" /* flag */, attribute, uri.fsPath];
+                    break;
                 case "darwin": /* darwin is the response for macos */
+                    command = "chmod";
+                    // 'u' for user, '-w' for remove write permission
+                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
+                    args = ["-R" /* flag */, attribute, uri.fsPath];
+                    break;
                 default:
                     window.showInformationMessage(
                         "This command is not supported on this system (" + process.platform + ")");
                     return resolve (false);
             }
-            
+
             // eslint-disable-next-line @typescript-eslint/no-var-requires
             const spawn = require("child_process").spawn;
-            const ls = spawn(command, [attribute, ...args]);
+            const ls = spawn(command, args);
 
             resolve(this.handleSpawnResult(ls));
-        });    
+        });
     }
 
     public static isReadOnly(doc: TextDocument): boolean {
@@ -159,8 +173,8 @@ export class Operations {
             ls.on("close", (code) => {
                 console.log(`child process exited with code ${code}`);
                 return resolve(true);
-            });  
-        });  
+            });
+        });
     }
 
 }
