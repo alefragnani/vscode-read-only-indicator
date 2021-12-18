@@ -1,3 +1,14 @@
+## [3.7.0] - 2021-12-18
+### Added
+- Support **Folder Level** commands for MacOS (Thanks to @zzhaolei [PR #60](https://github.com/alefragnani/vscode-read-only-indicator/pull/60))
+
+### Changed
+- Update Extension setting name (issue [#53](https://github.com/alefragnani/vscode-read-only-indicator/issues/53))
+
+### Internal
+- Add Contributing (issue [#56](https://github.com/alefragnani/vscode-read-only-indicator/issues/56))
+- Support CreateStatusBarItem API (issue [#48](https://github.com/alefragnani/vscode-read-only-indicator/issues/48))
+
 ## [3.6.0] - 2021-09-01
 ### Added
 - Support **Folder Level** commands (Thanks to @k-kuroguro [PR #49](https://github.com/alefragnani/vscode-read-only-indicator/pull/49))

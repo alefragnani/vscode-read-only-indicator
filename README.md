@@ -8,9 +8,9 @@
   <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/vscode-read-only-indicator-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
 </p>
 
-# What's new in Read-only Indicator 3.6
+# What's new in Read-only Indicator 3.7
 
-* Adds **Folder Level** commands
+* Adds **Folder Level** commands support
 * Adds **Virtual Workspace** support
 * Adds **Workspace Trust** support
 * New `File Access: Toggle File Access` command
@@ -107,6 +107,7 @@ For more information about customizing colors in VSCode, see [Theme Color](https
 
 Special thanks to the people that have contributed to the project:
 
+* dO.Ob -> zhaolei (@zzhaolei) - Support folder level commands to MacOS ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/60))
 * Riku Kanayama (@k-kuroguro) - Typos in settings names ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/51))
 * Riku Kanayama (@k-kuroguro) - Support folder level commands to change File Access ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/49))
 * Riku Kanayama (@k-kuroguro) - New Command: `File Access: Toggle File Access` ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/40))
