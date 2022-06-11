@@ -31,6 +31,9 @@
 	"bugs": {
 		"url": "https://github.com/alefragnani/vscode-read-only-indicator/issues"
 	},
+    "sponsor": {
+        "url": "https://github.com/sponsors/alefragnani"
+    },
 	"activationEvents": [
 		"*"
 	],
