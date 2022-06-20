@@ -60,7 +60,8 @@ Writeable |![Writeable](images/screenshot-writeable.png)
 * `Make Read-only`
 * `Make Writeable`
 
-> These commands are available only in Windows
+> **Note**
+> These commands are not available on Linux.
 
 ## Available settings
 
