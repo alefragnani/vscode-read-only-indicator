@@ -25,6 +25,21 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
 
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.7.1", releaseDate: "June 2022" } });
+        changeLog.push({
+            kind: ChangeLogKind.FIXED,
+            detail: {
+                message: "Wrong description on Readme",
+                id: 67,
+                kind: IssueKind.PR,
+                kudos: "k-kuroguro"
+            }
+        });
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: "Add <b>GitHub Sponsors</b> support"
+        });
+
         changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.7.0", releaseDate: "November 2021" } });
         changeLog.push({
             kind: ChangeLogKind.NEW,
@@ -119,34 +134,6 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
             detail: {
                 message: "Security Alert: lodash",
                 id: 42,
-                kind: IssueKind.PR,
-                kudos: "dependabot"
-            }
-        });
-
-        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.4.1", releaseDate: "April 2021" } });
-        changeLog.push({
-            kind: ChangeLogKind.INTERNAL,
-            detail: {
-                message: "Do not show welcome message if installed by Settings Sync",
-                id: 28,
-                kind: IssueKind.Issue
-            }
-        });
-        changeLog.push({
-            kind: ChangeLogKind.INTERNAL,
-            detail: {
-                message: "Security Alert: y18n",
-                id: 37,
-                kind: IssueKind.PR,
-                kudos: "dependabot"
-            }
-        });
-        changeLog.push({
-            kind: ChangeLogKind.INTERNAL,
-            detail: {
-                message: "Security Alert: elliptic",
-                id: 35,
                 kind: IssueKind.PR,
                 kudos: "dependabot"
             }

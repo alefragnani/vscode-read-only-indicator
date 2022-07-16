@@ -108,6 +108,7 @@ For more information about customizing colors in VSCode, see [Theme Color](https
 
 Special thanks to the people that have contributed to the project:
 
+* Riku Kanayama (@k-kuroguro) - Wrong description on Readme ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/67))
 * dO.Ob -> zhaolei (@zzhaolei) - Support folder level commands to MacOS ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/60))
 * Riku Kanayama (@k-kuroguro) - Typos in settings names ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/51))
 * Riku Kanayama (@k-kuroguro) - Support folder level commands to change File Access ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/49))

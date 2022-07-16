@@ -1,3 +1,11 @@
+## [3.7.1] - 2022-07-16
+### Fixed
+- Wrong description on README (Thanks to @k-kuroguro [PR #60](https://github.com/alefragnani/vscode-read-only-indicator/pull/67))
+
+### Internal
+- Add GitHub Sponsors support (PR [#54](https://github.com/alefragnani/vscode-read-only-indicator/pull/66))
+
+
 ## [3.7.0] - 2021-12-18
 ### Added
 - Support **Folder Level** commands for MacOS (Thanks to @zzhaolei [PR #60](https://github.com/alefragnani/vscode-read-only-indicator/pull/60))
