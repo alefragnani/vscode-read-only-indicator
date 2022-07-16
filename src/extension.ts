@@ -8,10 +8,10 @@ import { registerCommands } from "./commands";
 import { Container } from "./container";
 import { registerWhatsNew } from "./whats-new/command";
 
-export function activate(ctx: ExtensionContext) { 
+export async function activate(ctx: ExtensionContext) { 
 
     Container.context = ctx;
 
-    registerWhatsNew();
+    await registerWhatsNew();
     registerCommands();
 }
