@@ -1,3 +1,9 @@
+## [3.8.0] - 2022-10-01
+### Internal
+- Package cleanup (issue [#71](https://github.com/alefragnani/vscode-read-only-indicator/issues/71))
+- Improve extension startup (issue [#70](https://github.com/alefragnani/vscode-read-only-indicator/issues/70))
+- Security Alert: terser (dependabot [PR #69](https://github.com/alefragnani/vscode-read-only-indicator/pull/69))
+
 ## [3.7.1] - 2022-07-16
 ### Fixed
 - Wrong description on README (Thanks to @k-kuroguro [PR #60](https://github.com/alefragnani/vscode-read-only-indicator/pull/67))
