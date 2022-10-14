@@ -11,7 +11,6 @@
 # What's new in Read-only Indicator 3.8
 
 * Adds **Folder Level** commands support
-* Adds **Virtual Workspace** support
 * Adds **Workspace Trust** support
 * New `File Access: Toggle File Access` command
 * Adds **workbench.colorCustomizations** support
