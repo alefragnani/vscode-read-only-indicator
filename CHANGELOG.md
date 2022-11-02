@@ -1,4 +1,4 @@
-## [3.8.1] - 2022-11-TBD
+## [3.8.1] - 2022-11-01
 ### Internal
 - Remove incorrect **Virtual Workspace** support mention (issue [#74](https://github.com/alefragnani/vscode-read-only-indicator/issues/74))
 
