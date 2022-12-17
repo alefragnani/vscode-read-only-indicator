@@ -3,7 +3,7 @@
 *  Licensed under the MIT License. See License.md in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
-import { commands, FileType, QuickPickItem, QuickPickOptions, Uri, window, workspace } from "vscode";
+import { commands, FileType, l10n, QuickPickItem, QuickPickOptions, Uri, window, workspace } from "vscode";
 import { FileAccess } from "./constants";
 import { Container } from "./container";
 import { Operations } from "./operations";
@@ -19,7 +19,7 @@ export function registerCommands() {
         items.push({ label: "File Access: Make Read Only", description: "" });
         items.push({ label: "File Access: Make Writeable", description: "" });
         const options = <QuickPickOptions> {
-            placeHolder: "Select Action"
+            placeHolder: l10n.t("Select Action")
         };
 
         window.showQuickPick(items, options).then(selection => {
@@ -48,7 +48,7 @@ export function registerCommands() {
 
             default:
                 console.log(`Received bad action '${action}'`);
-                window.showErrorMessage(`No indicator action '${action}' is available`);
+                window.showErrorMessage(l10n.t("No indicator action '{0}' is available", action));
         }
     }
 
@@ -88,13 +88,15 @@ export function registerCommands() {
             return;
         }
         if(fileType === FileType.Directory) {
-            const fileAccessDescription: string = fileAccess === FileAccess.ReadOnly ? "Read-only" : "Writeable";
+            const fileAccessDescription: string = fileAccess === FileAccess.ReadOnly 
+                ? l10n.t("Read-only") 
+                : l10n.t("Writeable");
             const userSelection = await window.showInformationMessage(
-                `Are you sure you want to make files in ${uri.fsPath} ${fileAccessDescription} recursive?`,
-                `Make ${fileAccessDescription}`,
-                'Cancel'
+                l10n.t("Are you sure you want to make files in {0} {1} recursive?", uri.fsPath, fileAccessDescription),
+                l10n.t("Make {0}", fileAccessDescription),
+                l10n.t("Cancel")
             );
-            if(userSelection === 'Cancel') return;
+            if(userSelection === l10n.t("Cancel")) return;
             updateFolderAccess(fileAccess, uri);
         }
     }

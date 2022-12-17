@@ -1,0 +1,17 @@
+{
+    "Select Action":"Selecione a Ação",
+    "No indicator action '{0}' is available":"Nenhum indicatorAction '{0}' está disponível",
+    "Read-only":"Somente leitura",
+    "Writeable":"Gravável",
+    "Are you sure you want to make files in {0} {1} recursive?":"Você tem certeza que quer tornar os arquivos em {0} {1} recursivamente?",
+    "Make {0}":"Tornar {0}",
+    "Cancel":"Cancelar",
+    "The file is already {0}":"O arquivo já é {0}",
+    "This command is not supported on this system ({0})":"Este comando não é suportado nesse sistema operacional ({0})",
+    "Open a file first to update it attributes":"Abra um arquivo antes para atualizar seus atributos",
+    "Save the file first to update it attributes":"Salve o arquivo antes para atualizar seus atributos",
+    "Some error occured: {0}":"Algum erro ocorreu: {0}",
+    "child process exited with code {0}":"Processo filho terminou com código {0}",
+    "The file is writeable":"O arquivo é gravável",
+    "The file is read only":"O arquivo é somente leitura"
+}

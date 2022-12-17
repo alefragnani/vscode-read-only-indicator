@@ -6,7 +6,7 @@
 import * as fs from "fs";
 import * as path from "path";
 import { ChildProcess } from "child_process";
-import { TextDocument, TextEditor, FileType, Uri, window } from "vscode";
+import { TextDocument, TextEditor, FileType, Uri, window, l10n } from "vscode";
 import { FileAccess } from "./constants";
 
 export class Operations {
@@ -23,8 +23,10 @@ export class Operations {
             const activeFileAcess: FileAccess = isReadOnly ? FileAccess.ReadOnly : FileAccess.Writeable;
 
             if (newFileAccess === activeFileAcess) {
-                const activeFileAcessDescription: string = isReadOnly ? "Read-only" : "Writeable";
-                window.showInformationMessage("The file is already " + activeFileAcessDescription);
+                const activeFileAcessDescription: string = isReadOnly 
+                    ? l10n.t("Read-only") 
+                    : l10n.t("Writeable");
+                window.showInformationMessage(l10n.t("The file is already {0}", activeFileAcessDescription));
                 return resolve (false);
             }
 
@@ -65,7 +67,7 @@ export class Operations {
                     break;
                 default:
                     window.showInformationMessage(
-                        "This command is not supported on this system (" + process.platform + ")");
+                        l10n.t("This command is not supported on this system ({0})", process.platform));
                     return resolve (false);
             }
 
@@ -114,7 +116,7 @@ export class Operations {
                     break;
                 default:
                     window.showInformationMessage(
-                        "This command is not supported on this system (" + process.platform + ")");
+                        l10n.t("This command is not supported on this system ({0})", process.platform));
                     return resolve (false);
             }
 
@@ -138,11 +140,11 @@ export class Operations {
 
     public static isValidDocument(textEditor: TextEditor | undefined): boolean {
         if (!textEditor) {
-           window.showInformationMessage("Open a file first to update it attributes");
+           window.showInformationMessage(l10n.t("Open a file first to update it attributes"));
            return false;
         }
         if (textEditor.document.uri.scheme === "untitled") {
-           window.showInformationMessage("Save the file first to update it attributes");
+           window.showInformationMessage(l10n.t("Save the file first to update it attributes"));
            return false;
         }
         return true;
@@ -166,12 +168,12 @@ export class Operations {
 
             ls.stderr.on("data", (data) => {
                 console.log(`stderr: ${data}`);
-                window.showErrorMessage(`Some error occured: ${data}`);
+                window.showErrorMessage(l10n.t("Some error occured: {0}", data));
                 return resolve(false);
             });
 
             ls.on("close", (code) => {
-                console.log(`child process exited with code ${code}`);
+                console.log(l10n.t("child process exited with code {0}", code));
                 return resolve(true);
             });
         });
