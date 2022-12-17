@@ -3,7 +3,7 @@
 *  Licensed under the MIT License. See License.md in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
-import { StatusBarAlignment, StatusBarItem, ThemeColor, window, workspace } from "vscode";
+import { l10n, StatusBarAlignment, StatusBarItem, ThemeColor, window, workspace } from "vscode";
 import { FileAccess, UIMode } from "./../constants";
 import { Operations } from "./../operations";
 import { codicons } from "vscode-ext-codicons";
@@ -55,7 +55,9 @@ export class StatusBar {
                                     ? "fileAccess.readonlyForeground" 
                                     : "fileAccess.writeableForeground");
 
-        this.statusBarItem.tooltip = !readOnly ? "The file is writeable" : "The file is read only";
+        this.statusBarItem.tooltip = !readOnly 
+            ? l10n.t("The file is writeable") 
+            : l10n.t("The file is read only");
 
         // Show or hide the status bar indicator as appropriate
         const show = readOnly || !workspace.getConfiguration("fileAccess").get("hideWhenWriteable", false);

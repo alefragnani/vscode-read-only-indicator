@@ -1,0 +1,17 @@
+{
+    "Select Action":"Select Action",
+    "No indicator action '{0}' is available":"No indicator action '{0}' is available",
+    "Read-only":"Read-only",
+    "Writeable":"Writeable",
+    "Are you sure you want to make files in {0} {1} recursive?":"Are you sure you want to make files in {0} {1} recursive?",
+    "Make {0}":"Make {0}",
+    "Cancel":"Cancel",
+    "The file is already {0}":"The file is already {0}",
+    "This command is not supported on this system ({0})":"This command is not supported on this system ({0})",
+    "Open a file first to update it attributes":"Open a file first to update it attributes",
+    "Save the file first to update it attributes":"Save the file first to update it attributes",
+    "Some error occured: {0}":"Some error occured: {0}",
+    "child process exited with code {0}":"child process exited with code {0}",
+    "The file is writeable":"The file is writeable",
+    "The file is read only":"The file is read only"
+}

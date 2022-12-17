@@ -1,0 +1,16 @@
+{
+    "fileAccess.configuration.title": "Read-Only Indicator",
+    "fileAccess.configuration.position.description": "Defines the position where the Status Bar indicator is located",
+    "fileAccess.configuration.uiMode.description": "Define how much information is displayed in the Status Bar indicator",
+    "fileAccess.configuration.hideWhenWriteable.description": "Hide the Status Bar indicator when the file is Writeable",
+    "fileAccess.configuration.indicatorAction.description": "Sets what action to take when the indicator is clicked",
+    "fileAccess.colors.readonlyForeground.descripition": "Color for Read Only indicator in the status bar",
+    "fileAccess.colors.writeableForeground.descripition": "Color for Writeable indicator in the status bar",
+    "readOnly.commands.makeWriteable.title": "File Access: Make Writeable",
+    "readOnly.commands.makeReadOnly.title": "File Access: Make Read Only",
+    "readOnly.commands.makeWriteableForContextMenu.title": "Make Writeable",
+    "readOnly.commands.makeReadOnlyForContextMenu.title": "Make Read Only",
+    "readOnly.commands.changeFileAccess.title": "File Access: Change File Access",
+    "readOnly.commands.toggleFileAccess.title": "File Access: Toggle File Access",
+    "readOnly.commands.whatsNew.title": "File Access: What's New"
+}
