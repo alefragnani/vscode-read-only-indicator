@@ -43,7 +43,7 @@
 		"colors": [
 			{
 				"id": "fileAccess.readonlyForeground",
-				"description": "Color for Read Only indicator in the status bar",
+				"description": "%fileAccess.colors.readonlyForeground.descripition%",
 				"defaults": {
 					"dark": "statusBar.foreground",
 					"light": "statusBar.foreground",
@@ -52,7 +52,7 @@
 			},
 			{
 				"id": "fileAccess.writeableForeground",
-				"description": "Color for Writeable indicator in the status bar",
+				"description": "%fileAccess.colors.writeableForeground.descripition%",
 				"defaults": {
 					"dark": "statusBar.foreground",
 					"light": "statusBar.foreground",
@@ -63,37 +63,37 @@
 		"commands": [
 			{
 				"command": "readOnly.makeWriteable",
-				"title": "File Access: Make Writeable",
+				"title": "%readOnly.commands.makeWriteable.title%",
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.makeReadOnly",
-				"title": "File Access: Make Read Only",
+				"title": "%readOnly.commands.makeReadOnly.title%",
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.makeWriteableForContextMenu",
-				"title": "Make Writeable",
+				"title": "%readOnly.commands.makeWriteableForContextMenu.title%",
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.makeReadOnlyForContextMenu",
-				"title": "Make Read Only",
+				"title": "%readOnly.commands.makeReadOnlyForContextMenu.title%",
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.changeFileAccess",
-				"title": "File Access: Change File Access",
+				"title": "%readOnly.commands.changeFileAccess.title%",
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.toggleFileAccess",
-				"title": "File Access: Toggle File Access",
+				"title": "%readOnly.commands.toggleFileAccess.title%",
 				"enablement": "isWorkspaceTrusted"
 			},
 			{
 				"command": "readOnly.whatsNew",
-				"title": "File Access: What's New"
+				"title": "%readOnly.commands.whatsNew.title%"
 			}
 		],
 		"menus": {
@@ -120,12 +120,12 @@
 		},
 		"configuration": {
 			"type": "object",
-			"title": "Read-Only Indicator",
+			"title": "%fileAccess.configuration.title%",
 			"properties": {
 				"fileAccess.position": {
 					"type": "string",
 					"default": "left",
-					"description": "Defines the position where the Status Bar indicator is located",
+					"description": "%fileAccess.configuration.position.description%",
 					"enum": [
 						"left",
 						"right"
@@ -134,7 +134,7 @@
 				"fileAccess.uiMode": {
 					"type": "string",
 					"default": "complete",
-					"description": "Define how much information is displayed in the Status Bar indicator",
+					"description": "%fileAccess.configuration.uiMode.description%",
 					"enum": [
 						"complete",
 						"simple"
@@ -150,12 +150,12 @@
 				"fileAccess.hideWhenWriteable": {
 					"type": "boolean",
 					"default": false,
-					"description": "Hide the Status Bar indicator when the file is Writeable"
+					"description": "%fileAccess.configuration.hideWhenWriteable.description%"
 				},
 				"fileAccess.indicatorAction": {
 					"type": "string",
 					"default": "choose",
-					"description": "Sets what action to take when the indicator is clicked",
+					"description": "%fileAccess.configuration.indicatorAction.description%",
 					"enum": [
 						"toggle",
 						"choose"

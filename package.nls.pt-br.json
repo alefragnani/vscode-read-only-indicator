@@ -1,0 +1,16 @@
+{
+    "fileAccess.configuration.title": "Read-Only Indicator",
+    "fileAccess.configuration.position.description": "Define a posição onde o indicador da Barra de Status está localizado",
+    "fileAccess.configuration.uiMode.description": "Define quanta informação é apresentada no indicador da Barra de Status",
+    "fileAccess.configuration.hideWhenWriteable.description": "Esconde o indicador da Barra de Status quando o arquivo é gravável",
+    "fileAccess.configuration.indicatorAction.description": "Define qual ação a ser feita quando o indicador é clicado",
+    "fileAccess.colors.readonlyForeground.descripition": "Cor para o indicador de Somente Leitura na Barra de Status",
+    "fileAccess.colors.writeableForeground.descripition": "Cor para o indicador de Gravável na Barra de Status",
+    "readOnly.commands.makeWriteable.title": "File Access: Tornar Gravável",
+    "readOnly.commands.makeReadOnly.title": "File Access: Tornar Somente Leitura",
+    "readOnly.commands.makeWriteableForContextMenu.title": "Tornar Gravável",
+    "readOnly.commands.makeReadOnlyForContextMenu.title": "Tornar Somente Leitura",
+    "readOnly.commands.changeFileAccess.title": "File Access: Mudar Acesso de Arquivo",
+    "readOnly.commands.toggleFileAccess.title": "File Access: Alternar Acesso de Arquivo",
+    "readOnly.commands.whatsNew.title": "File Access: Novidades"
+}
