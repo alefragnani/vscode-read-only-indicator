@@ -1,7 +1,7 @@
-[![](https://vsmarketplacebadge.apphb.com/version-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
-[![](https://vsmarketplacebadge.apphb.com/downloads-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
-[![](https://vsmarketplacebadge.apphb.com/rating-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
-[![](https://img.shields.io/github/workflow/status/alefragnani/vscode-read-only-indicator/CI)](https://github.com/alefragnani/vscode-read-only-indicator/actions?query=workflow%3ACI)
+[![](https://vsmarketplacebadges.dev/version-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
+[![](https://vsmarketplacebadges.dev/downloads-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
+[![](https://vsmarketplacebadges.dev/rating-short/alefragnani.read-only-indicator.svg)](https://marketplace.visualstudio.com/items?itemName=alefragnani.read-only-indicator)
+[![](https://img.shields.io/github/actions/workflow/status/alefragnani/vscode-read-only-indicator/main.yml?branch=master)](https://github.com/alefragnani/vscode-read-only-indicator/actions?query=workflow%3ACI)
 
 <p align="center">
   <br />
