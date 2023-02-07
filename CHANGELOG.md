@@ -1,3 +1,9 @@
+## [3.9.0] - 2023-02-06
+### Internal
+- Support **Translation** and **Localization** APIs (issue [#77](https://github.com/alefragnani/vscode-read-only-indicator/issues/77))
+- Update Badges (issue [#80](https://github.com/alefragnani/vscode-read-only-indicator/issues/80))
+- Security Alert: minimap (dependabot [PR #79](https://github.com/alefragnani/vscode-read-only-indicator/pull/79))
+
 ## [3.8.1] - 2022-11-01
 ### Internal
 - Remove incorrect **Virtual Workspace** support mention (issue [#74](https://github.com/alefragnani/vscode-read-only-indicator/issues/74))
