@@ -1,7 +1,7 @@
 /*---------------------------------------------------------------------------------------------
-*  Copyright (c) Alessandro Fragnani. All rights reserved.
-*  Licensed under the MIT License. See License.md in the project root for license information.
-*--------------------------------------------------------------------------------------------*/
+ *  Copyright (c) Alessandro Fragnani. All rights reserved.
+ *  Licensed under the MIT License. See License.md in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
 import { l10n, StatusBarAlignment, StatusBarItem, ThemeColor, window, workspace } from "vscode";
 import { FileAccess, UIMode } from "./../constants";
@@ -12,13 +12,13 @@ export class StatusBar {
     private statusBarItem: StatusBarItem;
 
     constructor() {
-        const locationString: string = (workspace.getConfiguration("fileAccess").get("position", "left"));
-        const location: StatusBarAlignment = locationString === "left" ?
-            StatusBarAlignment.Left : StatusBarAlignment.Right;
-        
+        const locationString: string = workspace.getConfiguration("fileAccess").get("position", "left");
+        const location: StatusBarAlignment =
+            locationString === "left" ? StatusBarAlignment.Left : StatusBarAlignment.Right;
+
         this.statusBarItem = window.createStatusBarItem("fileAccess.statusBar", location);
         this.statusBarItem.name = "File Access";
-        if (workspace.isTrusted) { 
+        if (workspace.isTrusted) {
             this.statusBarItem.command = "readOnly.indicatorAction";
         }
     }
@@ -28,12 +28,11 @@ export class StatusBar {
     }
 
     public update(fileAccess?: FileAccess) {
-        
         if (!window.activeTextEditor) {
             this.statusBarItem.hide();
             return;
         }
-        
+
         const activeDocument = window.activeTextEditor.document;
         if (activeDocument.isUntitled) {
             this.statusBarItem.hide();
@@ -41,23 +40,21 @@ export class StatusBar {
         }
 
         // ui
-        const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
+        const uimodeString: string = workspace.getConfiguration("fileAccess").get("uiMode", "complete");
         const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
         const readOnly = fileAccess ? fileAccess === FileAccess.ReadOnly : Operations.isReadOnly(activeDocument);
 
         // Update the status bar
         if (uimode === UIMode.Complete) {
-            this.statusBarItem.text = !readOnly ? codicons.pencil + " [RW]" : codicons.circle_slash + " [RO]";
+            this.statusBarItem.text = !readOnly ? codicons.unlock + " [RW]" : codicons.lock + " [RO]";
         } else {
             this.statusBarItem.text = !readOnly ? "RW" : "RO";
         }
-        this.statusBarItem.color = new ThemeColor(readOnly 
-                                    ? "fileAccess.readonlyForeground" 
-                                    : "fileAccess.writeableForeground");
+        this.statusBarItem.color = new ThemeColor(
+            readOnly ? "fileAccess.readonlyForeground" : "fileAccess.writeableForeground"
+        );
 
-        this.statusBarItem.tooltip = !readOnly 
-            ? l10n.t("The file is writeable") 
-            : l10n.t("The file is read only");
+        this.statusBarItem.tooltip = !readOnly ? l10n.t("The file is writeable") : l10n.t("The file is read only");
 
         // Show or hide the status bar indicator as appropriate
         const show = readOnly || !workspace.getConfiguration("fileAccess").get("hideWhenWriteable", false);

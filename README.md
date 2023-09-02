@@ -85,6 +85,11 @@ Writeable |![Writeable](images/screenshot-writeable.png)
     "fileAccess.indicatorAction": "choose" // or "toggle"
     ```
 
+* Sets the save scope of readonlyInclude and readonlyExclude
+    ```json
+    "fileAccess.scope": "workspace" // or "user"
+    ```
+
 ## Available colors
 
 For more information about customizing colors in VSCode, see [Theme Color](https://code.visualstudio.com/api/references/theme-color).

@@ -1,0 +1,17 @@
+{
+    "Select Action":"选择操作",
+    "No indicator action '{0}' is available":"没有可用的指示器'{0}'操作",
+    "Read-only":"只读",
+    "Writeable":"可写",
+    "Are you sure you want to make files in {0} {1} recursive?":"是否确实要使{0}中的所有文件{1}？",
+    "Make {0}":"设置为{0}",
+    "Cancel":"取消",
+    "The file is already {0}":"该文件已是{0}状态",
+    "This command is not supported on this system ({0})":"此系统（{0}）不支持此命令",
+    "Open a file first to update it attributes":"首先打开文件以更新其属性",
+    "Save the file first to update it attributes":"首先保存文件以更新其属性",
+    "Some error occured: {0}":"出现一些错误：{0}",
+    "child process exited with code {0}":"子进程已退出，代码为{0}",
+    "The file is writeable":"该文件是可写的",
+    "The file is read only":"该文件是只读的"
+}

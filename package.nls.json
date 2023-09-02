@@ -4,6 +4,7 @@
     "fileAccess.configuration.uiMode.description": "Define how much information is displayed in the Status Bar indicator",
     "fileAccess.configuration.hideWhenWriteable.description": "Hide the Status Bar indicator when the file is Writeable",
     "fileAccess.configuration.indicatorAction.description": "Sets what action to take when the indicator is clicked",
+    "fileAccess.configuration.scope.description": "Sets the save scope of readonlyInclude and readonlyExclude",
     "fileAccess.colors.readonlyForeground.descripition": "Color for Read Only indicator in the status bar",
     "fileAccess.colors.writeableForeground.descripition": "Color for Writeable indicator in the status bar",
     "readOnly.commands.makeWriteable.title": "File Access: Make Writeable",

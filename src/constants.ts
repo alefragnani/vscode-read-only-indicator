@@ -3,12 +3,17 @@
 *  Licensed under the MIT License. See License.md in the project root for license information.
 *--------------------------------------------------------------------------------------------*/
 
+export const enum Scope {
+    Workspace,
+    User
+}
+
 export const enum UIMode {
     Complete,
     Simple
 }
 
 export const enum FileAccess {
-    ReadOnly = "+R",
-    Writeable = "-R"
+    ReadOnly = "Read-only",
+    Writeable = "Writeable"
 }

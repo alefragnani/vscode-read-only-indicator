@@ -1,0 +1,17 @@
+{
+    "fileAccess.configuration.title": "只读指示器",
+    "fileAccess.configuration.position.description": "定义状态栏指示器的位置",
+    "fileAccess.configuration.uiMode.description": "定义状态栏指示器中显示的信息量",
+    "fileAccess.configuration.hideWhenWriteable.description": "当文件可写时隐藏状态栏指示器",
+    "fileAccess.configuration.indicatorAction.description": "设置单击指示器时要执行的操作",
+    "fileAccess.configuration.scope.description": "设置readonlyInclude和readonlyExclude的保存范围",
+    "fileAccess.colors.readonlyForeground.descripition": "状态栏中只读指示器的颜色",
+    "fileAccess.colors.writeableForeground.descripition": "状态库中可写指示器的颜色r",
+    "readOnly.commands.makeWriteable.title": "文件访问指示器: 设置为可写",
+    "readOnly.commands.makeReadOnly.title": "文件访问指示器: 设置为只读",
+    "readOnly.commands.makeWriteableForContextMenu.title": "设置为可写",
+    "readOnly.commands.makeReadOnlyForContextMenu.title": "设置为只读",
+    "readOnly.commands.changeFileAccess.title": "文件访问指示器: 更改文件访问权限",
+    "readOnly.commands.toggleFileAccess.title": "文件访问指示器: 切换文件访问",
+    "readOnly.commands.whatsNew.title": "文件访问指示器: 新功能"
+}

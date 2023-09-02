@@ -4,6 +4,7 @@
     "fileAccess.configuration.uiMode.description": "Define quanta informação é apresentada no indicador da Barra de Status",
     "fileAccess.configuration.hideWhenWriteable.description": "Esconde o indicador da Barra de Status quando o arquivo é gravável",
     "fileAccess.configuration.indicatorAction.description": "Define qual ação a ser feita quando o indicador é clicado",
+    "fileAccess.configuration.scope.description": "Sets the save scope of readonlyInclude and readonlyExclude",
     "fileAccess.colors.readonlyForeground.descripition": "Cor para o indicador de Somente Leitura na Barra de Status",
     "fileAccess.colors.writeableForeground.descripition": "Cor para o indicador de Gravável na Barra de Status",
     "readOnly.commands.makeWriteable.title": "File Access: Tornar Gravável",

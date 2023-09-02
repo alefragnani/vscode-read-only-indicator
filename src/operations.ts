@@ -1,135 +1,109 @@
 /*---------------------------------------------------------------------------------------------
-*  Copyright (c) Alessandro Fragnani. All rights reserved.
-*  Licensed under the MIT License. See License.md in the project root for license information.
-*--------------------------------------------------------------------------------------------*/
+ *  Copyright (c) Alessandro Fragnani. All rights reserved.
+ *  Licensed under the MIT License. See License.md in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
 
 import * as fs from "fs";
-import * as path from "path";
-import { ChildProcess } from "child_process";
-import { TextDocument, TextEditor, FileType, Uri, window, l10n } from "vscode";
-import { FileAccess } from "./constants";
+import { ConfigurationTarget, TextDocument, TextEditor, FileType, Uri, window, workspace, l10n, commands } from "vscode";
+import { FileAccess, Scope } from "./constants";
+import { minimatch } from "minimatch2";
 
 export class Operations {
-
     public static updateEditorFileAccess(newFileAccess: FileAccess): Promise<boolean> {
-
         return new Promise<boolean>((resolve, reject) => {
+            if (!this.isValidDocument(window.activeTextEditor)) {
+                return resolve(false);
+            }
 
-            if(!this.isValidDocument(window.activeTextEditor)){
-                return resolve (false);
+            if (Operations.isFileReadonlyPermissions(window.activeTextEditor.document.fileName)) {
+                window.showInformationMessage(l10n.t("The file is read only"));
+                return resolve(false);
             }
 
             const isReadOnly: boolean = this.isReadOnly(window.activeTextEditor.document);
             const activeFileAcess: FileAccess = isReadOnly ? FileAccess.ReadOnly : FileAccess.Writeable;
 
             if (newFileAccess === activeFileAcess) {
-                const activeFileAcessDescription: string = isReadOnly 
-                    ? l10n.t("Read-only") 
-                    : l10n.t("Writeable");
+                const activeFileAcessDescription: string = isReadOnly ? l10n.t("Read-only") : l10n.t("Writeable");
                 window.showInformationMessage(l10n.t("The file is already {0}", activeFileAcessDescription));
-                return resolve (false);
+                return resolve(false);
             }
-
             return resolve(this.updateFileAccess(newFileAccess, window.activeTextEditor.document.uri));
         });
     }
 
     public static updateFileAccess(newFileAccess: FileAccess, uri: Uri): Promise<boolean> {
-
         return new Promise<boolean>((resolve, reject) => {
-
             try {
-                if(!fs.statSync(uri.fsPath).isFile()){
-                    return resolve (false);
+                if (!fs.statSync(uri.fsPath).isFile()) {
+                    return resolve(false);
                 }
             } catch (error) {
-                resolve (false);
+                return resolve(false);
             }
 
-            // determine what operating system we are running on and change the
-            // command and arguments used to change the file permissions
-            let command;
-            let attribute;
-            switch (process.platform) {
-                case "win32":
-                    command = "attrib";
-                    attribute = newFileAccess.toString();
-                    break;
-                case "linux":
-                    command = "chmod";
-                    // 'u' for user, '-w' for remove write permission
-                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
-                    break;
-                case "darwin": /* darwin is the response for macos */
-                    command = "chmod";
-                    // 'u' for user, '-w' for remove write permission
-                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
-                    break;
-                default:
-                    window.showInformationMessage(
-                        l10n.t("This command is not supported on this system ({0})", process.platform));
-                    return resolve (false);
+            const filePath = uri.fsPath;
+            if (newFileAccess === FileAccess.ReadOnly) {
+                if (this.internalIsReadOnly(filePath)) {
+                    return false;
+                }
+                this.updateReadOnly(filePath, true);
+            } else if (newFileAccess === FileAccess.Writeable) {
+                if (!this.internalIsReadOnly(filePath)) {
+                    return false;
+                }
+                this.updateReadOnly(filePath, false);
             }
-
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const spawn = require("child_process").spawn;
-            const ls = spawn(command, [attribute, uri.fsPath]);
-
-            resolve(this.handleSpawnResult(ls));
+            return resolve(true);
         });
     }
 
     public static updateFolderAccess(newFileAccess: FileAccess, uri: Uri): Promise<boolean> {
-
         return new Promise<boolean>((resolve, reject) => {
-
             try {
-                if(!fs.statSync(uri.fsPath).isDirectory()){
-                    return resolve (false);
+                if (!fs.statSync(uri.fsPath).isDirectory()) {
+                    return resolve(false);
                 }
             } catch (error) {
-                resolve (false);
+                resolve(false);
             }
 
-            // determine what operating system we are running on and change the
-            // command and arguments used to change the file permissions
-            let command;
-            let attribute;
-            let args;
-            switch (process.platform) {
-                case "win32":
-                    command = "attrib";
-                    attribute = newFileAccess.toString();
-                    args = [attribute, "/s" /* recursive option */, path.join(uri.fsPath, "*.*")];
-                    break;
-                case "linux":
-                    command = "chmod";
-                    // 'u' for user, '-w' for remove write permission
-                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
-                    args = ["-R" /* flag */, attribute, uri.fsPath];
-                    break;
-                case "darwin": /* darwin is the response for macos */
-                    command = "chmod";
-                    // 'u' for user, '-w' for remove write permission
-                    attribute = (newFileAccess === FileAccess.ReadOnly) ? "u-w" : "u+w";
-                    args = ["-R" /* flag */, attribute, uri.fsPath];
-                    break;
-                default:
-                    window.showInformationMessage(
-                        l10n.t("This command is not supported on this system ({0})", process.platform));
-                    return resolve (false);
+            const path = "**/" + workspace.asRelativePath(uri.fsPath) + "/**";
+            if (newFileAccess === FileAccess.ReadOnly) {
+                this.updateReadOnly(path, true);
+            } else if (newFileAccess === FileAccess.Writeable) {
+                this.updateReadOnly(path, false);
             }
-
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const spawn = require("child_process").spawn;
-            const ls = spawn(command, args);
-
-            resolve(this.handleSpawnResult(ls));
+            return resolve(true);
         });
     }
 
     public static isReadOnly(doc: TextDocument): boolean {
-        const filePath = doc.fileName;
+        return this.internalIsReadOnly(doc.fileName);
+    }
+
+    private static internalIsReadOnly(filePath: string): boolean {
+        filePath = this.convertPath(filePath);
+
+        const config = workspace.getConfiguration("files");
+        const readonlyExclude: { [key: string]: boolean } = config.get("readonlyExclude");
+        for (const pattern in readonlyExclude) {
+            if (readonlyExclude[pattern] && minimatch(filePath, pattern)) {
+                return this.isFileReadonlyPermissions(filePath);
+            }
+        }
+
+        const readonlyInclude: { [key: string]: boolean } = config.get("readonlyInclude");
+        for (const pattern in readonlyInclude) {
+            if (readonlyInclude[pattern] && minimatch(filePath, pattern)) {
+                return true;
+            }
+        }
+
+        return this.isFileReadonlyPermissions(filePath);
+    }
+
+    public static isFileReadonlyPermissions(filePath: string): boolean {
         try {
             fs.accessSync(filePath, fs.constants.W_OK);
             return false;
@@ -140,12 +114,12 @@ export class Operations {
 
     public static isValidDocument(textEditor: TextEditor | undefined): boolean {
         if (!textEditor) {
-           window.showInformationMessage(l10n.t("Open a file first to update it attributes"));
-           return false;
+            window.showInformationMessage(l10n.t("Open a file first to update it attributes"));
+            return false;
         }
         if (textEditor.document.uri.scheme === "untitled") {
-           window.showInformationMessage(l10n.t("Save the file first to update it attributes"));
-           return false;
+            window.showInformationMessage(l10n.t("Save the file first to update it attributes"));
+            return false;
         }
         return true;
     }
@@ -158,25 +132,42 @@ export class Operations {
         return FileType.Unknown;
     }
 
-    private static handleSpawnResult(ls: ChildProcess): Promise<boolean> {
-
-        return new Promise<boolean>((resolve, reject) => {
-
-            ls.stdout.on("data", (data) => {
-                console.log(`stdout: ${data}`);
-            });
-
-            ls.stderr.on("data", (data) => {
-                console.log(`stderr: ${data}`);
-                window.showErrorMessage(l10n.t("Some error occured: {0}", data));
-                return resolve(false);
-            });
-
-            ls.on("close", (code) => {
-                console.log(l10n.t("child process exited with code {0}", code));
-                return resolve(true);
-            });
-        });
+    private static convertPath(pattern: string): string {
+        switch (process.platform) {
+            case "win32":
+                pattern = pattern.replace(/\\/g, "/");
+        }
+        return pattern;
     }
 
+    public static updateReadOnly(pattern: string, addInInclude = true): void {
+        pattern = this.convertPath(pattern);
+
+        const config = workspace.getConfiguration("files");
+        const readonlyInclude: { [key: string]: boolean } = config.get("readonlyInclude", {});
+        const readonlyExclude: { [key: string]: boolean } = config.get("readonlyExclude", {});
+        if (addInInclude) {
+            readonlyExclude[pattern] = undefined;
+            readonlyInclude[pattern] = true;
+        } else {
+            readonlyInclude[pattern] = undefined;
+            readonlyExclude[pattern] = true;
+        }
+
+        // scope
+        const scopeString: string = workspace.getConfiguration("fileAccess").get("scope", "workspace");
+        const scope: Scope = scopeString === "workspace" ? Scope.Workspace : Scope.User;
+        let target = ConfigurationTarget.Workspace;
+        if (scope === Scope.User) {
+            target = ConfigurationTarget.Global;
+        }
+        config.update("readonlyInclude", readonlyInclude, target);
+        config.update("readonlyExclude", readonlyExclude, target);
+
+        try {
+            if (fs.statSync(pattern).isFile()) {
+                commands.executeCommand("workbench.action.files.toggleActiveEditorReadonlyInSession");
+            }
+        } catch (error) {}
+    }
 }
