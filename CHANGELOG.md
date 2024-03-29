@@ -1,3 +1,15 @@
+## [3.10.0] - 2024-03-29
+## Added
+- Published to Open VSX (issue [#91](https://github.com/alefragnani/vscode-read-only-indicator/issues/91))
+
+### Changed
+- Avoid What's New when using Gitpod (issue [#84](https://github.com/alefragnani/vscode-read-only-indicator/issues/84))
+- Avoid What's New when installing lower versions (issue [#84](https://github.com/alefragnani/vscode-read-only-indicator/issues/84))
+
+### Internal
+- Security Alert: word-wrap (dependabot [PR #85](https://github.com/alefragnani/vscode-read-only-indicator/pull/85))
+- Security Alert: webpack (dependabot [PR #82](https://github.com/alefragnani/vscode-read-only-indicator/pull/82))
+
 ## [3.9.0] - 2023-02-06
 ### Internal
 - Support **Translation** and **Localization** APIs (issue [#77](https://github.com/alefragnani/vscode-read-only-indicator/issues/77))

@@ -25,6 +25,50 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
     public provideChangeLog(): ChangeLogItem[] {
         const changeLog: ChangeLogItem[] = [];
 
+        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.10.0", releaseDate: "March 2024" } });
+        changeLog.push({
+            kind: ChangeLogKind.NEW,
+            detail: {
+                message: "Published to Open VSX",
+                id: 91,
+                kind: IssueKind.Issue
+            }
+        });        
+        changeLog.push({
+            kind: ChangeLogKind.CHANGED,
+            detail: {
+                message: "Avoid What's New when using Gitpod",
+                id: 84,
+                kind: IssueKind.Issue
+            }
+        });        
+        changeLog.push({
+            kind: ChangeLogKind.CHANGED,
+            detail: {
+                message: "Avoid What's New when installing lower versions",
+                id: 84,
+                kind: IssueKind.Issue
+            }
+        });        
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Security Alert: word-wrap",
+                id: 85,
+                kind: IssueKind.PR,
+                kudos: "dependabot"
+            }
+        });        
+        changeLog.push({
+            kind: ChangeLogKind.INTERNAL,
+            detail: {
+                message: "Security Alert: webpack",
+                id: 82,
+                kind: IssueKind.PR,
+                kudos: "dependabot"
+            }
+        });
+
         changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.9.0", releaseDate: "January 2023" } });
         changeLog.push({
             kind: ChangeLogKind.INTERNAL,
@@ -102,61 +146,6 @@ export class ReadOnlyIndicatorContentProvider implements ContentProvider {
         changeLog.push({
             kind: ChangeLogKind.INTERNAL,
             detail: "Add <b>GitHub Sponsors</b> support"
-        });
-
-        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.7.0", releaseDate: "November 2021" } });
-        changeLog.push({
-            kind: ChangeLogKind.NEW,
-            detail: {
-                message: "Support <b>Folder Level</b> commands for MacOS",
-                id: 60,
-                kind: IssueKind.PR,
-                kudos: "zzhaolei"
-            }
-        });
-        changeLog.push({
-            kind: ChangeLogKind.CHANGED,
-            detail: {
-                message: "Update Extension setting name",
-                id: 53,
-                kind: IssueKind.Issue
-            }
-        });
-        changeLog.push({
-            kind: ChangeLogKind.INTERNAL,
-            detail: {
-                message: "Add Contributing",
-                id: 56,
-                kind: IssueKind.Issue
-            }
-        });
-        changeLog.push({
-            kind: ChangeLogKind.INTERNAL,
-            detail: {
-                message: "Support CreateStatusBarItem API",
-                id: 48,
-                kind: IssueKind.Issue
-            }
-        });
-
-        changeLog.push({ kind: ChangeLogKind.VERSION, detail: { releaseNumber: "3.6.0", releaseDate: "August 2021" } });
-        changeLog.push({
-            kind: ChangeLogKind.NEW,
-            detail: {
-                message: "Support <b>Folder Level</b> commands",
-                id: 49,
-                kind: IssueKind.PR,
-                kudos: "k-kuroguro"
-            }
-        });
-        changeLog.push({
-            kind: ChangeLogKind.FIXED,
-            detail: {
-                message: "Typos in settings names",
-                id: 51,
-                kind: IssueKind.PR,
-                kudos: "k-kuroguro"
-            }
         });
 
         return changeLog;

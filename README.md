@@ -8,13 +8,11 @@
   <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/vscode-read-only-indicator-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
 </p>
 
-# What's new in Read-only Indicator 3.9
+# What's new in Read-only Indicator 3.10
 
+* Published to **Open VSX**
 * Adds **Folder Level** commands support
 * Adds **Workspace Trust** support
-* New `File Access: Toggle File Access` command
-* Adds **workbench.colorCustomizations** support
-* Adds **Settings changes** detection
 
 ## Support
 
