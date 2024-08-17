@@ -137,7 +137,8 @@
 					"description": "%fileAccess.configuration.uiMode.description%",
 					"enum": [
 						"complete",
-						"simple"
+						"simple",
+						"iconOnly"
 					]
 				},
 				"fileAccess.hideWhenWritable": {
@@ -200,6 +201,6 @@
 		"mocha": "^9.1.3"
 	},
 	"dependencies": {
-		"vscode-ext-codicons": "^1.0.1"
+		"vscode-ext-codicons": "^1.6.0"
 	}
 }

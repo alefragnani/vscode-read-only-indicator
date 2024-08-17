@@ -41,15 +41,23 @@ export class StatusBar {
         }
 
         // ui
-        const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
-        const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
+        const uimode = workspace.getConfiguration("fileAccess").get<UIMode>("uiMode", UIMode.Complete);
         const readOnly = fileAccess ? fileAccess === FileAccess.ReadOnly : Operations.isReadOnly(activeDocument);
 
         // Update the status bar
-        if (uimode === UIMode.Complete) {
-            this.statusBarItem.text = !readOnly ? codicons.pencil + " [RW]" : codicons.circle_slash + " [RO]";
-        } else {
-            this.statusBarItem.text = !readOnly ? "RW" : "RO";
+        switch (uimode) {
+            case UIMode.Complete:
+                this.statusBarItem.text = !readOnly ? codicons.pencil + " [RW]" : codicons.lock_small + " [RO]";    
+                break;
+            case UIMode.Simple:
+                this.statusBarItem.text = !readOnly ? "RW" : "RO";
+                break;
+            case UIMode.IconOnly:
+                this.statusBarItem.text = !readOnly ? codicons.pencil : codicons.lock_small;
+                break;
+        
+            default:
+                break;
         }
         this.statusBarItem.color = new ThemeColor(readOnly 
                                     ? "fileAccess.readonlyForeground" 
