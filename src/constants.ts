@@ -5,7 +5,8 @@
 
 export const enum UIMode {
     Complete = "complete",
-    Simple = "simple"
+    Simple = "simple",
+    IconOnly = "iconOnly"
 }
 
 export const enum FileAccess {

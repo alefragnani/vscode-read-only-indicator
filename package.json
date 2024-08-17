@@ -137,7 +137,8 @@
 					"description": "%fileAccess.configuration.uiMode.description%",
 					"enum": [
 						"complete",
-						"simple"
+						"simple",
+						"iconOnly"
 					]
 				},
 				"fileAccess.hideWhenWritable": {

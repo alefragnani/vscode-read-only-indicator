@@ -45,10 +45,19 @@ export class StatusBar {
         const readOnly = fileAccess ? fileAccess === FileAccess.ReadOnly : Operations.isReadOnly(activeDocument);
 
         // Update the status bar
-        if (uimode === UIMode.Complete) {
-            this.statusBarItem.text = !readOnly ? codicons.pencil + " [RW]" : codicons.circle_slash + " [RO]";
-        } else {
-            this.statusBarItem.text = !readOnly ? "RW" : "RO";
+        switch (uimode) {
+            case UIMode.Complete:
+                this.statusBarItem.text = !readOnly ? codicons.pencil + " [RW]" : codicons.circle_slash + " [RO]";    
+                break;
+            case UIMode.Simple:
+                this.statusBarItem.text = !readOnly ? "RW" : "RO";
+                break;
+            case UIMode.IconOnly:
+                this.statusBarItem.text = !readOnly ? codicons.pencil : codicons.circle_slash;
+                break;
+        
+            default:
+                break;
         }
         this.statusBarItem.color = new ThemeColor(readOnly 
                                     ? "fileAccess.readonlyForeground" 
