@@ -41,8 +41,7 @@ export class StatusBar {
         }
 
         // ui
-        const uimodeString: string = (workspace.getConfiguration("fileAccess").get("uiMode", "complete"));
-        const uimode: UIMode = uimodeString === "complete" ? UIMode.Complete : UIMode.Simple;
+        const uimode = workspace.getConfiguration("fileAccess").get<UIMode>("uiMode", UIMode.Complete);
         const readOnly = fileAccess ? fileAccess === FileAccess.ReadOnly : Operations.isReadOnly(activeDocument);
 
         // Update the status bar

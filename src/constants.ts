@@ -4,8 +4,8 @@
 *--------------------------------------------------------------------------------------------*/
 
 export const enum UIMode {
-    Complete,
-    Simple
+    Complete = "complete",
+    Simple = "simple"
 }
 
 export const enum FileAccess {
