@@ -47,13 +47,13 @@ export class StatusBar {
         // Update the status bar
         switch (uimode) {
             case UIMode.Complete:
-                this.statusBarItem.text = !readOnly ? codicons.pencil + " [RW]" : codicons.circle_slash + " [RO]";    
+                this.statusBarItem.text = !readOnly ? codicons.pencil + " [RW]" : codicons.lock_small + " [RO]";    
                 break;
             case UIMode.Simple:
                 this.statusBarItem.text = !readOnly ? "RW" : "RO";
                 break;
             case UIMode.IconOnly:
-                this.statusBarItem.text = !readOnly ? codicons.pencil : codicons.circle_slash;
+                this.statusBarItem.text = !readOnly ? codicons.pencil : codicons.lock_small;
                 break;
         
             default:
