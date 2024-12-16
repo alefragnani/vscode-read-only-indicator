@@ -1,3 +1,12 @@
+## [3.11.0] - 2024-12-17
+## Added
+- New config for `fileAccess.uiMode` setting (issue [#76](https://github.com/alefragnani/vscode-read-only-indicator/issues/76))
+- Acronym (as suffix) to `Make Writeable` and `Make Read Only` commands (issue [#92](https://github.com/alefragnani/vscode-read-only-indicator/issues/92))
+
+### Internal
+- Security Alert: webpack (dependabot [PR #96](https://github.com/alefragnani/vscode-read-only-indicator/pull/96))
+- Security Alert: braces (dependabot [PR #93](https://github.com/alefragnani/vscode-read-only-indicator/pull/93))
+
 ## [3.10.0] - 2024-03-29
 ## Added
 - Published to Open VSX (issue [#91](https://github.com/alefragnani/vscode-read-only-indicator/issues/91))
