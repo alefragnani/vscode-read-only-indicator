@@ -33,11 +33,20 @@ jobs:
           node-version: 18.x
           cache: 'npm'
 
+      # Cache VS Code downloads
+      - name: Cache VS Code downloads
+        uses: actions/cache@v4
+        with:
+          path: .vscode-test
+          key: vscode-test-${{ matrix.os }}-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            vscode-test-${{ matrix.os }}-
+
       # Install dependencies
       - run: npm ci
 
-      # Run tests
-      - name: Run tests
-        uses: GabrielBB/xvfb-action@v1.6
-        with:
-          run: npm test
+      # Run tests with xvfb for Linux, normal for other platforms
+      - run: xvfb-run -a npm test
+        if: runner.os == 'Linux'
+      - run: npm test
+        if: runner.os != 'Linux'
