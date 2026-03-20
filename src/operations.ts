@@ -5,7 +5,7 @@
 
 import * as fs from "fs";
 import * as path from "path";
-import { ChildProcess } from "child_process";
+import { ChildProcess, spawn } from "child_process";
 import { TextDocument, TextEditor, FileType, Uri, window, l10n } from "vscode";
 import { FileAccess } from "./constants";
 
@@ -71,8 +71,6 @@ export class Operations {
                     return resolve (false);
             }
 
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const spawn = require("child_process").spawn;
             const ls = spawn(command, [attribute, uri.fsPath]);
 
             resolve(this.handleSpawnResult(ls));
@@ -120,8 +118,6 @@ export class Operations {
                     return resolve (false);
             }
 
-            // eslint-disable-next-line @typescript-eslint/no-var-requires
-            const spawn = require("child_process").spawn;
             const ls = spawn(command, args);
 
             resolve(this.handleSpawnResult(ls));
