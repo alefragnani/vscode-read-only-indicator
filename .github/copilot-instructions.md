@@ -1,170 +1,155 @@
-# Read-Only Indicator VSCode Extension
+# Read-Only Indicator VS Code Extension
 
-**Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.**
+Always reference these instructions first and fall back to additional search or terminal commands only when project files do not provide enough context.
 
-Read-Only Indicator is a Visual Studio Code extension that displays a read-only/writeable indicator in the status bar. The extension is built with TypeScript, webpack, and follows VSCode extension development patterns.
+## Project Overview
+
+Read-Only Indicator is a Visual Studio Code extension that displays a read-only/writeable indicator in the status bar. The extension is built with TypeScript, webpack, and follows VS Code extension development patterns.
+
+## Technology Stack
+
+- Language: TypeScript
+- Runtime: VS Code Extension API (Node + Web)
+- Bundler: Webpack 5
+- Linting: ESLint (`eslint-config-vscode-ext`)
+- Testing: Mocha + `@vscode/test-electron`
 
 ## Working Effectively
 
-### Bootstrap, Build, and Test the Repository
+Bootstrap and local setup:
 
-**Prerequisites:**
-- Git >= 2.22.0  
-- Node.js >= 14.17.27
-
-**Initial Setup:**
 ```bash
-git clone https://github.com/alefragnani/vscode-read-only-indicator.git
-cd vscode-read-only-indicator
 git submodule init
 git submodule update
 npm install
 ```
 
-**Build Commands:**
-- `npm run build` -- Development build using webpack. Takes ~2.5 seconds. NEVER CANCEL.
-- `npm run vscode:prepublish` -- Production build using webpack with minification. Takes ~3.2 seconds. NEVER CANCEL.
-- `npm run watch` -- Development build in watch mode. Initial build ~2.5 seconds, then incremental updates. NEVER CANCEL.
+Build and development quickstart:
 
-**Testing Commands:**
-- `npm run lint` -- ESLint validation. Takes ~1 second. Expect exactly 7 existing warnings (non-breaking).
-- `npm run test` -- Full test suite including compilation and VSCode test runner. Takes ~5 seconds for compilation, but test execution will fail with `ENOTFOUND update.code.visualstudio.com` in sandboxed environments - this is expected and not a code issue.
-- `npm run compile` -- TypeScript compilation only. Takes ~2.4 seconds.
-- `npm run test-compile` -- TypeScript compilation + webpack build. Takes ~4.9 seconds.
+```bash
+npm run build
+npm run lint
+```
 
-### Development Workflow
+- Use `npm run watch` during active development.
+- Use VS Code "Launch Extension" (F5) to validate behavior in Extension Development Host.
+- Expected command timings are usually under 10 seconds.
+- Never cancel `npm install`, `npm run watch`, or `npm test` once started.
+## Build and Development Commands
 
-**For VSCode Extension Development:**
-1. Open the project in VSCode
-2. Run the bootstrap steps above
-3. Press `F5` or use "Launch Extension" debug configuration to start a new Extension Development Host
-4. The extension will be loaded in the new VSCode window
-5. Open any file to see the read-only/writeable indicator in the status bar
+- `npm run compile` - TypeScript compilation
+- `npm run build` - Webpack development build
+- `npm run watch` - Continuous webpack build
+- `npm run lint` - ESLint validation
+- `npm run test` - Full test suite
+- `npm run vscode:prepublish` - Production build
 
-**For Code Changes:**
-1. Make changes to TypeScript files in `src/`
-2. Run `npm run build` to compile (or use `npm run watch` for continuous building)
-3. Test changes using `F5` debug launch or "Reload Window" command in Extension Development Host
-4. Always run `npm run lint` before committing changes
-
-## Validation
+## Testing and Validation
 
 ### Manual Testing Scenarios
-
-**After making changes, always test these scenarios:**
-
-1. **Basic Status Bar Indicator:**
-   - Open any regular file - should show read-only `[RO]` or writeable `[RW]` indicator in status bar
-   - Open an untitled file - indicator should be hidden
-   - Close all files - indicator should be hidden
-
-2. **File Access Commands:**
-   - Right-click a file in Explorer (Windows/Mac only) - should show "Make Read Only" and "Make Writeable" context menu options
-   - Use Command Palette commands: "File Access: Make Read Only", "File Access: Make Writeable", "File Access: Change File Access", "File Access: Toggle File Access"
-   - Click the status bar indicator - should show toggle or choice dialog based on `fileAccess.indicatorAction` setting
-
-3. **Settings Configuration:**
-   - Test different `fileAccess.uiMode` values: "complete", "simple", "iconOnly"
-   - Test different `fileAccess.position` values: "left", "right"  
-   - Test `fileAccess.hideWhenWriteable: true` - indicator should hide for writeable files
-
-**CRITICAL**: Extensions cannot be fully tested without VSCode UI interaction. Use the Launch Extension debug configuration to manually verify functionality works as expected.
+1. Basic status bar indicator for read-only/writeable files.
+2. Context-menu and command-palette file access commands.
+3. Settings behavior (`fileAccess.uiMode`, `fileAccess.position`, `fileAccess.hideWhenWriteable`).
 
 ### CI Validation
-- Always run `npm run lint` before committing - CI will fail on linting errors
-- CI build process: `npm install` → `npm test` (includes compile + lint + tests)
-- CI runs on Windows, macOS, and Ubuntu  
-- Test failures due to network connectivity (`ENOTFOUND update.code.visualstudio.com`) are expected in sandboxed environments
+- Run `npm run lint` before committing.
+- CI runs on Windows, macOS, and Ubuntu.
+- `ENOTFOUND update.code.visualstudio.com` during tests is expected in sandboxed environments.
 
-### Build Times Summary
-All build times measured on typical development environment:
-- `npm install`: ~3 seconds (after submodule init)
-- `npm run compile`: ~2.4 seconds  
-- `npm run build`: ~2.5 seconds
-- `npm run vscode:prepublish`: ~3.2 seconds
-- `npm run lint`: ~1 second
-- `npm run test-compile`: ~4.9 seconds
+## Project Structure and Key Files
+
+```
+src/
+├── extension.ts          # Extension activation
+├── commands.ts           # Command implementations
+├── operations.ts         # File access operations
+├── statusBar/
+│   └── statusBar.ts      # Status bar indicator
+├── container.ts          # Dependency container
+└── test/                 # Test files
+
+dist/                     # Webpack bundles (extension.js)
+l10n/                     # Localization files
+out/                      # Compiled TypeScript files
+vscode-whats-new/         # Git submodule for What's New
+```
+
+## Coding Conventions and Patterns
+
+### Indentation
+
+- We spaces, not tabs.
+- Use 4 spaces for indentation.
+
+### Naming Conventions
+
+- Use PascalCase for `type` names
+- Use PascalCase for `enum` values
+- Use camelCase for `function` and `method` names
+- Use camelCase for `property` names and `local variables`
+- Use whole words in names when possible
+
+### Types
+
+- Do not export `types` or `functions` unless you need to share it across multiple components
+- Do not introduce new `types` or `values` to the global namespace
+- Prefer `const` over `let` when possible.
+
+### Strings
+
+- Use "double quotes"
+- All strings visible to the user need to be externalized using the `l10n` API
+- Externalized strings must not use string concatenation. Use placeholders instead (`{0}`).
+
+### Code Quality
+
+- All files must include copyright header
+- Prefer `async` and `await` over `Promise` and `then` calls
+- All user facing messages must be localized using the applicable localization framework (for example `l10n.t` method)
+- Keep imports organized: VS Code first, then internal modules.
+- Use semicolons at the end of statements.
+- Keep changes minimal and aligned with existing style.
+
+### Import Organization
+
+- Import VS Code API first: `import * as vscode from "vscode"`
+- Group related imports together
+- Use named imports for specific VS Code types
+- Import from local modules using relative paths
+
+## Extension Features and Configuration
+
+### Key Features
+1. **File Status**: Status bar indicator for read-only/writeable files
+2. **File Access Commands**: Context menu and command palette commands to change file access
+3. **Multi-root workspace**: Manage file status per workspace folder
+4. **Internationalization support**: Localization of all user-facing strings
+
+### Important Settings
+- `fileAccess.indicatorAction`
+
+## Dependencies and External Tools
+
+- No external runtime dependencies required beyond the VS Code extension stack.
+- `VS Code-whats-new` submodule should be initialized for complete lint/test flows.
+
+## Troubleshooting and Known Limitations
+
+- Tests may fail in restricted networks due to VS Code download requirements.
+- If extension host does not reflect changes, reload window or restart debug session.
+- If status bar indicator is missing, verify an editable file is active.
+
+## CI and Pre-Commit Validation
+
+Before committing:
+
+1. Run `npm run lint`.
+2. Run `npm run build`.
+3. Run `npm run test-compile`.
+4. Perform manual Extension Host validation.
 
 ## Common Tasks
 
-### Repository Structure
-```
-.
-├── .github/           # GitHub Actions workflows and templates
-├── .vscode/          # VSCode settings, tasks, and launch configs
-├── dist/             # Webpack production build output  
-├── images/           # Extension icons and screenshots
-├── l10n/             # Localization files
-├── out/              # TypeScript compilation output
-├── src/              # Source code
-│   ├── commands.ts       # Command implementations
-│   ├── constants.ts      # Shared constants and enums
-│   ├── container.ts      # Dependency injection container
-│   ├── extension.ts      # Main extension entry point
-│   ├── operations.ts     # File system operations
-│   ├── statusBar/        # Status bar implementation
-│   ├── test/            # Test files
-│   └── whats-new/       # What's New feature
-├── vscode-whats-new/ # Git submodule for What's New functionality
-├── package.json      # Extension manifest and dependencies
-├── tsconfig.json     # TypeScript configuration
-└── webpack.config.js # Webpack build configuration
-```
-
-### Key Files for Development
-
-**Main Extension Logic:**
-- `src/extension.ts` - Extension activation and initialization
-- `src/commands.ts` - All extension commands (toggle, change access, etc.)
-- `src/statusBar/statusBar.ts` - Status bar indicator implementation
-- `src/operations.ts` - File access operations (Windows/macOS file attribute changes)
-
-**Configuration:**
-- `package.json` - Extension manifest, commands, settings, activation events
-- `.vscode/launch.json` - Debug configurations for extension development
-- `.vscode/tasks.json` - Build tasks for VSCode
-
-**Build System:**
-- `webpack.config.js` - Webpack configuration for bundling
-- `tsconfig.json` - TypeScript compiler options
-
-### Frequently Used Commands Output
-
-**npm scripts (package.json):**
-```json
-{
-  "build": "webpack --mode development",
-  "watch": "webpack --watch --mode development", 
-  "vscode:prepublish": "webpack --mode production",
-  "compile": "tsc -p ./",
-  "lint": "eslint -c package.json --ext .ts src vscode-whats-new",
-  "test": "npm run test-compile && npm run just-test"
-}
-```
-
-**Extension Commands (package.json contributes.commands):**
-- `readOnly.makeWriteable` - Make current file writeable
-- `readOnly.makeReadOnly` - Make current file read-only  
-- `readOnly.changeFileAccess` - Show picker to choose access level
-- `readOnly.toggleFileAccess` - Toggle between read-only and writeable
-- `readOnly.makeWriteableForContextMenu` - Context menu: make writeable
-- `readOnly.makeReadOnlyForContextMenu` - Context menu: make read-only
-
-## Troubleshooting
-
-**Build Issues:**
-- If `npm install` fails: ensure Node.js >= 14.17.27 and npm are properly installed
-- If submodule errors occur: run `git submodule init && git submodule update`
-- If webpack build fails: delete `node_modules` and `dist/` directories, then `npm install && npm run build`
-
-**Test Issues:**
-- Test failures with `ENOTFOUND update.code.visualstudio.com` are expected in sandboxed environments
-- For local development, ensure internet connectivity for VSCode download during tests
-- Use `npm run compile && npm run lint` to validate code without running VSCode tests
-
-**Extension Development Issues:**
-- If Extension Development Host doesn't start: ensure VSCode is properly installed and accessible
-- If changes don't appear: use "Reload Window" command in Extension Development Host or restart the debug session
-- If status bar doesn't appear: check that files are open and not untitled
-
-**NEVER CANCEL long-running builds or tests.** Builds typically complete in 2-3 seconds, tests in ~10 seconds for compilation phase.
+1. Update command logic in `src/commands.ts`.
+2. Update status bar behavior in `src/statusBar/statusBar.ts`.
+3. Keep `package.json` command/settings contributions synchronized with code.
