@@ -1,3 +1,4 @@
+import { randomUUID } from 'crypto';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
@@ -5,7 +6,7 @@ import * as path from 'path';
 import { runTests } from '@vscode/test-electron';
 
 async function main() {
-	const testRunId = `${process.pid}-${Date.now()}`;
+	const testRunId = randomUUID();
 	const testTempDir = process.platform === 'darwin'
 		? `/tmp/roi-vscode-test-${testRunId}`
 		: path.join(os.tmpdir(), `roi-vscode-test-${testRunId}`);
@@ -34,8 +35,12 @@ async function main() {
 		console.error('Failed to run tests');
 		exitCode = 1;
 	} finally {
-		if (fs.existsSync(testTempDir)) {
-			fs.rmSync(testTempDir, { recursive: true, force: true });
+		try {
+			if (fs.existsSync(testTempDir)) {
+				fs.rmSync(testTempDir, { recursive: true, force: true });
+			}
+		} catch (err) {
+			console.error('Failed to clean up test temporary directory', err);
 		}
 	}
 
