@@ -5,9 +5,10 @@ import * as path from 'path';
 import { runTests } from '@vscode/test-electron';
 
 async function main() {
-	const testTempDir = process.platform === 'darwin' && fs.existsSync('/tmp')
-		? `/tmp/roi-vscode-test-${process.pid}`
-		: path.join(os.tmpdir(), `roi-vscode-test-${process.pid}`);
+	const testRunId = `${process.pid}-${Date.now()}`;
+	const testTempDir = process.platform === 'darwin'
+		? `/tmp/roi-vscode-test-${testRunId}`
+		: path.join(os.tmpdir(), `roi-vscode-test-${testRunId}`);
 	let exitCode = 0;
 
 	try {
@@ -33,7 +34,9 @@ async function main() {
 		console.error('Failed to run tests');
 		exitCode = 1;
 	} finally {
-		fs.rmSync(testTempDir, { recursive: true, force: true });
+		if (fs.existsSync(testTempDir)) {
+			fs.rmSync(testTempDir, { recursive: true, force: true });
+		}
 	}
 
 	if (exitCode !== 0) {
