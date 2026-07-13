@@ -26,8 +26,8 @@ async function main() {
 			extensionDevelopmentPath,
 			extensionTestsPath,
 			launchArgs: [
-				`--extensions-dir=${path.join(testTempDir, 'extensions')}`,
-				`--user-data-dir=${path.join(testTempDir, 'user-data')}`
+				`--extensions-dir=${path.join(testTempDir, 'ext')}`,
+				`--user-data-dir=${path.join(testTempDir, 'data')}`
 			]
 		});
 	} catch (err) {
