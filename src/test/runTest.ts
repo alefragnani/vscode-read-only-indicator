@@ -7,6 +7,7 @@ import { runTests } from '@vscode/test-electron';
 
 async function main() {
 	const testRunId = randomUUID();
+	// Keep macOS test profile paths short to avoid the VS Code IPC socket path limit.
 	const testTempDir = process.platform === 'darwin'
 		? `/tmp/roi-vscode-test-${testRunId}`
 		: path.join(os.tmpdir(), `roi-vscode-test-${testRunId}`);
@@ -36,9 +37,7 @@ async function main() {
 		exitCode = 1;
 	} finally {
 		try {
-			if (fs.existsSync(testTempDir)) {
-				fs.rmSync(testTempDir, { recursive: true, force: true });
-			}
+			fs.rmSync(testTempDir, { recursive: true, force: true });
 		} catch (err) {
 			console.error('Failed to clean up test temporary directory', err);
 		}
