@@ -1,3 +1,4 @@
+import * as os from 'os';
 import * as path from 'path';
 
 import { runTests } from '@vscode/test-electron';
@@ -11,9 +12,19 @@ async function main() {
 		// The path to test runner
 		// Passed to --extensionTestsPath
 		const extensionTestsPath = path.resolve(__dirname, './suite/index');
+		const testProfilePath = process.platform === 'win32'
+			? path.join(os.tmpdir(), 'roi-vscode-test')
+			: '/tmp/roi-vscode-test';
 
 		// Download VS Code, unzip it and run the integration test
-		await runTests({ extensionDevelopmentPath, extensionTestsPath });
+		await runTests({
+			extensionDevelopmentPath,
+			extensionTestsPath,
+			launchArgs: [
+				`--extensions-dir=${path.join(testProfilePath, 'extensions')}`,
+				`--user-data-dir=${path.join(testProfilePath, 'user-data')}`
+			]
+		});
 	} catch (err) {
 		console.error(err);
 		console.error('Failed to run tests');
