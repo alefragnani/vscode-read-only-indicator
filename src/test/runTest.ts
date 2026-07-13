@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
 
@@ -12,17 +13,17 @@ async function main() {
 		// The path to test runner
 		// Passed to --extensionTestsPath
 		const extensionTestsPath = path.resolve(__dirname, './suite/index');
-		const testProfilePath = process.platform === 'win32'
-			? path.join(os.tmpdir(), 'roi-vscode-test')
-			: '/tmp/roi-vscode-test';
+		const testTempDir = process.platform !== 'win32' && fs.existsSync('/tmp')
+			? '/tmp/roi-vscode-test'
+			: path.join(os.tmpdir(), 'roi-vscode-test');
 
 		// Download VS Code, unzip it and run the integration test
 		await runTests({
 			extensionDevelopmentPath,
 			extensionTestsPath,
 			launchArgs: [
-				`--extensions-dir=${path.join(testProfilePath, 'extensions')}`,
-				`--user-data-dir=${path.join(testProfilePath, 'user-data')}`
+				`--extensions-dir=${path.join(testTempDir, 'extensions')}`,
+				`--user-data-dir=${path.join(testTempDir, 'user-data')}`
 			]
 		});
 	} catch (err) {
