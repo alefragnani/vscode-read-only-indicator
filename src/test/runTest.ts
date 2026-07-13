@@ -5,6 +5,11 @@ import * as path from 'path';
 import { runTests } from '@vscode/test-electron';
 
 async function main() {
+	const testTempDir = process.platform === 'darwin' && fs.existsSync('/tmp')
+		? `/tmp/roi-vscode-test-${process.pid}`
+		: path.join(os.tmpdir(), `roi-vscode-test-${process.pid}`);
+	let exitCode = 0;
+
 	try {
 		// The folder containing the Extension Manifest package.json
 		// Passed to `--extensionDevelopmentPath`
@@ -13,9 +18,6 @@ async function main() {
 		// The path to test runner
 		// Passed to --extensionTestsPath
 		const extensionTestsPath = path.resolve(__dirname, './suite/index');
-		const testTempDir = process.platform === 'darwin' && fs.existsSync('/tmp')
-			? `/tmp/roi-vscode-test-${process.pid}`
-			: path.join(os.tmpdir(), `roi-vscode-test-${process.pid}`);
 
 		// Download VS Code, unzip it and run the integration test
 		await runTests({
@@ -29,7 +31,13 @@ async function main() {
 	} catch (err) {
 		console.error(err);
 		console.error('Failed to run tests');
-		process.exit(1);
+		exitCode = 1;
+	} finally {
+		fs.rmSync(testTempDir, { recursive: true, force: true });
+	}
+
+	if (exitCode !== 0) {
+		process.exit(exitCode);
 	}
 }
 
