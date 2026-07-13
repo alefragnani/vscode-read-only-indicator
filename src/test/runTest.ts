@@ -1,4 +1,3 @@
-import { randomUUID } from 'crypto';
 import * as fs from 'fs';
 import * as os from 'os';
 import * as path from 'path';
@@ -6,11 +5,12 @@ import * as path from 'path';
 import { runTests } from '@vscode/test-electron';
 
 async function main() {
-	const testRunId = randomUUID();
 	// Keep macOS test profile paths short to avoid the VS Code IPC socket path limit.
-	const testTempDir = process.platform === 'darwin'
-		? `/tmp/roi-vscode-test-${testRunId}`
-		: path.join(os.tmpdir(), `roi-vscode-test-${testRunId}`);
+	const testTempDir = fs.mkdtempSync(
+		process.platform === 'darwin'
+			? '/tmp/roi-vscode-test-'
+			: path.join(os.tmpdir(), 'roi-vscode-test-')
+	);
 	let exitCode = 0;
 
 	try {
@@ -39,7 +39,7 @@ async function main() {
 		try {
 			fs.rmSync(testTempDir, { recursive: true, force: true });
 		} catch (err) {
-			console.error('Failed to clean up test temporary directory', err);
+			console.error(`Failed to clean up test temporary directory: ${testTempDir}`, err);
 		}
 	}
 
