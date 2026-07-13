@@ -13,9 +13,9 @@ async function main() {
 		// The path to test runner
 		// Passed to --extensionTestsPath
 		const extensionTestsPath = path.resolve(__dirname, './suite/index');
-		const testTempDir = process.platform !== 'win32' && fs.existsSync('/tmp')
-			? '/tmp/roi-vscode-test'
-			: path.join(os.tmpdir(), 'roi-vscode-test');
+		const testTempDir = process.platform === 'darwin' && fs.existsSync('/tmp')
+			? `/tmp/roi-vscode-test-${process.pid}`
+			: path.join(os.tmpdir(), `roi-vscode-test-${process.pid}`);
 
 		// Download VS Code, unzip it and run the integration test
 		await runTests({
