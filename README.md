@@ -43,8 +43,8 @@ The indicator is automatically updated. You don't need to do anything.
 
 File Access | Status Bar Preview |
 ----------- | ------------------ |
-Read-only |![Read-only](images/screenshot-readonly.png)
-Writeable |![Writeable](images/screenshot-writeable.png)
+Read-only |![Read-only](docs/images/screenshot-readonly.png)
+Writeable |![Writeable](docs/images/screenshot-writeable.png)
 
 ## Available commands
 
