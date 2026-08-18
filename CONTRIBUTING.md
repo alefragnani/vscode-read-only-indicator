@@ -17,7 +17,7 @@ git clone https://github.com/alefragnani/vscode-read-only-indicator.git
 Prerequisites
 
 - [Git](https://git-scm.com/), `>= 2.22.0`
-- [NodeJS](https://nodejs.org/), `>= 22.22.1`
+- [Node.js](https://nodejs.org/), `>= 22.22.1`
 
 ### Dependencies
 
