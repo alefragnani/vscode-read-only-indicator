@@ -1,0 +1,16 @@
+{
+    "fileAccess.configuration.title": "Read-Only Indicator",
+    "fileAccess.configuration.position.description": "Status panelindəki göstəricinin mövqeyini müəyyən edir",
+    "fileAccess.configuration.uiMode.description": "Status panelindəki göstəricidə nə qədər məlumat göstəriləcəyini müəyyən edir",
+    "fileAccess.configuration.hideWhenWriteable.description": "Fayl yazıla bilən olduqda status panelindəki göstəricini gizlət",
+    "fileAccess.configuration.indicatorAction.description": "Göstəriciyə kliklədikdə yerinə yetiriləcək əməliyyatı təyin edir",
+    "fileAccess.colors.readonlyForeground.descripition": "Status panelindəki sadəcə oxuna bilən göstəricisinin rəngi",
+    "fileAccess.colors.writeableForeground.descripition": "Status panelindəki yazıla bilən göstəricisinin rəngi",
+    "readOnly.commands.makeWriteable.title": "Fayla giriş: yazıla bilən et [RW]",
+    "readOnly.commands.makeReadOnly.title": "Fayla giriş: sadəcə oxuna bilən et [RO]",
+    "readOnly.commands.makeWriteableForContextMenu.title": "Yazıla bilən et",
+    "readOnly.commands.makeReadOnlyForContextMenu.title": "Sadəcə oxuna bilən et",
+    "readOnly.commands.changeFileAccess.title": "Fayla giriş: fayla girişi dəyiş",
+    "readOnly.commands.toggleFileAccess.title": "Fayla giriş: fayla giriş rejimini əksinə çevir",
+    "readOnly.commands.whatsNew.title": "Fayla giriş: yeniliklər"
+}

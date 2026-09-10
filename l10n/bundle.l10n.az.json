@@ -1,0 +1,17 @@
+{
+    "Select Action": "Əməliyyat seç",
+    "No indicator action '{0}' is available": "Göstərici üçün '{0}' əməliyyatı mövcud deyil",
+    "Read-only": "Sadəcə oxuna bilən",
+    "Writeable": "Yazıla bilən",
+    "Are you sure you want to make files in {0} {1} recursive?": "{0} daxilindəki və bütün alt qovluqlardakı faylları {1} etmək istədiyinizə əminsiniz?",
+    "Make {0}": "{0} et",
+    "Cancel": "Ləğv et",
+    "The file is already {0}": "Fayl artıq {0} vəziyyətindədir",
+    "This command is not supported on this system ({0})": "Bu sistemdə ({0}) bu əmr dəstəklənmir",
+    "Open a file first to update it attributes": "Faylın atributlarını yeniləmək üçün əvvəlcə onu açın",
+    "Save the file first to update it attributes": "Faylın atributlarını yeniləmək üçün əvvəlcə onu yadda saxlayın",
+    "Some error occured: {0}": "Xəta baş verdi: {0}",
+    "child process exited with code {0}": "Alt proses {0} kodu ilə sonlandı",
+    "The file is writeable": "Fayl yazıla biləndir",
+    "The file is read only": "Fayl sadəcə oxuna biləndir"
+}
