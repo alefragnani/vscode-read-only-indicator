@@ -8,8 +8,9 @@
   <a title="Learn more about Read-only Indicator" href="http://github.com/alefragnani/vscode-read-only-indicator"><img src="https://raw.githubusercontent.com/alefragnani/vscode-read-only-indicator/master/images/vscode-read-only-indicator-logo-readme.png" alt="Read-only Logo" width="70%" /></a>
 </p>
 
-# What's new in Read-only Indicator 3.11
+# What's new in Read-only Indicator 3.12
 
+* Adds **Azerbaijani** translation
 * Adds new **UIMode** 
 * Published to **Open VSX**
 * Adds **Folder Level** commands support
@@ -106,6 +107,7 @@ For more information about customizing colors in VSCode, see [Theme Color](https
 
 Special thanks to the people that have contributed to the project:
 
+* Jamal Ali (@jamalkamaladdin) - az translations ([see PR #130](https://github.com/alefragnani/vscode-read-only-indicator/pull/130))
 * Riku Kanayama (@k-kuroguro) - Wrong description on Readme ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/67))
 * dO.Ob -> zhaolei (@zzhaolei) - Support folder level commands to MacOS ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/60))
 * Riku Kanayama (@k-kuroguro) - Typos in settings names ([see PR](https://github.com/alefragnani/vscode-read-only-indicator/pull/51))

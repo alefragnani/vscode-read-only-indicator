@@ -1,3 +1,28 @@
+## [3.12.0] - 2026-11-10
+## Added
+- **az** translations (Thanks to @jamalkamaladdin [PR #130](https://github.com/alefragnani/vscode-read-only-indicator/pull/130))
+
+### Internal
+- Security Alert: fast-uri (dependabot [PR #137](https://github.com/alefragnani/vscode-read-only-indicator/pull/137))
+- Security Alert: brace-expansion (dependabot [PR #136](https://github.com/alefragnani/vscode-read-only-indicator/pull/136))
+- Security Alert: serialize-javascript (dependabot [PR #135](https://github.com/alefragnani/vscode-read-only-indicator/pull/135))
+- Security Alert: serialize-javascript, mocha and terser-webpack-plugin (dependabot [PR #134](https://github.com/alefragnani/vscode-read-only-indicator/pull/134))
+- Security Alert: glob (dependabot [PR #133](https://github.com/alefragnani/vscode-read-only-indicator/pull/133))
+- Security Alert: js-yaml (dependabot [PR #132](https://github.com/alefragnani/vscode-read-only-indicator/pull/132))
+- Security Alert: brace-expansion (dependabot [PR #129](https://github.com/alefragnani/vscode-read-only-indicator/pull/129))
+- Security Alert: browserslist (dependabot [PR #128](https://github.com/alefragnani/vscode-read-only-indicator/pull/128))
+- Security Alert: fast-uri (dependabot [PR #127](https://github.com/alefragnani/vscode-read-only-indicator/pull/127))
+- Security Alert: js-yaml (dependabot [PR #122](https://github.com/alefragnani/vscode-read-only-indicator/pull/122))
+- Security Alert: fast-uri (dependabot [PR #121](https://github.com/alefragnani/vscode-read-only-indicator/pull/121))
+- Security Alert: js-yaml (dependabot [PR #118](https://github.com/alefragnani/vscode-read-only-indicator/pull/118))
+- Security Alert: fast-uri (dependabot [PR #117](https://github.com/alefragnani/vscode-read-only-indicator/pull/117))
+- Security Alert: picomatch (dependabot [PR #110](https://github.com/alefragnani/vscode-read-only-indicator/pull/110))
+- Security Alert: flatted (dependabot [PR #109](https://github.com/alefragnani/vscode-read-only-indicator/pull/109))
+- Security Alert: minimatch, @typescript-eslint/eslint-plugin and @typescript-eslint/parser (dependabot [PR #105](https://github.com/alefragnani/vscode-read-only-indicator/pull/105))
+- Security Alert: webpack (dependabot [PR #104](https://github.com/alefragnani/vscode-read-only-indicator/pull/104))
+- Security Alert: js-yaml (dependabot [PR #103](https://github.com/alefragnani/vscode-read-only-indicator/pull/103))
+- Security Alert: serialize-javascript and mocha (dependabot [PR #97](https://github.com/alefragnani/vscode-read-only-indicator/pull/97))
+
 ## [3.11.0] - 2024-12-17
 ## Added
 - New config for `fileAccess.uiMode` setting (issue [#76](https://github.com/alefragnani/vscode-read-only-indicator/issues/76))
